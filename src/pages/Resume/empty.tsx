@@ -83,10 +83,7 @@ const ResumeEmpty = () => {
                             Add General Informations
                           </span>
                         </div>
-                        <Button
-                          className="w-fit"
-                          variant="light"
-                        >
+                        <Button className="w-fit" variant="light">
                           <svg
                             fill="none"
                             height="25"

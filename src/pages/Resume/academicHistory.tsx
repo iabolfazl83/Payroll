@@ -2,11 +2,12 @@ import { Button } from "@heroui/button";
 import {
   Add,
   ArrowLeft2,
-  ArrowRight2, FavoriteChart,
+  ArrowRight2,
+  FavoriteChart,
   Personalcard,
   ReceiveSquare,
   SearchNormal1,
-  UserOctagon
+  UserOctagon,
 } from "iconsax-react";
 import {
   Form,
@@ -31,8 +32,12 @@ import { AppMap } from "@/components/AppMap.tsx";
 export default function ResumeInfo() {
   const { t } = useTranslation();
 
-  const { isOpen, onOpen ,onOpenChange } = useDisclosure();
-  const { isOpen:isOpenAddNewJobExperince,onOpen:onOpenNewJobExperience ,onOpenChange:onOpenChangeNewJobExperince } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isOpenAddNewJobExperince,
+    onOpen: onOpenNewJobExperience,
+    onOpenChange: onOpenChangeNewJobExperince,
+  } = useDisclosure();
 
   const formik = useFormik({
     initialValues: {
@@ -146,7 +151,7 @@ export default function ResumeInfo() {
                         Location: "Tehran",
                       },
                     ],
-                    onOpenEditDialog: onOpen
+                    onOpenEditDialog: onOpen,
                   }}
                 />
               </div>
@@ -486,7 +491,7 @@ export default function ResumeInfo() {
                           <div className="flex flex-col gap-1 w-1/2">
                             <AppInput
                               props={{
-                                label:"Title",
+                                label: "Title",
                                 required: true,
                                 error: formik.errors.firstname,
                                 name: "firstname",
@@ -636,7 +641,7 @@ export default function ResumeInfo() {
                           <div className="flex flex-col gap-1 w-1/2">
                             <AppInput
                               props={{
-                                label:"Descriptions and Achievements",
+                                label: "Descriptions and Achievements",
                                 required: true,
                                 error: formik.errors.firstname,
                                 name: "firstname",

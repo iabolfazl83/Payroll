@@ -34,6 +34,7 @@ export default function CompanyGeneralInfo() {
   const handleNavigateToEvents = () => {
     navigate("/company/events");
   };
+
   return (
     <CompanyLayout
       props={{
@@ -62,8 +63,9 @@ export default function CompanyGeneralInfo() {
                     </span>
                   </Button>
                   <Button
+                    className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent"
                     onPress={handleNavigateToEvents}
-                    className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent">
+                  >
                     <Medal
                       className="text-secondary-400 dark:text-white"
                       size="22"
@@ -127,7 +129,10 @@ export default function CompanyGeneralInfo() {
                       </div>
                       <div>
                         <div className="flex gap-2 items-center">
-                          <People className="text-secondary-400 dark:text-white" size="22" />
+                          <People
+                            className="text-secondary-400 dark:text-white"
+                            size="22"
+                          />
                           <span className="text-xl font-normal text-secondary-400 dark:text-white">
                             About Us
                           </span>

@@ -11,6 +11,16 @@ import {
   Trash,
 } from "iconsax-react";
 import { useNavigate } from "react-router-dom";
+import {
+  Chip,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@heroui/react";
+import { useState } from "react";
 
 import { ResumeLayout } from "@/pages/Resume/Layout.tsx";
 import { useDarkMode } from "@/context/DarkMode.tsx";
@@ -20,10 +30,8 @@ import { AppMap } from "@/components/AppMap.tsx";
 import { AppPagination } from "@/components/AppPagination.tsx";
 import { SoftSkillsIcon } from "@/icons/softSkillsIcon.tsx";
 import SoftSkillCardBg from "@/assets/img/soft-skills-bg.png";
-import { Chip, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/react";
 import { ChevronDownIcon } from "@/icons/chevronDown.tsx";
 import { CloseIcon } from "@/icons/closeIcon.tsx";
-import { useState } from "react";
 
 const softSkillsData = [
   {
@@ -95,8 +103,16 @@ export default function ResumeSoftSkills() {
   const { darkMode } = useDarkMode();
   const navigate = useNavigate();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { isOpen:isOpenDelete, onOpen:onOpenDelete, onOpenChange:onOpenChangeDelete } = useDisclosure();
-  const { isOpen:isOpenSoftSkills, onOpen:onOpenSoftSkills, onOpenChange: onOpenChangeSoftSkills } = useDisclosure();
+  const {
+    isOpen: isOpenDelete,
+    onOpen: onOpenDelete,
+    onOpenChange: onOpenChangeDelete,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenSoftSkills,
+    onOpen: onOpenSoftSkills,
+    onOpenChange: onOpenChangeSoftSkills,
+  } = useDisclosure();
   const [isOpenSkills, setIsOpenSkills] = useState<boolean>(false);
   const [isOpenIndustrial, setIsOpenIndustrial] = useState<boolean>(false);
   const [isOpenField, setIsOpenField] = useState<boolean>(false);
@@ -105,7 +121,7 @@ export default function ResumeSoftSkills() {
   const [selectedIndustrial, setSelectedIndustrial] = useState<string[]>([]);
   const [selectedField, setSelectedField] = useState<string>("");
 
-  const skillsData:any = {
+  const skillsData: any = {
     Industrial: ["Manufacturing", "Construction", "Automotive"],
     "Natural resource jobs": ["Agriculture", "Forestry", "Fishing"],
     Languages: ["English", "French", "German"],
@@ -146,7 +162,6 @@ export default function ResumeSoftSkills() {
   const availableIndustrials = selectedSkills.flatMap(
     (skill: any) => skillsData[skill as any] || [],
   );
-
 
   const availableFields = selectedIndustrial;
   const handleNavigateToHardSkills = () => {
@@ -833,8 +848,8 @@ export default function ResumeSoftSkills() {
                         <div className="bg-danger flex gap-2 !rounded-4 !px-3 !py-1.5 items-center">
                           <Trash className="text-white" size="18" />
                           <span className="text-xl text-white font-normal leading-normal">
-                      Would it be acceptable for you to remove this?
-                    </span>
+                            Would it be acceptable for you to remove this?
+                          </span>
                         </div>
                         <Button
                           className="!w-6 !h-6 !p-0 !min-w-fit !rounded-0"

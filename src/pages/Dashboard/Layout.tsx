@@ -1,6 +1,4 @@
-import {
-  ElementEqual,
-} from "iconsax-react";
+import { ElementEqual } from "iconsax-react";
 
 import { HRLinkLayout } from "@/layouts/HRLinkLayout.tsx";
 import AppSideBar from "@/components/AppSideBar.tsx";

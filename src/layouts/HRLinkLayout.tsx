@@ -8,7 +8,7 @@ export const HRLinkLayout = ({ props }: { props: any }) => {
     <>
       <AppHeader />
       {children}
-      <AppMessengerButton/>
+      <AppMessengerButton />
     </>
   );
 };

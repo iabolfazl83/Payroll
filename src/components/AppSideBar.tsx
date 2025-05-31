@@ -154,7 +154,10 @@ export const SideBar = ({ menu }: SideBarProps) => {
                 isIconOnly
                 className="flex justify-center items-center !gap-2 p-3 rounded-[0px] !h-fit !w-full bg-transparent transition-all duration-200"
                 onPress={() => {
-                  if (item.name === t("english") || item.name === t("persian")) {
+                  if (
+                    item.name === t("english") ||
+                    item.name === t("persian")
+                  ) {
                     handleLanguageChange();
                   } else if (item.name === "Log out") {
                     handleLogout();

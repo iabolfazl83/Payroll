@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 interface DoubleLineProgressProps {
   value: number;
@@ -9,12 +9,12 @@ interface DoubleLineProgressProps {
 }
 
 const DoubleLineProgress: React.FC<DoubleLineProgressProps> = ({
-                                                                 value,
-                                                                 size = 100,
-                                                                 gap = 4,
-                                                                 gradientStart = '#22AD5C',
-                                                                 gradientEnd = '#DFF3E7',
-                                                               }) => {
+  value,
+  size = 100,
+  gap = 4,
+  gradientStart = "#22AD5C",
+  gradientEnd = "#DFF3E7",
+}) => {
   const strokeWidth = 8;
   const center = size / 2;
   const outerRadius = center - strokeWidth / 2;
@@ -23,6 +23,7 @@ const DoubleLineProgress: React.FC<DoubleLineProgressProps> = ({
   const getStrokeData = (radius: number) => {
     const circumference = 2 * Math.PI * radius;
     const offset = circumference * (1 - value / 100);
+
     return { circumference, offset };
   };
 
@@ -34,15 +35,15 @@ const DoubleLineProgress: React.FC<DoubleLineProgressProps> = ({
   return (
     <div
       style={{
-        position: 'relative',
+        position: "relative",
         width: size,
         height: size,
-        display: 'inline-block',
+        display: "inline-block",
       }}
     >
-      <svg width={size} height={size}>
+      <svg height={size} width={size}>
         <defs>
-          <linearGradient id={gradientId} x1="80%" y1="100%" x2="0%" y2="0%">
+          <linearGradient id={gradientId} x1="80%" x2="0%" y1="100%" y2="0%">
             <stop offset="0%" stopColor={gradientEnd} />
             <stop offset="100%" stopColor={gradientStart} />
           </linearGradient>
@@ -52,23 +53,23 @@ const DoubleLineProgress: React.FC<DoubleLineProgressProps> = ({
         <circle
           cx={center}
           cy={center}
+          fill="none"
           r={outerRadius}
           stroke="#E6EAEA"
           strokeWidth={strokeWidth}
-          fill="none"
         />
 
         {/* خط بیرونی */}
         <circle
           cx={center}
           cy={center}
+          fill="none"
           r={outerRadius}
           stroke={`url(#${gradientId})`}
-          strokeWidth={strokeWidth}
-          fill="none"
           strokeDasharray={outer.circumference}
           strokeDashoffset={outer.offset}
           strokeLinecap="round"
+          strokeWidth={strokeWidth}
           transform={`rotate(-90 ${center} ${center})`}
         />
 
@@ -76,13 +77,13 @@ const DoubleLineProgress: React.FC<DoubleLineProgressProps> = ({
         <circle
           cx={center}
           cy={center}
+          fill="none"
           r={innerRadius}
           stroke={`url(#${gradientId})`}
-          strokeWidth={strokeWidth}
-          fill="none"
           strokeDasharray={inner.circumference}
           strokeDashoffset={inner.offset}
           strokeLinecap="round"
+          strokeWidth={strokeWidth}
           transform={`rotate(-90 ${center} ${center})`}
         />
       </svg>
@@ -90,16 +91,16 @@ const DoubleLineProgress: React.FC<DoubleLineProgressProps> = ({
       {/* متن درصد */}
       <div
         style={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          fontWeight: '900',
-          fontSize: '27px',
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          fontWeight: "900",
+          fontSize: "27px",
           background: `linear-gradient(0deg, ${gradientStart} 0%, ${gradientEnd} 100%)`,
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          fontFamily: 'Nunito',
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          fontFamily: "Nunito",
         }}
       >
         {value}%

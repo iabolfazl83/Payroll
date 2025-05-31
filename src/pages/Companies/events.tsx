@@ -38,7 +38,10 @@ export default function CompanyEvents() {
               <div className="flex justify-between ">
                 <div className="flex gap-2">
                   <Button className="flex items-center gap-2 !rounded-4 !bg-transparent !px-3 !py-1.5 w-fit">
-                    <HomeHashtag className="text-secondary-400 dark:text-white" size="22" />
+                    <HomeHashtag
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       General Info’s
                     </span>
@@ -54,7 +57,10 @@ export default function CompanyEvents() {
                     </span>
                   </Button>
                   <Button className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit bg-secondary-400 dark:bg-surface-200">
-                    <Medal className="text-secondary-400 dark:text-white" size="22" />
+                    <Medal
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       Events
                     </span>
@@ -67,7 +73,10 @@ export default function CompanyEvents() {
                     </span>
                   </Button>
                   <Button className="flex items-center gap-2 !rounded-4 bg-white dark:!bg-info-1000 shadow-shadow-light-tight/1 !px-3 !py-1.5 w-fit">
-                    <Heart className="text-secondary-1000 dark:text-white" size="22" />
+                    <Heart
+                      className="text-secondary-1000 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-1000 dark:text-white text-xl font-normal">
                       Favorites
                     </span>
@@ -149,30 +158,39 @@ export default function CompanyEvents() {
                           </div>
                         </div>
                         <div className="flex items-center gap-6">
-                            <img
-                              alt=""
-                              className="rounded-[14px]"
-                              src={eventAvatar}
-                              style={{
-                                width:"96px",
-                                height:"96px",
-                              }}
-                            />
+                          <img
+                            alt=""
+                            className="rounded-[14px]"
+                            src={eventAvatar}
+                            style={{
+                              width: "96px",
+                              height: "96px",
+                            }}
+                          />
                           <div className="flex flex-col gap-2">
                             <div className="flex gap-4">
-                              <Calendar className="text-[#292D32] dark:dark:text-white" size="20" />
+                              <Calendar
+                                className="text-[#292D32] dark:dark:text-white"
+                                size="20"
+                              />
                               <span className="text-sm text-[#353535] dark:dark:text-white font-semibold">
                                 March 15, 2024, 9:00 AM
                               </span>
                             </div>
                             <div className="flex gap-4">
-                              <Location className="text-[#292D32] dark:dark:text-white" size="20" />
+                              <Location
+                                className="text-[#292D32] dark:dark:text-white"
+                                size="20"
+                              />
                               <span className="text-sm text-[#353535] dark:dark:text-white font-semibold">
                                 March 15, 2024, 9:00 AM
                               </span>
                             </div>
                             <div className="flex gap-4">
-                              <People className="text-[#292D32] dark:dark:text-white" size="20" />
+                              <People
+                                className="text-[#292D32] dark:dark:text-white"
+                                size="20"
+                              />
                               <span className="text-sm text-[#353535] dark:dark:text-white font-semibold">
                                 March 15, 2024, 9:00 AM
                               </span>

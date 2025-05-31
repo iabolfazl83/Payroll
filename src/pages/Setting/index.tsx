@@ -90,7 +90,10 @@ export default function Setting() {
                     <div className="w-full grid grid-cols-2 gap-[30px]">
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1 items-center">
-                          <Profile className="text-[#292D32] dark:text-white" size="12" />
+                          <Profile
+                            className="text-[#292D32] dark:text-white"
+                            size="12"
+                          />
                           <span className="font-normal leading-normal text-xs text-secondary-1000 dark:text-white">
                             {t("first_name")}
                           </span>
@@ -110,7 +113,10 @@ export default function Setting() {
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1 items-center">
-                          <Profile className="text-[#292D32] dark:text-white" size="12" />
+                          <Profile
+                            className="text-[#292D32] dark:text-white"
+                            size="12"
+                          />
                           <span className="font-normal leading-normal text-xs text-secondary-1000 dark:text-white">
                             {t("last_name")}
                           </span>
@@ -132,7 +138,10 @@ export default function Setting() {
                     <div className="w-full grid grid-cols-2 gap-[30px]">
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1 items-center">
-                          <Sms className="text-[#292D32] dark:text-white" size="12" />
+                          <Sms
+                            className="text-[#292D32] dark:text-white"
+                            size="12"
+                          />
                           <span className="font-normal leading-normal text-xs text-secondary-1000 dark:text-white">
                             {t("email")}
                           </span>
@@ -152,7 +161,10 @@ export default function Setting() {
                       </div>
                       <div className="flex flex-col gap-1">
                         <div className="flex gap-1 items-center">
-                          <CallCalling className="text-[#292D32] dark:text-white" size="12" />
+                          <CallCalling
+                            className="text-[#292D32] dark:text-white"
+                            size="12"
+                          />
                           <span className="font-normal leading-normal text-xs text-secondary-1000 dark:text-white">
                             {t("phone")}
                           </span>

@@ -1,17 +1,26 @@
 import { Button } from "@heroui/button";
 import { Edit, Personalcard } from "iconsax-react";
-import { Avatar, Form, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/react";
-
-import AvatarUser from "@/assets/img/Avatar.jpg";
-import { AppInput } from "@/components/AppInput.tsx";
-import { AppTextArea } from "@/components/AppTextArea.tsx";
+import {
+  Avatar,
+  Form,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@heroui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 
+import AvatarUser from "@/assets/img/Avatar.jpg";
+import { AppInput } from "@/components/AppInput.tsx";
+import { AppTextArea } from "@/components/AppTextArea.tsx";
+
 export const AppGeneralDetails = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
@@ -22,6 +31,7 @@ export const AppGeneralDetails = () => {
     }),
     onSubmit: () => {},
   });
+
   return (
     <div className="relative shadow-shadow-light-tight/1 rounded-[14px] p-4 h-3/5">
       <img
@@ -178,8 +188,8 @@ export const AppGeneralDetails = () => {
                   <div className="bg-secondary-400 dark:bg-surface-200 shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
                     <Personalcard className="text-white" size="22" />
                     <span className="text-white font-normal text-xl">
-                            Edit General Informations
-                          </span>
+                      Edit General Informations
+                    </span>
                   </div>
                   <Button
                     className="!min-w-fit !rounded-0 w-6 h-6 !p-0"

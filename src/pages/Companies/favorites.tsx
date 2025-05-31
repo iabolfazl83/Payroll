@@ -1,4 +1,3 @@
-import { CompanyLayout } from "@/pages/Companies/Layout.tsx";
 import { Button } from "@heroui/button";
 import {
   ArrowRight,
@@ -9,11 +8,13 @@ import {
   Location,
   SearchNormal1,
   Setting4,
-  Star1
+  Star1,
 } from "iconsax-react";
 import { Input } from "@heroui/react";
-import { AppPagination } from "@/components/AppPagination.tsx";
 import { useNavigate } from "react-router-dom";
+
+import { AppPagination } from "@/components/AppPagination.tsx";
+import { CompanyLayout } from "@/pages/Companies/Layout.tsx";
 import companyLogo from "@/assets/img/company-logo.png";
 
 const companies = [
@@ -142,20 +143,27 @@ export default function FavoritesCompanies() {
                     className="flex items-center gap-2 !rounded-4  !bg-transparent !px-3 !py-1.5 w-fit"
                     onPress={handleNavigateToAllCompanies}
                   >
-                    <Buildings className="text-secondary-400 dark:text-white" size="22" />
+                    <Buildings
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       All Companies
                     </span>
                   </Button>
-                  <Button onPress={handleNavigateToRequested} className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent">
-                    <DeviceMessage className="text-secondary-400 dark:text-white" size="22" />
+                  <Button
+                    className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent"
+                    onPress={handleNavigateToRequested}
+                  >
+                    <DeviceMessage
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       Requested
                     </span>
                   </Button>
-                  <Button
-                    className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit bg-secondary-400 dark:bg-surface-200 shadow-shadow-light-tight/1"
-                  >
+                  <Button className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit bg-secondary-400 dark:bg-surface-200 shadow-shadow-light-tight/1">
                     <Heart className="text-white" size="22" />
                     <span className="text-white text-xl font-normal">
                       Followed

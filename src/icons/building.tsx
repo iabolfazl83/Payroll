@@ -1,7 +1,8 @@
 import { useDarkMode } from "@/context/DarkMode.tsx";
 
 export const BuildingIcon = () => {
-  const {darkMode} = useDarkMode();
+  const { darkMode } = useDarkMode();
+
   return (
     <svg
       fill="none"

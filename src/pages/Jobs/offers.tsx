@@ -324,9 +324,7 @@ export default function JobOffers() {
                           />
                         </div>
                         <div>
-                          <Autocomplete
-                            className="max-w-xs"
-                          >
+                          <Autocomplete className="max-w-xs">
                             {locations.map((location: any) => (
                               <AutocompleteItem key={location.key}>
                                 {location.label}

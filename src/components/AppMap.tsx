@@ -107,7 +107,7 @@ export const AppMap = ({ props }: { props: any }) => {
               variant="light"
               onPress={onOpen}
             >
-              <Edit className="text-secondary-1000 dark:text-white" size="14"/>
+              <Edit className="text-secondary-1000 dark:text-white" size="14" />
             </Button>
           ) : (
             <Button
@@ -115,7 +115,7 @@ export const AppMap = ({ props }: { props: any }) => {
               variant="light"
               onPress={onOpenAddModal}
             >
-              <Add size="14" className="text-secondary-1000 dark:text-white"/>
+              <Add className="text-secondary-1000 dark:text-white" size="14" />
               <span className="text-secondary-1000 dark:text-white font-normal text-xs">
                 Add New One
               </span>

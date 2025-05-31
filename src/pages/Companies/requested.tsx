@@ -143,7 +143,10 @@ export default function RequestedCompanies() {
                     className="flex items-center gap-2 !rounded-4  !bg-transparent !px-3 !py-1.5 w-fit"
                     onPress={handleNavigateToAllCompanies}
                   >
-                    <Buildings className="text-secondary-400 dark:text-white" size="22" />
+                    <Buildings
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       All Companies
                     </span>
@@ -158,7 +161,10 @@ export default function RequestedCompanies() {
                     className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent"
                     onPress={handleNavigateToFavorites}
                   >
-                    <Heart className="text-secondary-400 dark:text-white" size="22" />
+                    <Heart
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       Followed
                     </span>
@@ -255,7 +261,7 @@ export default function RequestedCompanies() {
                             <span className="text-secondary-1000 dark:text-white text-xs font-normal">
                               See More
                             </span>
-                            <ArrowRight size="12" className="text-netural-50"/>
+                            <ArrowRight className="text-netural-50" size="12" />
                           </Button>
                         </div>
                       </div>

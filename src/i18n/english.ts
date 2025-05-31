@@ -27,9 +27,9 @@ export const EnglishLanguage = {
       setting: "Setting",
       persian: "persian",
       english: "english",
-      logout:"logout",
-      job_offers:"JobOffers",
-      job_oppertunities:"JobOppertunities"
+      logout: "logout",
+      job_offers: "JobOffers",
+      job_oppertunities: "JobOppertunities",
     },
   },
 };

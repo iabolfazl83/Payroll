@@ -16,7 +16,11 @@ export const CompanyLayout = ({ props }: { props: any }) => {
       name: "Requested",
       route: "/company/requested",
     },
-    { icon: <Heart size="24" />, name: "Followed", route: "/company/favorites", },
+    {
+      icon: <Heart size="24" />,
+      name: "Followed",
+      route: "/company/favorites",
+    },
   ];
 
   return (

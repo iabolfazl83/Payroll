@@ -22,7 +22,7 @@ const MultiSelectField = ({ label, selected, setSelected }: any) => {
   const handleChange = (key: string) => {
     setSelected(
       selected.includes(key)
-        ? selected.filter((k:any) => k !== key)
+        ? selected.filter((k: any) => k !== key)
         : [...selected, key],
     );
   };

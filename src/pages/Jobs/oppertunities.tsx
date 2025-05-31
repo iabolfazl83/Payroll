@@ -10,6 +10,7 @@ import {
   Status,
 } from "iconsax-react";
 import { Button } from "@heroui/button";
+import { useNavigate } from "react-router-dom";
 
 import { JobsLayout } from "@/pages/Jobs/Layout.tsx";
 import { JobOffersIcon } from "@/icons/jobOffers.tsx";
@@ -18,7 +19,6 @@ import jobCompanyLogo from "@/assets/img/job-company-logo.png";
 import AppStarRating from "@/components/AppStarRate.tsx";
 import { AppPagination } from "@/components/AppPagination.tsx";
 import { useDarkMode } from "@/context/DarkMode.tsx";
-import { useNavigate } from "react-router-dom";
 
 const oppertunities = Array.from({ length: 9 }, (_, i) => ({
   id: i + 1,
@@ -38,6 +38,7 @@ export default function JobOppertunities() {
   const handleNavigateToJobOffers = () => {
     navigate("/job/offers");
   };
+
   return (
     <JobsLayout
       props={{
@@ -48,7 +49,8 @@ export default function JobOppertunities() {
                 <div className="flex gap-2">
                   <Button
                     className="flex items-center gap-2 !bg-transparent !rounded-4 !px-3 !py-1.5 w-fit"
-                    onPress={handleNavigateToJobOffers}>
+                    onPress={handleNavigateToJobOffers}
+                  >
                     <JobOffersIcon
                       props={{
                         color: darkMode ? "#fff" : "#1e3363",
@@ -61,7 +63,7 @@ export default function JobOppertunities() {
                   <Button className="flex items-center gap-2 bg-secondary-400 dark:bg-surface-200 !rounded-4 !px-3 !py-1.5 w-fit">
                     <JobOppertunitiesIcon
                       props={{
-                        color:"#fff"
+                        color: "#fff",
                       }}
                     />
                     <span className="text-white text-xl font-normal">

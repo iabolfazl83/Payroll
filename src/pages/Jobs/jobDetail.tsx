@@ -62,7 +62,12 @@ export default function JobOffers() {
                     isIconOnly: false,
                     className:
                       "py-1.5 px-3 h-10 shadow-shadow-light-tight/1 !rounded-[10px] bg-white dark:bg-info-1000",
-                    endContent: <Heart className="text-[#292D32] dark:text-white" size="22" />,
+                    endContent: (
+                      <Heart
+                        className="text-[#292D32] dark:text-white"
+                        size="22"
+                      />
+                    ),
                     text: "Follow",
                   }}
                 />
@@ -72,7 +77,10 @@ export default function JobOffers() {
                     className:
                       "p-2 w-10 h-10 shadow-shadow-light-tight/1 !rounded-[10px] bg-white dark:bg-info-1000",
                     startContent: (
-                      <Share className="text-[#292D32] dark:text-white" size="24" />
+                      <Share
+                        className="text-[#292D32] dark:text-white"
+                        size="24"
+                      />
                     ),
                   }}
                 />

@@ -2,6 +2,7 @@ import { Moon, Notification, Play, SmsNotification } from "iconsax-react";
 import { Button, Avatar, Tabs, Tab } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useLocation } from "react-router-dom";
+
 import Logo from "@/icons/Logo.tsx";
 import { useDarkMode } from "@/context/DarkMode";
 import AvatarUser from "@/assets/img/Avatar.jpg";
@@ -19,6 +20,7 @@ const AppHeader = () => {
     if (path.startsWith("/resume")) return "/resume/info";
     if (path.startsWith("/job")) return "/job/offers";
     if (path.startsWith("/company")) return "/company/all-companies";
+
     return "";
   };
 

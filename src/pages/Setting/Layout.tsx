@@ -25,7 +25,11 @@ export const SettingLayout = ({ props }: { props: any }) => {
       name: "Work Exp.",
       route: "/resume/job-experience",
     },
-    { icon: <UserOctagon size="24" />, name: "Acad. Hist.", route: "/resume/academic-history" },
+    {
+      icon: <UserOctagon size="24" />,
+      name: "Acad. Hist.",
+      route: "/resume/academic-history",
+    },
     {
       icon: <LampCharge size="24" />,
       name: "Skills",

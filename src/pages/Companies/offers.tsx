@@ -7,7 +7,7 @@ import {
   Location,
   Medal,
   Share,
-  Status
+  Status,
 } from "iconsax-react";
 import { Button } from "@heroui/button";
 
@@ -92,35 +92,35 @@ export default function CompanyGeneralInfo() {
                         color="default"
                         variant="light"
                       >
-                        <TelegramIcon/>
+                        <TelegramIcon />
                       </Button>
                       <Button
                         className="!rounded-4 shadow-shadow-light-tight/1 bg-white dark:bg-secondary-1000 min-w-fit p-2"
                         color="default"
                         variant="light"
                       >
-                        <LinkedinIcon/>
+                        <LinkedinIcon />
                       </Button>
                       <Button
                         className="!rounded-4 shadow-shadow-light-tight/1 bg-white dark:bg-secondary-1000 min-w-fit p-2"
                         color="default"
                         variant="light"
                       >
-                        <InstagramIcon/>
+                        <InstagramIcon />
                       </Button>
                       <Button
                         className="!rounded-4 shadow-shadow-light-tight/1 bg-white dark:bg-secondary-1000 min-w-fit p-2"
                         color="default"
                         variant="light"
                       >
-                        <WhatssAppIcon/>
+                        <WhatssAppIcon />
                       </Button>
                       <Button
                         className="!rounded-4 shadow-shadow-light-tight/1 bg-white dark:bg-secondary-1000 min-w-fit p-2"
                         color="default"
                         variant="light"
                       >
-                        <AddIcon/>
+                        <AddIcon />
                       </Button>
                     </div>
                   </div>
@@ -128,7 +128,7 @@ export default function CompanyGeneralInfo() {
               </div>
               <div className="flex flex-col h-full justify-between">
                 <div className="grid grid-cols-3 gap-3">
-                  {offers.map((offer:any) => (
+                  {offers.map((offer: any) => (
                     <div
                       key={offer.id}
                       className="rounded-5 bg-white shadow-shadow-light-tight/1 px-3 py-4"

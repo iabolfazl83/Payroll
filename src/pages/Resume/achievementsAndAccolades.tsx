@@ -25,10 +25,7 @@ import { AppPagination } from "@/components/AppPagination.tsx";
 import { AppGeneralDetails } from "@/components/AppGeneralDetails.tsx";
 import { AppMap } from "@/components/AppMap.tsx";
 import { CupStar } from "@/icons/cupStar.tsx";
-import { AppInput } from "@/components/AppInput.tsx";
-import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import { CloseIcon } from "@/icons/closeIcon.tsx";
-import { useDarkMode } from "@/context/DarkMode.tsx";
 
 const achievementsAndAccolades = [
   {
@@ -96,9 +93,9 @@ export default function ResumeAchievementsAccolades() {
               <div className="flex">
                 <div className="flex items-center gap-2 rounded-4 bg-secondary-400 dark:bg-surface-200 shadow-shadow-light-tight/1 px-3 py-1.5 w-fit mb-6">
                   <CupStar
-                      props={{
-                        color:"#fff"
-                      }}
+                    props={{
+                      color: "#fff",
+                    }}
                   />
                   <span className="text-white text-xl font-normal">
                     Achievements and accolades

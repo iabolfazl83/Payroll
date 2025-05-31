@@ -43,7 +43,10 @@ export default function SelfKnownDetail() {
                   </span>
                 </Button>
                 <Button className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent">
-                  <Medal className="text-secondary-400 dark:text-white" size="22" />
+                  <Medal
+                    className="text-secondary-400 dark:text-white"
+                    size="22"
+                  />
                   <span className="text-secondary-400 dark:text-white text-xl font-normal">
                     Events
                   </span>

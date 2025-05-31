@@ -15,7 +15,9 @@ export const JobsLayout = ({ props }: { props: any }) => {
             color:
               window.location.pathname === "/job/offers"
                 ? "#FD1B51"
-                : darkMode ? "#fff" :"#1E3363",
+                : darkMode
+                  ? "#fff"
+                  : "#1E3363",
           }}
         />
       ),
@@ -29,7 +31,9 @@ export const JobsLayout = ({ props }: { props: any }) => {
             color:
               window.location.pathname === "/job/oppertunities"
                 ? "#FD1B51"
-                : darkMode ? "#fff" :"#1E3363",
+                : darkMode
+                  ? "#fff"
+                  : "#1E3363",
           }}
         />
       ),

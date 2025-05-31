@@ -2,7 +2,7 @@ import {
   FavoriteChart,
   LampCharge,
   Personalcard,
-  UserOctagon
+  UserOctagon,
 } from "iconsax-react";
 
 import { HRLinkLayout } from "@/layouts/HRLinkLayout.tsx";
@@ -16,27 +16,27 @@ import { useDarkMode } from "@/context/DarkMode.tsx";
 
 export const ResumeLayout = ({ props }: { props: any }) => {
   const { children } = props;
-  const {darkMode} = useDarkMode();
+  const { darkMode } = useDarkMode();
   const Menu = [
     {
       icon: <Personalcard size="24" />,
       name: "User Info’s",
-      route: "/resume/info"
+      route: "/resume/info",
     },
     {
       icon: <FavoriteChart size="24" />,
       name: "Work Exp.",
-      route: "/resume/job-experience"
+      route: "/resume/job-experience",
     },
     {
       icon: <UserOctagon size="24" />,
       name: "Acad. Hist.",
-      route: "/resume/academic-history"
+      route: "/resume/academic-history",
     },
     {
       icon: <LampCharge size="24" />,
       name: "Skills",
-      route: "/resume/hard-skills"
+      route: "/resume/hard-skills",
     },
     {
       icon:
@@ -46,7 +46,7 @@ export const ResumeLayout = ({ props }: { props: any }) => {
           <CupStar />
         ),
       name: "AchievementsAndAccolades",
-      route: "/resume/achievements-accolades"
+      route: "/resume/achievements-accolades",
     },
     {
       icon:
@@ -56,26 +56,26 @@ export const ResumeLayout = ({ props }: { props: any }) => {
           <Academy />
         ),
       name: "Courses",
-      route: "/resume/courses"
+      route: "/resume/courses",
     },
     {
       icon:
         window.location.pathname === "/resume/self-known" ? (
           <SelfKnownIcon
             props={{
-              color: "#FD1B51"
+              color: "#FD1B51",
             }}
           />
         ) : (
           <SelfKnownIcon
             props={{
-              color: darkMode ? "#fff" : "#04070E"
+              color: darkMode ? "#fff" : "#04070E",
             }}
           />
         ),
       name: "SelfKnown",
-      route: "/resume/self-known"
-    }
+      route: "/resume/self-known",
+    },
   ];
 
   return (
@@ -86,7 +86,7 @@ export const ResumeLayout = ({ props }: { props: any }) => {
             <AppSideBar menu={Menu} />
             {children}
           </div>
-        )
+        ),
       }}
     />
   );

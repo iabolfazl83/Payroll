@@ -1,5 +1,5 @@
 import axios from "axios";
-import { toast, ToastPosition} from "react-toastify";
+import { toast, ToastPosition } from "react-toastify";
 
 export const apiRequest = async (
   url: string,
@@ -11,16 +11,16 @@ export const apiRequest = async (
     url: string;
     data?: Record<string, any>;
     auth: {
-      username:string,
-      password: string
-    },
+      username: string;
+      password: string;
+    };
     withCredentials: boolean;
   } = {
     method,
     url,
     auth: {
       username: "0016456173",
-      password: "qwerty1234567"
+      password: "qwerty1234567",
     },
     withCredentials: true,
   };
@@ -30,6 +30,7 @@ export const apiRequest = async (
   }
 
   const response = await axios(options);
+
   return response.data;
 };
 
@@ -69,7 +70,7 @@ export function addAsyncCase(
 export const notify = (
   message: string,
   type: string,
-  position: ToastPosition
+  position: ToastPosition,
 ) => {
   if (type in toast) {
     (toast as any)[type](message, { position });

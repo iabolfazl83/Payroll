@@ -21,7 +21,10 @@ import {
   CompanyGeneralInfo,
   ResumeAcademicHistory,
   CompanyJobOffers,
-  CompanyEvents, Setting, ResumeSelfKnown, ResumeSelfKnownDetail
+  CompanyEvents,
+  Setting,
+  ResumeSelfKnown,
+  ResumeSelfKnownDetail,
 } from "@/routes/components.tsx";
 
 export const routes: RouteObject[] = [

@@ -42,7 +42,6 @@ export const ResumeSelfKnownDetail = Loadable(
   lazy(() => import("@/pages/Resume/selfKnownDetail.tsx")),
 );
 
-
 export const Dashboard = Loadable(
   lazy(() => import("@/pages/Dashboard/index.tsx")),
 );

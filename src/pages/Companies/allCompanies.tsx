@@ -130,6 +130,7 @@ export default function AllCompanies() {
   const handleNavigateToFavorites = () => {
     navigate("/company/favorites");
   };
+
   return (
     <CompanyLayout
       props={{
@@ -144,14 +145,26 @@ export default function AllCompanies() {
                       All Companies
                     </span>
                   </Button>
-                  <Button onPress={handleNavigateToRequested} className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent">
-                    <DeviceMessage className="text-secondary-400 dark:text-white" size="22" />
+                  <Button
+                    className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent"
+                    onPress={handleNavigateToRequested}
+                  >
+                    <DeviceMessage
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       Requested
                     </span>
                   </Button>
-                  <Button onPress={handleNavigateToFavorites} className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent">
-                    <Heart className="text-secondary-400 dark:text-white" size="22" />
+                  <Button
+                    className="flex items-center gap-2 !rounded-4 !px-3 !py-1.5 w-fit !bg-transparent"
+                    onPress={handleNavigateToFavorites}
+                  >
+                    <Heart
+                      className="text-secondary-400 dark:text-white"
+                      size="22"
+                    />
                     <span className="text-secondary-400 dark:text-white text-xl font-normal">
                       Followed
                     </span>

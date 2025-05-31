@@ -7,9 +7,9 @@ const ResumeCompletion = () => {
     <div className="h-full">
       <div className="bg-white dark:bg-info-1000 p-3 rounded-5 shadow-shadow-light-tight/1 h-full">
         <div className="border-b-1 border-netural-100 pb-2">
-        <span className="text-base text-secondary-1000 dark:text-white font-semibold">
-          Proportion Of Finished Resume
-        </span>
+          <span className="text-base text-secondary-1000 dark:text-white font-semibold">
+            Proportion Of Finished Resume
+          </span>
         </div>
         <p className="text-secondary-1000 dark:text-white text-sm font-normal">
           Currently, {completionPercentage}% Of The Resumes Are Completed. We
@@ -47,11 +47,11 @@ const ResumeCompletion = () => {
                 {...props}
                 className="group top-1/2 border-4 border-tertiar-400 rounded-full"
               >
-              <span
-                className={cn(
-                  "transition-transform bg-gradient-to-br shadow-small rounded-full w-5 h-5 block group-data-[dragging=true]:scale-80",
-                )}
-              />
+                <span
+                  className={cn(
+                    "transition-transform bg-gradient-to-br shadow-small rounded-full w-5 h-5 block group-data-[dragging=true]:scale-80",
+                  )}
+                />
               </div>
             )}
             showTooltip={true}

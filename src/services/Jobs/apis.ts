@@ -7,7 +7,7 @@ export const handleGetJobOffers = createAsyncThunk(
   "job-offers/getList",
   async () => {
     return await apiRequest(ApiEndpoints.jobOffersGetList, "GET").then(
-      (response:any) => {
+      (response: any) => {
         console.log(response);
       },
     );

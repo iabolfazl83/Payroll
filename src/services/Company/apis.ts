@@ -32,7 +32,7 @@ export const handleSendOtpApi = createAsyncThunk(
     const { navigate, ...sendOtpData } = data;
 
     const response = await apiRequest(
-        ApiEndpointsHRBox.sendOtpApi,
+      ApiEndpointsHRBox.sendOtpApi,
       "POST",
       sendOtpData,
     );
@@ -49,16 +49,16 @@ export const handleSendOtpApi = createAsyncThunk(
 export const handleResetPasswordCheckOtpApi = createAsyncThunk(
   "auth/resetPasswordCheckOtp",
   async (data: ResetPasswordCheckOtpProps & { navigate: Function }) => {
-      const { navigate, ...resetPasswordCheckOtp } = data;
+    const { navigate, ...resetPasswordCheckOtp } = data;
     const response = await apiRequest(
-        ApiEndpointsHRBox.resetPasswordCheckOtpApi,
+      ApiEndpointsHRBox.resetPasswordCheckOtpApi,
       "POST",
       resetPasswordCheckOtp,
     );
 
     localStorage.setItem("GuidCode", response.data.data);
 
-    navigate(PATH_HRBox.ResetPassword)
+    navigate(PATH_HRBox.ResetPassword);
   },
 );
 
@@ -72,6 +72,10 @@ export const handleLoginByOtpApi = createAsyncThunk(
 export const handleRegisterUserApi = createAsyncThunk(
   "auth/registerUser",
   async (registerData: RegisterUser) => {
-    return await apiRequest(ApiEndpointsHRBox.registerApi, "POST", registerData);
+    return await apiRequest(
+      ApiEndpointsHRBox.registerApi,
+      "POST",
+      registerData,
+    );
   },
 );
