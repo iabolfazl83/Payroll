@@ -61,7 +61,7 @@ function App({ props }: { props: any }) {
           dir={dir}
           exit={{ opacity: 0 }}
           initial={{ opacity: 0 }}
-          style={{ zoom: !isLargeScreen ? "1" : "1.3", margin: "0 32px" }}
+          style={{ margin: "0 32px" }}
           transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
         >
           {children}

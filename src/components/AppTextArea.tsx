@@ -3,8 +3,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 export const AppTextArea = ({ props }: { props: any }) => {
-  const { label, name, placeholder, value, formik, isHRLink, error, required } =
-    props;
+  const { label, name, placeholder, value, formik, error, required } = props;
   const lang = useSelector((state: any) => state.language.lang);
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -23,8 +22,6 @@ export const AppTextArea = ({ props }: { props: any }) => {
     "dark:border-primary-0 dark:!shadow-secondary",
     isFocused && "!ring-2 ring-primary-500",
     error && "!border-red-500 !bg-red-100 dark:bg-red-800",
-    isHRLink &&
-      "!bg-white dark:!bg-info-1000 rounded-5 !backdrop_blur[35px] dark:border-primary-0 dark:!shadow-secondary-600",
   ].join(" ");
 
   const inputClassNames = [

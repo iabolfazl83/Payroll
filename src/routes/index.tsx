@@ -4,78 +4,59 @@ import { Navigate } from "react-router-dom";
 import Page404 from "../pages/404";
 
 import {
-  ResumeEmpty,
-  ResumeInfo,
   Dashboard,
-  JobOffers,
-  JobOppertunities,
-  JobDetails,
-  ResumeJobExperience,
-  ResumeHardSkills,
-  ResumeSoftSkills,
-  ResumeAchievementsAndAccolades,
-  ResumeCourses,
-  CompanyAllCompanies,
-  CompanyRequested,
-  CompanyFavorites,
-  CompanyGeneralInfo,
-  ResumeAcademicHistory,
-  CompanyJobOffers,
-  CompanyEvents,
-  Setting,
-  ResumeSelfKnown,
-  ResumeSelfKnownDetail,
+  IndividualOrder,
+  GroupOrder,
+  SalaryCalculations,
 } from "@/routes/components.tsx";
+
+export const routeUrls = {
+  home: "/payroll",
+  dashboard: "/dashboard",
+  judgmentIssued: "judgment-issued",
+  individualOrder: "individual-order",
+  groupOrder: "group-order",
+  salaryCalculations: "salary-calculations",
+};
 
 export const routes: RouteObject[] = [
   {
     path: "/",
-    element: <Navigate replace to="/dashboard" />,
+    element: <Navigate replace to="/payroll" />,
   },
   {
-    path: "company",
+    path: "/payroll",
     children: [
-      { path: "all-companies", element: <CompanyAllCompanies /> },
-      { path: "requested", element: <CompanyRequested /> },
-      { path: "favorites", element: <CompanyFavorites /> },
-      { path: "general-info/:name", element: <CompanyGeneralInfo /> },
-      { path: "job-offers", element: <CompanyJobOffers /> },
-      { path: "events", element: <CompanyEvents /> },
-    ],
-  },
-  {
-    path: "resume",
-    children: [
-      { path: "empty", element: <ResumeEmpty /> },
-      { path: "info", element: <ResumeInfo /> },
-      { path: "job-experience", element: <ResumeJobExperience /> },
-      { path: "academic-history", element: <ResumeAcademicHistory /> },
-      { path: "hard-skills", element: <ResumeHardSkills /> },
-      { path: "soft-skills", element: <ResumeSoftSkills /> },
-      { path: "self-known", element: <ResumeSelfKnown /> },
-      { path: "self-known/:name", element: <ResumeSelfKnownDetail /> },
       {
-        path: "achievements-accolades",
-        element: <ResumeAchievementsAndAccolades />,
+        index: true,
+        element: <Navigate replace to="dashboard" />,
       },
-      { path: "courses", element: <ResumeCourses /> },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "judgment-issued",
+        children: [
+          {
+            index: true,
+            element: <Navigate replace to="individual-order" />,
+          },
+          {
+            path: "individual-order",
+            element: <IndividualOrder />,
+          },
+          {
+            path: "group-order",
+            element: <GroupOrder />,
+          },
+        ],
+      },
+      {
+        path: "salary-calculations",
+        element: <SalaryCalculations />,
+      },
     ],
-  },
-  {
-    path: "job",
-    children: [
-      { path: "offers", element: <JobOffers /> },
-      { path: "oppertunities", element: <JobOppertunities /> },
-      { path: "detail/:name", element: <JobDetails /> },
-    ],
-  },
-  {
-    path: "dashboard",
-    element: <Dashboard />,
-  },
-  {
-    path: "setting",
-    element: <Setting />,
   },
   {
     path: "*",

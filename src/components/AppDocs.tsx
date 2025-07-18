@@ -13,10 +13,13 @@ import {
   SmsTracking,
 } from "iconsax-react";
 import { Divider } from "@heroui/react";
+import { useTranslation } from "react-i18next";
 
 import DocItem from "./AppDocItems.tsx";
 
 const Docs = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="absolute flex items-center bg-surface dark:bg-surface-150 rounded-6 w-[860px] h-[94px] bottom-6 left-0 right-0 mx-auto">
       <div className="py-2 px-8">
@@ -25,7 +28,7 @@ const Docs = () => {
             props={{
               to: "/dashboard",
               icon: ElementEqual,
-              title: "Dashboard",
+              title: t("dashboard"),
               outlined: false,
             }}
           />
@@ -33,7 +36,7 @@ const Docs = () => {
             props={{
               to: "/workspace",
               icon: DirectboxReceive,
-              title: "workspace",
+              title: t("workspace"),
               outlined: false,
             }}
           />
@@ -41,7 +44,7 @@ const Docs = () => {
             props={{
               to: "/performance",
               icon: Health,
-              title: "Performance",
+              title: t("performance"),
               outlined: false,
             }}
           />
@@ -49,7 +52,7 @@ const Docs = () => {
             props={{
               to: "/recruitment",
               icon: ProfileAdd,
-              title: "Recruitment",
+              title: t("recruitment"),
               outlined: false,
             }}
           />
@@ -57,7 +60,7 @@ const Docs = () => {
             props={{
               to: "/payroll",
               icon: CardReceive,
-              title: "Payroll",
+              title: t("payroll"),
               outlined: false,
             }}
           />
@@ -65,7 +68,7 @@ const Docs = () => {
             props={{
               to: "/attendance",
               icon: ArrowSwapHorizontal,
-              title: "Attendance",
+              title: t("attendance"),
               outlined: false,
             }}
           />
@@ -73,7 +76,7 @@ const Docs = () => {
             props={{
               to: "/project-management",
               icon: Hierarchy3,
-              title: "Project.M",
+              title: t("projectManagement"),
               outlined: false,
             }}
           />
@@ -81,7 +84,7 @@ const Docs = () => {
             props={{
               to: "/facilities",
               icon: TaskSquare,
-              title: "Facilities",
+              title: t("facilities"),
               outlined: false,
             }}
           />
@@ -89,7 +92,7 @@ const Docs = () => {
             props={{
               to: "/basic-info",
               icon: ClipboardTick,
-              title: "Basic Info",
+              title: t("BasicInfo"),
               outlined: false,
             }}
           />
@@ -101,7 +104,7 @@ const Docs = () => {
             props={{
               to: "/setting",
               icon: Setting2,
-              title: "Setting",
+              title: t("generalSetting"),
               outlined: true,
             }}
           />
@@ -109,7 +112,7 @@ const Docs = () => {
             props={{
               to: "/dashboard",
               icon: HashtagSquare,
-              title: "Dashboard",
+              title: t("dashboard"),
               outlined: true,
             }}
           />
@@ -117,7 +120,7 @@ const Docs = () => {
             props={{
               to: "/dashboard",
               icon: SmsTracking,
-              title: "Dashboard",
+              title: t("dashboard"),
               outlined: true,
             }}
           />

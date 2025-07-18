@@ -2,9 +2,9 @@ function path(root: string, subPath: string) {
   return `${root}${subPath}`;
 }
 
-const BASE_PATH_RESUME = "/resume";
+const ROOTS_PAYROLL = "/payroll";
 
-export const PATH = {
-  ResumeEmpty: path(BASE_PATH_RESUME, ""),
-  ResumeInfo: path(BASE_PATH_RESUME, "/info"),
+export const PATH_PAYROLL = {
+  Root: ROOTS_PAYROLL,
+  Dashboard: path(ROOTS_PAYROLL, "/dashboard"),
 };

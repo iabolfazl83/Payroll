@@ -7,7 +7,7 @@ export const DocItem = ({ props }: { props: any }) => {
     <div className="relative">
       <NavLink
         className={({ isActive }) =>
-          `w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-[9.6px] drop-shadow-[0px_0.945px_2.835px_rgba(0,0,0,0.30)] transition-all duration-300
+          `w-12 h-12 flex items-center justify-center flex-shrink-0 rounded-[9.6px] drop-shadow-[0px_0.945px_2.835px_rgba(0,0,0,0.30)]
         ${
           outlined
             ? "border border-dashed border-secondary-0 bg-transparent"

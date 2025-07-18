@@ -21,7 +21,7 @@ export const store = configureStore({
       immutableCheck: false,
     }),
   devTools: {
-    name: "HRLINK",
+    name: "HRBOX",
     features: {
       jump: false,
     },

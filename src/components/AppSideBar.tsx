@@ -13,7 +13,7 @@ import i18n from "i18next";
 import { useTranslation } from "react-i18next";
 
 import { AppDispatch, RootState } from "@/redux/store.ts";
-import { setLanguage } from "@/redux/reducers/language.ts";
+import { setLanguage, setLocalLanguage } from "@/redux/reducers/language.ts";
 
 export type SideBarItem = {
   icon: React.ReactNode;
@@ -32,13 +32,16 @@ export const SideBar = ({ menu }: SideBarProps) => {
   const location = useLocation();
   const dispatch = useDispatch<AppDispatch>();
   const { t } = useTranslation();
-  const lang = useSelector((state: RootState) => state.language.lang);
   const currentLang = useSelector((state: RootState) => state.language.lang);
   const bottomMenu = [
-    { icon: <Setting2 size="24" />, name: t("setting"), route: "/setting" },
+    {
+      icon: <Setting2 size="24" />,
+      name: t("generalSetting"),
+      route: "/setting",
+    },
     {
       icon: <Global size="24" />,
-      name: lang === "fa" ? t("persian") : t("english"),
+      name: currentLang === "fa" ? t("persian") : t("english"),
       route: "/",
     },
     { icon: <LogoutCurve size="24" />, name: "Log out", route: "logout" },
@@ -53,17 +56,23 @@ export const SideBar = ({ menu }: SideBarProps) => {
       navigate(item.route);
     }
   };
-  const toggleLanguage = (language: string) => {
+  const toggleLanguage = (language: string, local: string) => {
     dispatch(setLanguage(language));
+    dispatch(setLocalLanguage(local));
     i18n.changeLanguage(language);
-    localStorage.setItem("lang", language);
+
+    if (currentLang) {
+      dispatch(setLanguage(language));
+    }
   };
 
   const handleLanguageChange = () => {
     const newLang = currentLang === "en" ? "fa" : "en";
+    const newLocalLang = currentLang === "en" ? "fa-IR-u-ca-persian" : "en-US";
 
+    localStorage.setItem("lang", newLang);
     document.documentElement.lang = newLang;
-    toggleLanguage(newLang);
+    toggleLanguage(newLang, newLocalLang);
   };
 
   useEffect(() => {
@@ -107,10 +116,7 @@ export const SideBar = ({ menu }: SideBarProps) => {
           className={`flex flex-col h-full w-full pb-3 gap-3 ${fullWidth ? "items-start pl-1" : "items-center"}`}
         >
           {menu.map((item) => (
-            <div
-              key={item.name}
-              className={`${activeTab === item.name ? "border-b border-tertiar-400 " : "border-transparent"}`}
-            >
+            <div key={item.name} className="border-transparent">
               <Button
                 isIconOnly
                 className="flex justify-center items-center !gap-1 !h-fit !w-full p-3 rounded-[0px] bg-transparent transition-all duration-200"
@@ -130,7 +136,7 @@ export const SideBar = ({ menu }: SideBarProps) => {
                   <span
                     className={`cursor-pointer text-[12px] ${
                       activeTab === item.name
-                        ? "text-tertiar-400 dark:text-white"
+                        ? "text-primary dark:text-gold"
                         : "text-secondary-1000 dark:text-white"
                     }`}
                   >

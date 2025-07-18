@@ -18,13 +18,22 @@ import {
 } from "@heroui/react";
 
 import { AppPagination } from "@/components/AppPagination.tsx";
-import { CloseIcon } from "@/icons/closeIcon.tsx";
+import { CloseIcon } from "@/icons/CloseIcon.tsx";
 
 const AppTable = ({ props }: { props: any }) => {
-  const { data, columns, onOpenEditDialog } = props;
+  const {
+    data,
+    columns,
+    onOpenEditDialog,
+    hasPagination = true,
+    hasPadding = true,
+    hasShadow = true,
+    hasRowBorder = true,
+  } = props;
+
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   if (!data.length) return <div className="p-4">No data available</div>;
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const autoColumns =
     columns ||
@@ -58,18 +67,20 @@ const AppTable = ({ props }: { props: any }) => {
   );
 
   return (
-    <div className="bg-white dark:bg-info-1000 pt-5 pl-5 pr-6 pb-4 h-full !rounded-[14px] shadow-shadow-light-tight/1">
+    <div
+      className={`bg-primary-50 w-full border border-primary dark:bg-[rgba(4,66,92,0.60)] ${hasPadding && "pt-5 pl-5 pr-6"} pb-4 h-full !rounded-[14px] ${hasShadow && "shadow-shadow-light-tight/1"}`}
+    >
       <Table aria-label="Customizable Table" className="!h-[95%]">
         <TableHeader className="!rounded-0">
           {autoColumns.map((col: any) => (
             <TableColumn
               key={col.key}
-              className="text-secondary-1000 dark:text-white text-sm font-semibold bg-[#fedee666] dark:bg-[#736d6e66] !rounded-0 text-center !h-12"
+              className="text-white dark:text-white text-sm font-semibold bg-primary dark:bg-[rgba(4,66,92,0.60)] !rounded-0 text-center !h-12"
             >
               {col.label}
             </TableColumn>
           ))}
-          <TableColumn className="text-secondary-1000 dark:text-white text-sm font-semibold bg-[#fedee666] dark:bg-[#736d6e66] text-center">
+          <TableColumn className="text-white dark:text-white text-sm font-semibold bg-primary dark:bg-[rgba(4,66,92,0.60)] text-center">
             Actions
           </TableColumn>
         </TableHeader>
@@ -77,12 +88,12 @@ const AppTable = ({ props }: { props: any }) => {
           {data.map((row: any, index: number) => (
             <TableRow
               key={row.id ?? index}
-              className="border-b border-[#dcf0f966] dark:border-[#04425c66] hover:bg-surface dark:hover:bg-[#04425c66] !rounded-4 transition-colors !h-12"
+              className={`${hasRowBorder && "border-b border-[#dcf0f966] dark:border-[#04425c66]"} hover:bg-surface dark:hover:bg-[#04425c66] !rounded-4 transition-colors !h-12`}
             >
               {autoColumns.map((col: any) => (
                 <TableCell
                   key={col.key}
-                  className="text-xs font-normal text-secondary-400 dark:text-secondary-0 text-center"
+                  className="text-xs font-normal text-black dark:text-white text-center"
                 >
                   {row[col.key] ??
                     (col.key.toLowerCase().includes("date") ? "Present" : "")}
@@ -95,14 +106,16 @@ const AppTable = ({ props }: { props: any }) => {
           ))}
         </TableBody>
       </Table>
-      <div className="flex justify-end">
-        <AppPagination
-          props={{
-            size: "md",
-            total: data.length,
-          }}
-        />
-      </div>
+      {hasPagination && (
+        <div className="flex justify-end">
+          <AppPagination
+            props={{
+              size: "md",
+              total: data.length,
+            }}
+          />
+        </div>
+      )}
       <Modal
         hideCloseButton
         backdrop="blur"
@@ -142,7 +155,6 @@ const AppTable = ({ props }: { props: any }) => {
                 <Button
                   className="bg-danger text-white !px-3 !py-1.5 !rounded-4 !font-normal !min-w-fit"
                   onPress={() => {
-                    console.log("Location deleted");
                     onClose();
                   }}
                 >

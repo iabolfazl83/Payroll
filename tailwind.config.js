@@ -20,6 +20,7 @@ module.exports = {
       colors: {
         primary: "#0A9AD7",
         "primary-0": "#DCF0F9",
+        "primary-50": "rgba(220,240,249,0.40)",
         "primary-100": "#B8E2F3",
         "primary-150": "#96D3ED",
         "primary-200": "#73C5E8",
@@ -143,7 +144,12 @@ module.exports = {
         "surface-100": "#04425C66",
         "surface-150": "#044566",
         "surface-200": "#0D4D6A",
+
         gold: "#DDBA69",
+
+        "main-light": "rgba(220, 240, 249, 0.40)",
+
+        "foreground": "#11181C",
       },
 
       fontFamily: {
