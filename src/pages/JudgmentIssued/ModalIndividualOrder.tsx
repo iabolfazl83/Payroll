@@ -19,6 +19,8 @@ import { AppInput } from "../../components/AppInput.tsx";
 import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
 import AddModalInnerTableIndividualOrder from "@/pages/JudgmentIssued/AddModalInnerTableIndividualOrder.tsx";
+import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
+import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
 
 export default function ModalIndividualOrder({
   isOpen,
@@ -127,6 +129,117 @@ export default function ModalIndividualOrder({
     },
   ];
 
+  const DUMMY_ORGANIZATIONS = [
+    {
+      id: 1,
+      label: "Global Health Organization",
+      abbreviation: "GHO",
+      type: "Non-Profit",
+    },
+    {
+      id: 2,
+      label: "International Tech Alliance",
+      abbreviation: "ITA",
+      type: "Corporate",
+    },
+    {
+      id: 3,
+      label: "Green Future Initiative",
+      abbreviation: "GFI",
+      type: "NGO",
+    },
+    {
+      id: 4,
+      label: "Urban Planning Council",
+      abbreviation: "UPC",
+      type: "Government",
+    },
+    {
+      id: 5,
+      label: "Education for All Foundation",
+      abbreviation: "EFAF",
+      type: "Non-Profit",
+    },
+    {
+      id: 6,
+      label: "Cybersecurity Standards Board",
+      abbreviation: "CSB",
+      type: "Consortium",
+    },
+    {
+      id: 7,
+      label: "Open Research Network",
+      abbreviation: "ORN",
+      type: "Academic",
+    },
+    {
+      id: 8,
+      label: "Sustainable Agriculture Union",
+      abbreviation: "SAU",
+      type: "NGO",
+    },
+    {
+      id: 9,
+      label: "Clean Energy Co.",
+      abbreviation: "CEC",
+      type: "Corporate",
+    },
+    {
+      id: 10,
+      label: "World Infrastructure Bank",
+      abbreviation: "WIB",
+      type: "Government",
+    },
+  ];
+
+  const DUMMY_DEPARTMENTS = [
+    {
+      id: 101,
+      label: "Human Resources",
+      code: "HR",
+      category: "Administrative",
+    },
+    {
+      id: 102,
+      label: "Finance & Accounting",
+      code: "FIN",
+      category: "Administrative",
+    },
+    {
+      id: 103,
+      label: "Research & Development",
+      code: "R&D",
+      category: "Technical",
+    },
+    {
+      id: 104,
+      label: "Information Technology",
+      code: "IT",
+      category: "Technical",
+    },
+    {
+      id: 105,
+      label: "Marketing & Communications",
+      code: "MKT",
+      category: "Operational",
+    },
+    { id: 106, label: "Legal Affairs", code: "LEGAL", category: "Support" },
+    { id: 107, label: "Customer Support", code: "CS", category: "Operational" },
+    { id: 108, label: "Procurement", code: "PRC", category: "Administrative" },
+    {
+      id: 109,
+      label: "Facilities Management",
+      code: "FM",
+      category: "Support",
+    },
+    {
+      id: 110,
+      label: "Training & Development",
+      code: "TD",
+      category: "HR-Related",
+    },
+  ];
+
   const DUMMY_COLUMNS = [
     { key: "no", label: "No." },
     { key: "list", label: "List" },
@@ -138,11 +251,254 @@ export default function ModalIndividualOrder({
     { key: "years", label: "Years" },
   ];
 
+  const DUMMY_PERSONS = [
+    {
+      id: 1,
+      label: "Alice Johnson",
+      email: "alice.johnson@example.com",
+      position: "Project Manager",
+      department: "IT",
+    },
+    {
+      id: 2,
+      label: "Bob Smith",
+      email: "bob.smith@example.com",
+      position: "Software Engineer",
+      department: "R&D",
+    },
+    {
+      id: 3,
+      label: "Carla Gomez",
+      email: "carla.gomez@example.com",
+      position: "HR Specialist",
+      department: "Human Resources",
+    },
+    {
+      id: 4,
+      label: "Daniel Chen",
+      email: "daniel.chen@example.com",
+      position: "Finance Analyst",
+      department: "Finance",
+    },
+    {
+      id: 5,
+      label: "Eva Thompson",
+      email: "eva.thompson@example.com",
+      position: "Marketing Lead",
+      department: "Marketing",
+    },
+    {
+      id: 6,
+      label: "Faisal Ahmed",
+      email: "faisal.ahmed@example.com",
+      position: "Legal Advisor",
+      department: "Legal Affairs",
+    },
+    {
+      id: 7,
+      label: "Grace Lee",
+      email: "grace.lee@example.com",
+      position: "UI/UX Designer",
+      department: "Design",
+    },
+    {
+      id: 8,
+      label: "Hiro Tanaka",
+      email: "hiro.tanaka@example.com",
+      position: "Data Scientist",
+      department: "R&D",
+    },
+    {
+      id: 9,
+      label: "Isabella Russo",
+      email: "isabella.russo@example.com",
+      position: "Operations Manager",
+      department: "Operations",
+    },
+    {
+      id: 10,
+      label: "John Doe",
+      email: "john.doe@example.com",
+      position: "Support Engineer",
+      department: "Customer Support",
+    },
+  ];
+
+  const DUMMY_NAMES = [
+    {
+      id: 1,
+      label: "Employment Termination Notice",
+      code: "ETN-001",
+      type: "Directive",
+    },
+    {
+      id: 2,
+      label: "Salary Adjustment Order",
+      code: "SAO-045",
+      type: "Instruction",
+    },
+    {
+      id: 3,
+      label: "Internal Transfer Request",
+      code: "ITR-012",
+      type: "Request",
+    },
+    {
+      id: 4,
+      label: "Work From Home Approval",
+      code: "WFH-100",
+      type: "Approval",
+    },
+    { id: 5, label: "Performance Review Memo", code: "PRM-034", type: "Memo" },
+    {
+      id: 6,
+      label: "Training Assignment",
+      code: "TA-076",
+      type: "Instruction",
+    },
+    {
+      id: 7,
+      label: "Disciplinary Action Form",
+      code: "DAF-021",
+      type: "Ruling",
+    },
+    {
+      id: 8,
+      label: "Leave Extension Approval",
+      code: "LEA-088",
+      type: "Approval",
+    },
+    {
+      id: 9,
+      label: "New Equipment Requisition",
+      code: "NER-059",
+      type: "Request",
+    },
+    {
+      id: 10,
+      label: "Temporary Role Assignment",
+      code: "TRA-030",
+      type: "Instruction",
+    },
+  ];
+
+  const DUMMY_INSURANCE = [
+    {
+      id: 1,
+      label: "Standard Health Plan",
+      provider: "BlueCare",
+      category: "Health",
+      code: "SHP-001",
+    },
+    {
+      id: 2,
+      label: "Comprehensive Medical",
+      provider: "United Assurance",
+      category: "Health",
+      code: "CMP-002",
+    },
+    {
+      id: 3,
+      label: "Basic Dental Coverage",
+      provider: "DentaPlus",
+      category: "Dental",
+      code: "BDC-003",
+    },
+    {
+      id: 4,
+      label: "Vision Secure Plan",
+      provider: "EyeSure",
+      category: "Vision",
+      code: "VSP-004",
+    },
+    {
+      id: 5,
+      label: "Life Insurance – Gold",
+      provider: "LifeTrust",
+      category: "Life",
+      code: "LIG-005",
+    },
+    {
+      id: 6,
+      label: "Accident Coverage Basic",
+      provider: "SafeSteps",
+      category: "Accident",
+      code: "ACB-006",
+    },
+    {
+      id: 7,
+      label: "Maternity Enhanced Plan",
+      provider: "CareFirst",
+      category: "Health",
+      code: "MEP-007",
+    },
+    {
+      id: 8,
+      label: "Retirement Benefit Package",
+      provider: "SecureAge",
+      category: "Retirement",
+      code: "RBP-008",
+    },
+    {
+      id: 9,
+      label: "Employee Wellness Coverage",
+      provider: "FitPlus",
+      category: "Wellness",
+      code: "EWC-009",
+    },
+    {
+      id: 10,
+      label: "International Travel Insurance",
+      provider: "GlobalSure",
+      category: "Travel",
+      code: "ITI-010",
+    },
+  ];
+
+  const DUMMY_TAX_BRANCH = [
+    { id: 1, label: "Central Headquarters" },
+    { id: 2, label: "Northern Region Branch" },
+    { id: 3, label: "Southern District Office" },
+    { id: 4, label: "Eastern Support Center" },
+    { id: 5, label: "Western Administrative Hub" },
+    { id: 6, label: "Capital City Branch" },
+    { id: 7, label: "Rural Outreach Unit" },
+    { id: 8, label: "International Coordination Office" },
+    { id: 9, label: "Special Investigations Division" },
+    { id: 10, label: "Public Services Office" },
+  ];
+
+  const DUMMY_CATEGORY = [
+    { id: 1, label: "Administrative" },
+    { id: 2, label: "Financial" },
+    { id: 3, label: "Technical" },
+    { id: 4, label: "Legal" },
+    { id: 5, label: "Human Resources" },
+    { id: 6, label: "Procurement" },
+    { id: 7, label: "Operations" },
+    { id: 8, label: "IT & Systems" },
+    { id: 9, label: "Health & Safety" },
+    { id: 10, label: "Marketing & Communications" },
+  ];
+
+  const DUMMY_TYPES = [
+    { id: 1, label: "Directive" },
+    { id: 2, label: "Instruction" },
+    { id: 3, label: "Request" },
+    { id: 4, label: "Approval" },
+    { id: 5, label: "Memo" },
+    { id: 6, label: "Ruling" },
+    { id: 7, label: "Notice" },
+    { id: 8, label: "Agreement" },
+    { id: 9, label: "Report" },
+    { id: 10, label: "Certificate" },
+  ];
+
   return (
     <Modal
       hideCloseButton
       backdrop="blur"
-      className={`${changing === "true" ? "w-full max-w-[90%]" : "w-full max-w-[60%]"} `}
+      className={`${changing === "true" ? "w-full max-w-[90%]" : "w-full max-w-[50%]"} `}
       isOpen={isOpen}
       placement="top"
       onOpenChange={onOpenChange}
@@ -205,196 +561,87 @@ export default function ModalIndividualOrder({
                     />
                   </div>
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("organizations"),*/}
-                    {/*    required: false,*/}
-                    {/*    error: formik.errors.organizations,*/}
-                    {/*    name: "organizations",*/}
-                    {/*    placeholder: t("organizations"),*/}
-                    {/*    type: "select",*/}
-                    {/*    value: formik.values.organizations,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_ORGANIZATIONS,
+                        label: t("organizations"),
+                        placeholder: t("organizations"),
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("national_code"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_DEPARTMENTS,
+                        label: t("departmentsUnits"),
+                        placeholder: t("departmentsUnits"),
+                      }}
+                    />
                   </div>
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("date_of_birth"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_PERSONS,
+                        label: t("person"),
+                        placeholder: t("person"),
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("gender"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_NAMES,
+                        label: t("name"),
+                        placeholder: t("name"),
+                      }}
+                    />
                   </div>
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("marital_status"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_TYPES,
+                        label: t("types"),
+                        placeholder: t("types"),
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("military_service_status"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppDatePicker />
                   </div>
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("city"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_INSURANCE,
+                        label: t("insurance"),
+                        placeholder: t("insurance"),
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("address"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_TAX_BRANCH,
+                        label: t("taxBranch"),
+                        placeholder: t("taxBranch"),
+                      }}
+                    />
                   </div>
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("minimum_salary"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("working_category"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("organizational_category"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("social_media_links"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*isShowMode,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_CATEGORY,
+                        label: t("category"),
+                        placeholder: t("category"),
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
@@ -414,16 +661,6 @@ export default function ModalIndividualOrder({
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-full">
-                    {/*  <AppInput*/}
-                    {/*    props={{*/}
-                    {/*      label: t("changing"),*/}
-                    {/*      error: formik.errors.changing,*/}
-                    {/*      name: "changing",*/}
-                    {/*      type: "radio",*/}
-                    {/*      value: formik.values.changing,*/}
-                    {/*      formik: formik,*/}
-                    {/*    }}*/}
-                    {/*  />*/}
                     <RadioGroup
                       classNames={{
                         wrapper: "w-full flex flex-nowrap",
