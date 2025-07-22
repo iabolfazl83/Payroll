@@ -142,9 +142,9 @@ export default function ModalIndividualOrder({
     <Modal
       hideCloseButton
       backdrop="blur"
+      className={`${changing === "true" ? "w-full max-w-[90%]" : "w-full max-w-[60%]"} `}
       isOpen={isOpen}
       placement="top"
-      size="4xl"
       onOpenChange={onOpenChange}
     >
       <ModalContent className="bg-white dark:bg-[#01101a4d] shadow-md shadow-[rgba(8,14,28,0.22)] dark:shadow-secondary-600 backdrop-blur-[40px] p-12 aria-[modal]:!rounded-6">
