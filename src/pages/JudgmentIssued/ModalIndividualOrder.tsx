@@ -65,9 +65,9 @@ export default function ModalIndividualOrder({
     },
   });
   const { t } = useTranslation();
-  const [selected, setSelected] = useState("2");
+  const [changing, setChanging] = useState<string>("false");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelected(e.target.value);
+    setChanging(e.target.value);
   };
   const DUMMY_DATA = [
     {
@@ -429,27 +429,27 @@ export default function ModalIndividualOrder({
                         wrapper: "w-full flex flex-nowrap",
                       }}
                       orientation="horizontal"
-                      value={selected}
+                      value={changing}
                       onChange={handleChange}
                     >
                       <div className="flex gap-1 w-1/2">
                         <Radio
-                          checked={selected === "1"}
+                          checked={changing === "true"}
                           classNames={{
                             label: "dark:text-white",
                           }}
-                          value="1"
+                          value="true"
                         >
                           {t("changing")}
                         </Radio>
                       </div>
                       <div className="flex gap-1 w-1/2">
                         <Radio
-                          checked={selected === "2"}
+                          checked={changing === "false"}
                           classNames={{
                             label: "dark:text-white",
                           }}
-                          value="2"
+                          value="false"
                         >
                           {t("notChanging")}
                         </Radio>
@@ -458,7 +458,7 @@ export default function ModalIndividualOrder({
                   </div>
                 </div>
 
-                {selected === "1" && (
+                {changing === "true" && (
                   <div className="flex flex-col w-full">
                     <div className="flex flex-col w-full">
                       <div className="text-secondary-400 dark:text-secondary-0 mb-2">
@@ -511,9 +511,9 @@ export default function ModalIndividualOrder({
               </Form>
             </ModalBody>
             <ModalFooter
-              className={`!p-0 flex items-end ${selected === "1" ? "justify-between" : ""}`}
+              className={`!p-0 flex items-end ${changing === "true" ? "justify-between" : ""}`}
             >
-              {selected === "1" && (
+              {changing === "true" && (
                 <div className="flex flex-col gap-3 w-full">
                   <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">
                     {t("tax")}:
