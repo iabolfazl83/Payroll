@@ -24,10 +24,12 @@ export default function ModalIndividualOrder({
   isOpen,
   onOpenChange,
   isShowMode,
+  isEditMode,
 }: {
   isOpen: boolean;
   onOpenChange: () => void;
   isShowMode: boolean;
+  isEditMode: boolean;
 }) {
   const formik = useFormik({
     initialValues: {
@@ -153,7 +155,9 @@ export default function ModalIndividualOrder({
                 <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
                   <Candle color="#ffffff" />
                   <span className="text-white font-normal text-xl">
-                    {t("editIndividualOrder")}
+                    {isEditMode
+                      ? t("editIndividualOrder")
+                      : t("addNewIndividualOrder")}
                   </span>
                 </div>
                 <Button

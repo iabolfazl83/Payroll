@@ -90,12 +90,17 @@ export default function PageTabs() {
         </Button>
         {isIndividualOrderPage ? (
           <ModalIndividualOrder
+            isEditMode={false}
             isOpen={isOpen}
             isShowMode={false}
             onOpenChange={onOpenChange}
           />
         ) : (
-          <ModalGroupOrder isShow isOpen={isOpen} onOpenChange={onOpenChange} />
+          <ModalGroupOrder
+            isOpen={isOpen}
+            isShowMode={false}
+            onOpenChange={onOpenChange}
+          />
         )}
         <FilterModal isOpen={isFilterOpen} onOpenChange={onFilterOpenChange} />
         <FilterModal isOpen={isFilterOpen} onOpenChange={onFilterOpenChange} />
