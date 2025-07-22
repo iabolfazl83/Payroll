@@ -84,6 +84,8 @@ export const EnglishLanguage = {
       addNewGroupOrder: "Add New Group Order",
       editIndividualOrder: "Edit Individual Order",
       editGroupOrder: "Edit Group Order",
+      showIndividualOrder: "Show Individual Order",
+      showGroupOrder: "Show Group Order",
       filter: "Filter",
       describeText: "Describe Text",
       time: "Time",

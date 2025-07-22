@@ -14,6 +14,7 @@ export default function IndividuaOrder() {
   const [isTableExpanded, setTableIsExpanded] = useState<boolean>(false);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [isShowMode, setIsShowMode] = useState<boolean>(false);
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
 
   const DUMMY_DATA = [
     {
@@ -182,6 +183,12 @@ export default function IndividuaOrder() {
     data: DUMMY_DATA,
     columns: tableColumns,
     onOpenEditDialog: () => {
+      setIsEditMode(true);
+      setIsShowMode(false);
+      onOpen();
+    },
+    onOpenShowDialog: () => {
+      setIsEditMode(false);
       setIsShowMode(true);
       onOpen();
     },
@@ -198,6 +205,7 @@ export default function IndividuaOrder() {
           <>
             <PageHeader props={{ children: <PageTabs /> }} />
             <ModalIndividualOrder
+              isEditMode={isEditMode}
               isOpen={isOpen}
               isShowMode={isShowMode}
               onOpenChange={onOpenChange}

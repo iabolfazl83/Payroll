@@ -83,6 +83,8 @@ export const PersianLanguage = {
       addNewGroupOrder: "افزودن حکم گروهی جدید",
       editIndividualOrder: "ویرایش حکم فردی",
       editGroupOrder: "ویرایش حکم گروهی",
+      showIndividualOrder: "نمایش حکم فردی",
+      showGroupOrder: "نمایش حکم گروهی",
       filter: "فیلتر",
       describeText: "توضیح متن",
       time: "زمان",

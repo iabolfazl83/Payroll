@@ -157,7 +157,9 @@ export default function ModalIndividualOrder({
                   <span className="text-white font-normal text-xl">
                     {isEditMode
                       ? t("editIndividualOrder")
-                      : t("addNewIndividualOrder")}
+                      : isShowMode
+                        ? t("showIndividualOrder")
+                        : t("addNewIndividualOrder")}
                   </span>
                 </div>
                 <Button

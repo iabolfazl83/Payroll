@@ -25,6 +25,7 @@ const AppTable = ({ props }: { props: any }) => {
     data,
     columns,
     onOpenEditDialog,
+    onOpenShowDialog,
     hasPagination = true,
     hasPadding = true,
     hasShadow = true,
@@ -89,7 +90,7 @@ const AppTable = ({ props }: { props: any }) => {
             <TableRow
               key={row.id ?? index}
               className={`${hasRowBorder && "border-b border-[#dcf0f966] dark:border-[#04425c66]"} hover:bg-surface dark:hover:bg-[#04425c66] !rounded-4 transition-colors !h-12`}
-              onClick={onOpenEditDialog}
+              onClick={onOpenShowDialog}
             >
               {autoColumns.map((col: any) => (
                 <TableCell
