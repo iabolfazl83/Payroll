@@ -24,10 +24,12 @@ export default function ModalGroupOrder({
   isOpen,
   onOpenChange,
   isShowMode,
+  isEditMode,
 }: {
   isOpen: boolean;
   onOpenChange: () => void;
   isShowMode: boolean;
+  isEditMode: boolean;
 }) {
   const formik = useFormik({
     initialValues: {
@@ -150,7 +152,11 @@ export default function ModalGroupOrder({
                 <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
                   <Candle color="#ffffff" />
                   <span className="text-white font-normal text-xl">
-                    {t("addNewGroupOrder")}
+                    {isEditMode
+                      ? t("editGroupOrder")
+                      : isShowMode
+                        ? t("showGroupOrder")
+                        : t("addNewGroupOrder")}
                   </span>
                 </div>
                 <Button
