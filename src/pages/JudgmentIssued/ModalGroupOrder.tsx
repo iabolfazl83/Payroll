@@ -20,28 +20,26 @@ import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
 import AddModalInnerTableGroupOrder from "@/pages/JudgmentIssued/AddModalInnerTableGroupOrder.tsx";
 
-export default function AddModalGroupOrder({
+export default function ModalGroupOrder({
   isOpen,
   onOpenChange,
+  isShowMode,
 }: {
   isOpen: boolean;
   onOpenChange: () => void;
+  isShowMode: boolean;
 }) {
   const formik = useFormik({
     initialValues: {
       title: "",
-      organizations: "",
-      departmentsUnits: "",
-      person: "",
-      name: "",
       types: "",
       effectiveDate: "",
-      Insurance: "",
       taxBranch: "",
-      category: "",
       descriptions: "",
       changing: "",
       notChanging: "",
+      insurance: "",
+      entireOrganization: "",
     },
     validationSchema: Yup.object({
       descriptions: Yup.string().required("Descriptions Required"),
@@ -196,186 +194,98 @@ export default function AddModalGroupOrder({
                       }}
                     />
                   </div>
+                </div>
+                <div className="flex gap-14 w-full">
+                  <RadioGroup
+                    className="w-full"
+                    classNames={{
+                      wrapper: "flex flex-row justify-between",
+                    }}
+                  >
+                    <Radio value="entireOrganization">
+                      {t("entireOrganization")}
+                    </Radio>
+                    <Radio value="department">{t("department")}</Radio>
+                    <Radio value="position">{t("position")}</Radio>
+                    <Radio value="people">{t("people")}</Radio>
+                  </RadioGroup>
+                </div>
+                <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("organizations"),*/}
-                    {/*    required: false,*/}
-                    {/*    error: formik.errors.organizations,*/}
-                    {/*    name: "organizations",*/}
-                    {/*    placeholder: t("organizations"),*/}
-                    {/*    type: "select",*/}
-                    {/*    value: formik.values.organizations,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppInput
+                      props={{
+                        label: t("entireOrganization"),
+                        required: false,
+                        error: formik.errors.entireOrganization,
+                        name: "entireOrganization",
+                        placeholder: t("describeText"),
+                        type: "text",
+                        value: formik.values.entireOrganization,
+                        formik: formik,
+                      }}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1 w-1/2">
+                    <AppInput
+                      props={{
+                        label: t("types"),
+                        required: false,
+                        error: formik.errors.types,
+                        name: "types",
+                        placeholder: t("describeText"),
+                        type: "text",
+                        value: formik.values.types,
+                        formik: formik,
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("national_code"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppInput
+                      props={{
+                        label: t("effectiveDate"),
+                        required: false,
+                        error: formik.errors.effectiveDate,
+                        name: "effectiveDate",
+                        placeholder: t("describeText"),
+                        type: "text",
+                        value: formik.values.effectiveDate,
+                        formik: formik,
+                      }}
+                    />
                   </div>
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("date_of_birth"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppInput
+                      props={{
+                        label: t("insurance"),
+                        required: false,
+                        error: formik.errors.insurance,
+                        name: "insurance",
+                        placeholder: t("describeText"),
+                        type: "text",
+                        value: formik.values.insurance,
+                        formik: formik,
+                      }}
+                    />
                   </div>
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("gender"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
+                    <AppInput
+                      props={{
+                        label: t("taxBranch"),
+                        required: false,
+                        error: formik.errors.taxBranch,
+                        name: "taxBranch",
+                        placeholder: t("describeText"),
+                        type: "text",
+                        value: formik.values.taxBranch,
+                        formik: formik,
+                      }}
+                    />
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("marital_status"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("military_service_status"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("city"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("address"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("minimum_salary"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("working_category"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("organizational_category"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    {/*<AppInput*/}
-                    {/*  props={{*/}
-                    {/*    label: t("social_media_links"),*/}
-                    {/*    required: true,*/}
-                    {/*    error: formik.errors.firstname,*/}
-                    {/*    name: "firstname",*/}
-                    {/*    placeholder: "",*/}
-                    {/*    type: "text",*/}
-                    {/*    value: formik.values.firstname,*/}
-                    {/*    formik: formik,*/}
-                    {/*  }}*/}
-                    {/*/>*/}
-                  </div>
+                  <div className="flex flex-col gap-1 w-1/2" />
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-full">
@@ -394,16 +304,6 @@ export default function AddModalGroupOrder({
                 </div>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-full">
-                    {/*  <AppInput*/}
-                    {/*    props={{*/}
-                    {/*      label: t("changing"),*/}
-                    {/*      error: formik.errors.changing,*/}
-                    {/*      name: "changing",*/}
-                    {/*      type: "radio",*/}
-                    {/*      value: formik.values.changing,*/}
-                    {/*      formik: formik,*/}
-                    {/*    }}*/}
-                    {/*  />*/}
                     <RadioGroup
                       classNames={{
                         wrapper: "w-full flex flex-nowrap",

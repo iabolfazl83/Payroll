@@ -1,5 +1,6 @@
 import { ArrowLeft2, ArrowRight2 } from "iconsax-react";
 import { useState } from "react";
+import { useDisclosure } from "@heroui/react";
 
 import { JudgmentIssuedLayout } from "@/pages/JudgmentIssued/Layout.tsx";
 import PageHeader from "@/components/PageHeader.tsx";
@@ -7,9 +8,12 @@ import PageTabs from "@/pages/JudgmentIssued/PageTabs.tsx";
 import AppTable from "@/components/AppTable.tsx";
 import SelectCalendarWithTime from "@/components/Calendar/SelectCalendarWithTime.tsx";
 import GeneralDetails from "@/components/GeneralDetails";
+import ModalIndividualOrder from "@/pages/JudgmentIssued/ModalIndividualOrder.tsx";
 
 export default function IndividuaOrder() {
   const [isTableExpanded, setTableIsExpanded] = useState<boolean>(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [isShowMode, setIsShowMode] = useState<boolean>(false);
 
   const DUMMY_DATA = [
     {
@@ -164,7 +168,6 @@ export default function IndividuaOrder() {
     },
   ];
 
-  // Column configuration (optional - your component auto-generates columns)
   const tableColumns = [
     { key: "no", label: "No." },
     { key: "employeeId", label: "Employee ID" },
@@ -175,11 +178,13 @@ export default function IndividuaOrder() {
     { key: "creationDate", label: "Creation Date" },
   ];
 
-  // Usage example with your AppTable component:
   const tableProps = {
     data: DUMMY_DATA,
-    columns: tableColumns, // Optional - component will auto-generate if not provided
-    onOpenEditDialog: () => console.log("Edit clicked"),
+    columns: tableColumns,
+    onOpenEditDialog: () => {
+      setIsShowMode(true);
+      onOpen();
+    },
     hasPagination: true,
     hasPadding: true,
     hasShadow: true,
@@ -192,6 +197,11 @@ export default function IndividuaOrder() {
         children: (
           <>
             <PageHeader props={{ children: <PageTabs /> }} />
+            <ModalIndividualOrder
+              isOpen={isOpen}
+              isShowMode={isShowMode}
+              onOpenChange={onOpenChange}
+            />
             <div className="w-full h-full rounded-4">
               <div className="h-full min-h-fit w-full">
                 <div className="flex gap-4 h-full min-h-fit">

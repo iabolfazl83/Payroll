@@ -5,11 +5,11 @@ import { Button, useDisclosure } from "@heroui/react";
 import PageHeaderTab from "@/components/PageHeaderTab.tsx";
 import { useDarkMode } from "@/context/DarkMode.tsx";
 import Search from "@/components/Search.tsx";
-import AddModalIndividualOrder from "@/pages/JudgmentIssued/AddModalIndividualOrder.tsx";
+import ModalIndividualOrder from "@/pages/JudgmentIssued/ModalIndividualOrder.tsx";
 import { Index as Icons } from "@/icons/Index.tsx";
 import FilterModal from "@/pages/JudgmentIssued/FilterModal.tsx";
 import { routeUrls } from "@/routes";
-import AddModalGroupOrder from "@/pages/JudgmentIssued/AddModalGroupOrder.tsx";
+import ModalGroupOrder from "@/pages/JudgmentIssued/ModalGroupOrder.tsx";
 
 export default function PageTabs() {
   const { darkMode } = useDarkMode();
@@ -88,8 +88,15 @@ export default function PageTabs() {
         >
           {t("addNewOne")}
         </Button>
-        <AddModalIndividualOrder isOpen={isOpen} onOpenChange={onOpenChange} />
-        <AddModalGroupOrder isOpen={isOpen} onOpenChange={onOpenChange} />
+        {isIndividualOrderPage ? (
+          <ModalIndividualOrder
+            isOpen={isOpen}
+            isShowMode={false}
+            onOpenChange={onOpenChange}
+          />
+        ) : (
+          <ModalGroupOrder isShow isOpen={isOpen} onOpenChange={onOpenChange} />
+        )}
         <FilterModal isOpen={isFilterOpen} onOpenChange={onFilterOpenChange} />
         <FilterModal isOpen={isFilterOpen} onOpenChange={onFilterOpenChange} />
       </div>

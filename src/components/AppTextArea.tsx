@@ -3,7 +3,16 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 export const AppTextArea = ({ props }: { props: any }) => {
-  const { label, name, placeholder, value, formik, error, required } = props;
+  const {
+    label,
+    name,
+    placeholder,
+    value,
+    formik,
+    error,
+    required,
+    isShowMode,
+  } = props;
   const lang = useSelector((state: any) => state.language.lang);
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -17,7 +26,9 @@ export const AppTextArea = ({ props }: { props: any }) => {
     formik.handleBlur(name);
   };
   const inputWrapperClassNames = [
-    "!bg-white dark:!bg-info-1000",
+    isShowMode
+      ? "!bg-gradient-to-r from-white via-[#EEF9FF] to-white dark:bg-gradient-to-r from-[#01101A] via-[#022C3D] to-[#01101A]"
+      : "!bg-white dark:!bg-info-1000",
     "border border-primary-0 rounded-5 !backdrop_blur[35px]",
     "dark:border-primary-0 dark:!shadow-secondary",
     isFocused && "!ring-2 ring-primary-500",

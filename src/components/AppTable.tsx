@@ -89,6 +89,7 @@ const AppTable = ({ props }: { props: any }) => {
             <TableRow
               key={row.id ?? index}
               className={`${hasRowBorder && "border-b border-[#dcf0f966] dark:border-[#04425c66]"} hover:bg-surface dark:hover:bg-[#04425c66] !rounded-4 transition-colors !h-12`}
+              onClick={onOpenEditDialog}
             >
               {autoColumns.map((col: any) => (
                 <TableCell
@@ -123,7 +124,7 @@ const AppTable = ({ props }: { props: any }) => {
         size="2xl"
         onOpenChange={onOpenChange}
       >
-        <ModalContent className="rounded-[12px] bg-white/30 shadow-md backdrop-blur-[40px] p-12">
+        <ModalContent className="rounded-[12px] bg-white dark:info-1000 border-1 border-danger p-12">
           {(onClose) => (
             <>
               <ModalHeader>

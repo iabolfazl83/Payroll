@@ -15,7 +15,7 @@ export default function GeneralDetailItem({ props }: { props: any }) {
         {
           <>
             {detailAmounts?.map((amount: any, index: number) => (
-              <div key={index} className="text-xs">
+              <div key={index} className="text-xs dark:text-white">
                 {t("amount")} {amount}
               </div>
             ))}

@@ -14,7 +14,7 @@ export const DynamicBreadcrumbs = ({ pages }: { pages: string[] }) => {
                 item: `${
                   index === pages.length - 1
                     ? "text-secondary-400 dark:text-gold"
-                    : "text-neutral-400 dark:text-white"
+                    : "text-neutral-400"
                 }`,
                 separator: "text-netural-400 dark:text-netural-600",
               }}

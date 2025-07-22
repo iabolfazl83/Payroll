@@ -20,12 +20,14 @@ import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
 import AddModalInnerTableIndividualOrder from "@/pages/JudgmentIssued/AddModalInnerTableIndividualOrder.tsx";
 
-export default function AddModalIndividualOrder({
+export default function ModalIndividualOrder({
   isOpen,
   onOpenChange,
+  isShowMode,
 }: {
   isOpen: boolean;
   onOpenChange: () => void;
+  isShowMode: boolean;
 }) {
   const formik = useFormik({
     initialValues: {
@@ -65,7 +67,6 @@ export default function AddModalIndividualOrder({
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSelected(e.target.value);
   };
-
   const DUMMY_DATA = [
     {
       id: 1,
@@ -152,7 +153,7 @@ export default function AddModalIndividualOrder({
                 <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
                   <Candle color="#ffffff" />
                   <span className="text-white font-normal text-xl">
-                    {t("addNewIndividualOrder")}
+                    {t("editIndividualOrder")}
                   </span>
                 </div>
                 <Button
@@ -193,6 +194,7 @@ export default function AddModalIndividualOrder({
                         type: "text",
                         value: formik.values.title,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
@@ -207,6 +209,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "select",*/}
                     {/*    value: formik.values.organizations,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -223,6 +226,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -237,6 +241,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -253,6 +258,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -267,6 +273,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -283,6 +290,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -297,6 +305,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -313,6 +322,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -327,6 +337,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -343,6 +354,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -357,6 +369,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -373,6 +386,7 @@ export default function AddModalIndividualOrder({
                     {/*    type: "text",*/}
                     {/*    value: formik.values.firstname,*/}
                     {/*    formik: formik,*/}
+                    {/*isShowMode,*/}
                     {/*  }}*/}
                     {/*/>*/}
                   </div>
@@ -413,12 +427,24 @@ export default function AddModalIndividualOrder({
                       onChange={handleChange}
                     >
                       <div className="flex gap-1 w-1/2">
-                        <Radio checked={selected === "1"} value="1">
+                        <Radio
+                          checked={selected === "1"}
+                          classNames={{
+                            label: "dark:text-white",
+                          }}
+                          value="1"
+                        >
                           {t("changing")}
                         </Radio>
                       </div>
                       <div className="flex gap-1 w-1/2">
-                        <Radio checked={selected === "2"} value="2">
+                        <Radio
+                          checked={selected === "2"}
+                          classNames={{
+                            label: "dark:text-white",
+                          }}
+                          value="2"
+                        >
                           {t("notChanging")}
                         </Radio>
                       </div>
@@ -429,7 +455,7 @@ export default function AddModalIndividualOrder({
                 {selected === "1" && (
                   <div className="flex flex-col w-full">
                     <div className="flex flex-col w-full">
-                      <div className="text-secondary-400 mb-2">
+                      <div className="text-secondary-400 dark:text-secondary-0 mb-2">
                         {t("computationalCoefficients")}
                       </div>
                       <div>
@@ -455,7 +481,7 @@ export default function AddModalIndividualOrder({
                     </div>
                     <div className="felx flex-col mt-3">
                       <div>
-                        <h4 className="text-secondary-400 font-bold">
+                        <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">
                           {t("insurance")}:
                         </h4>
                       </div>
@@ -483,7 +509,7 @@ export default function AddModalIndividualOrder({
             >
               {selected === "1" && (
                 <div className="flex flex-col gap-3 w-full">
-                  <h4 className="text-secondary-400 font-bold">Tax:</h4>
+                  <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">{t("tax")}:</h4>
                   <div>
                     <RadioGroup
                       classNames={{
@@ -492,10 +518,24 @@ export default function AddModalIndividualOrder({
                       orientation="horizontal"
                     >
                       <div className="flex gap-1 w-1/2">
-                        <Radio value="true">{t("noEditTax")}</Radio>
+                        <Radio
+                          classNames={{
+                            label: "dark:text-white",
+                          }}
+                          value="true"
+                        >
+                          {t("noEditTax")}
+                        </Radio>
                       </div>
                       <div className="flex gap-1 w-1/2">
-                        <Radio value="false">{t("editTax")}</Radio>
+                        <Radio
+                          classNames={{
+                            label: "dark:text-white",
+                          }}
+                          value="false"
+                        >
+                          {t("editTax")}
+                        </Radio>
                       </div>
                     </RadioGroup>
                   </div>
