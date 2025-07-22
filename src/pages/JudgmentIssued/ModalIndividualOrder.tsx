@@ -509,7 +509,9 @@ export default function ModalIndividualOrder({
             >
               {selected === "1" && (
                 <div className="flex flex-col gap-3 w-full">
-                  <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">{t("tax")}:</h4>
+                  <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">
+                    {t("tax")}:
+                  </h4>
                   <div>
                     <RadioGroup
                       classNames={{
