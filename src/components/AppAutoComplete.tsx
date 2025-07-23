@@ -6,7 +6,17 @@ import { RootState } from "@/redux/store.ts";
 import { useDarkMode } from "@/context/DarkMode.tsx";
 
 export const AppAutoComplete = ({ props }: { props: any }) => {
-  const { data, label, placeholder, required } = props;
+  const {
+    data,
+    label,
+    placeholder,
+    required,
+    disabled,
+    value,
+    name,
+    onChange,
+    classNames,
+  } = props;
   const lang = useSelector((state: RootState) => state.language.lang);
   const { darkMode } = useDarkMode();
 
@@ -21,15 +31,23 @@ export const AppAutoComplete = ({ props }: { props: any }) => {
       </span>
       <Autocomplete
         classNames={{
-          base: "border-1 border-[#DCF0F9] rounded-5 shadow-none shadow-sm",
-          listboxWrapper: "!bg-white dark:!bg-info-1000",
+          base:
+            "border-1 border-[#DCF0F9] rounded-5 shadow-none shadow-sm" +
+            " " +
+            classNames?.base,
+          listboxWrapper:
+            classNames?.listboxWrapper ?? "!bg-white dark:!bg-info-1000",
           popoverContent:
+            classNames?.popoverContent ??
             "data-[open=true]:!shadow-lg data-[open=true]:dark:!shadow-[0px_10px_30px_0px_(#152446)]",
         }}
+        disabled={disabled}
+        name={name}
         placeholder={placeholder}
         scrollShadowProps={{
           isEnabled: false,
         }}
+        selectedKey={value?.toString()}
         selectorIcon={
           <ArrowDown2 color={`${darkMode ? "#DDBA69" : "#0A9AD7"}`} />
         }
