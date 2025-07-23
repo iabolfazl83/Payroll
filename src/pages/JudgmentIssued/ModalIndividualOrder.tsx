@@ -18,7 +18,7 @@ import { AppInput } from "../../components/AppInput.tsx";
 
 import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
-import AddModalInnerTableIndividualOrder from "@/pages/JudgmentIssued/AddModalInnerTableIndividualOrder.tsx";
+import IndividualOrderInnerTable from "@/pages/JudgmentIssued/IndividualOrderInnerTable.tsx";
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
 
@@ -46,8 +46,8 @@ export default function ModalIndividualOrder({
       taxBranch: "",
       category: "",
       descriptions: "",
-      changing: "",
-      notChanging: "",
+      changing: "false",
+      notChanging: "true",
     },
     validationSchema: Yup.object({
       descriptions: Yup.string().required("Descriptions Required"),
@@ -75,31 +75,31 @@ export default function ModalIndividualOrder({
     {
       id: 1,
       no: 1,
-      list: "123456",
+      list: 1,
       primeNumber: 1000000,
-      eleman: ["Hydrogen", "Hydrogen 2", "Hydrogen 3"],
+      eleman: 1,
       coefficient: 1.23,
       fixedNumber: 42,
       calculationInEid: true,
-      years: false,
+      years: true,
     },
     {
       id: 2,
       no: 2,
-      list: "123456",
+      list: 2,
       primeNumber: 1000000,
-      eleman: ["Helium", "Helium 2", "Helium 3"],
+      eleman: 2,
       coefficient: 2.5,
       fixedNumber: 17,
-      calculationInEid: true,
+      calculationInEid: false,
       years: false,
     },
     {
       id: 3,
       no: 3,
-      list: "123456",
+      list: 3,
       primeNumber: 1000000,
-      eleman: ["Lithium", "Lithium 2", "Lithium 3"],
+      eleman: 3,
       coefficient: 3.14,
       fixedNumber: 99,
       calculationInEid: true,
@@ -108,9 +108,9 @@ export default function ModalIndividualOrder({
     {
       id: 4,
       no: 4,
-      list: "123456",
+      list: 4,
       primeNumber: 1000000,
-      eleman: ["Beryllium", "Beryllium 2", "Beryllium 3"],
+      eleman: 4,
       coefficient: 4.8,
       fixedNumber: 21,
       calculationInEid: true,
@@ -119,13 +119,13 @@ export default function ModalIndividualOrder({
     {
       id: 5,
       no: 5,
-      list: "123456",
+      list: 5,
       primeNumber: 1000000,
-      eleman: ["Boron", "Boron 2", "Boron 3"],
+      eleman: 5,
       coefficient: 5.67,
       fixedNumber: 88,
       calculationInEid: true,
-      years: false,
+      years: true,
     },
   ];
 
@@ -238,17 +238,6 @@ export default function ModalIndividualOrder({
       code: "TD",
       category: "HR-Related",
     },
-  ];
-
-  const DUMMY_COLUMNS = [
-    { key: "no", label: "No." },
-    { key: "list", label: "List" },
-    { key: "primeNumber", label: "Prime Number" },
-    { key: "eleman", label: "Eleman" },
-    { key: "coefficient", label: "Coefficient" },
-    { key: "fixedNumber", label: "Fixed Number" },
-    { key: "calculationInEid", label: "Calculation in Eid" },
-    { key: "years", label: "Years" },
   ];
 
   const DUMMY_PERSONS = [
@@ -702,19 +691,12 @@ export default function ModalIndividualOrder({
                         {t("computationalCoefficients")}
                       </div>
                       <div>
-                        <AddModalInnerTableIndividualOrder
+                        <IndividualOrderInnerTable
                           props={{
                             data: DUMMY_DATA,
-                            columns: DUMMY_COLUMNS,
-                            hasPagination: false,
-                            hasPadding: true,
-                            hasShadow: false,
-                            hasRowBorder: false,
-                            onOpenEditDialog: () =>
-                              console.log("Edit dialog opened"),
                           }}
                         />
-                        <div className="px-5 py-2 w-full bg-primary-50 dark:bg-[rgba(4,66,92,0.60)] rounded-4">
+                        <div className="px-5 py-2 mt-1 w-full bg-primary-50 dark:bg-[rgba(4,66,92,0.60)] rounded-4">
                           <div className="flex justify-between pl-5 py-2">
                             <div className="text-sm">{t("total")}:</div>
                             <div className="text-xs">{t("coefficient")}</div>
