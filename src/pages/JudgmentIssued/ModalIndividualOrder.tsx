@@ -18,7 +18,7 @@ import { AppInput } from "../../components/AppInput.tsx";
 
 import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
-import IndividualOrderInnerTable from "@/pages/JudgmentIssued/IndividualOrderInnerTable.tsx";
+import IndividualOrderPopupTable from "@/pages/JudgmentIssued/IndividualOrderPopupTable.tsx";
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
 
@@ -691,7 +691,7 @@ export default function ModalIndividualOrder({
                         {t("computationalCoefficients")}
                       </div>
                       <div>
-                        <IndividualOrderInnerTable
+                        <IndividualOrderPopupTable
                           props={{
                             data: DUMMY_DATA,
                           }}

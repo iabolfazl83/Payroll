@@ -25,7 +25,7 @@ import { CloseIcon } from "@/icons/CloseIcon.tsx";
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import { AppInput } from "@/components/AppInput.tsx";
 
-const IndividualOrderInnerTable = ({ props }: { props: any }) => {
+const IndividualOrderPopupTable = ({ props }: { props: any }) => {
   const { data } = props;
   const { t } = useTranslation();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -321,4 +321,4 @@ const IndividualOrderInnerTable = ({ props }: { props: any }) => {
   );
 };
 
-export default IndividualOrderInnerTable;
+export default IndividualOrderPopupTable;
