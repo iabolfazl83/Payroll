@@ -15,6 +15,8 @@ export const AppInput = ({ props }: { props: any }) => {
     startContent,
     endContent,
     isShowMode,
+    disabled,
+    classNames,
   } = props;
 
   const lang = useSelector((state: any) => state.language.lang);
@@ -57,9 +59,10 @@ export const AppInput = ({ props }: { props: any }) => {
       </span>
       <Input
         classNames={{
-          inputWrapper: inputWrapperClassNames,
-          input: inputClassNames,
+          inputWrapper: inputWrapperClassNames + " " + classNames?.inputWrapper,
+          input: inputClassNames + " " + classNames?.input,
         }}
+        disabled={disabled}
         endContent={endContent}
         errorMessage={error}
         isRequired={required}
