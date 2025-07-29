@@ -16,11 +16,13 @@ import { useState } from "react";
 
 import { AppInput } from "../../components/AppInput.tsx";
 
-import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
-import IndividualOrderPopupTable from "@/pages/JudgmentIssued/IndividualOrderPopupTable.tsx";
+import ComputationalCoefficients from "@/pages/JudgmentIssued/ComputationalCoefficients.tsx";
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
+import InputGrid from "@/components/InputGrid.tsx";
 import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
+import { AppTextArea } from "@/components/AppTextArea.tsx";
+import ComputationalCoefficientsShowMode from "@/pages/JudgmentIssued/ComputationalCoefficientsShowMode.tsx";
 
 export default function ModalIndividualOrder({
   isOpen,
@@ -63,13 +65,19 @@ export default function ModalIndividualOrder({
       category: Yup.string().required("category Required"),
     }),
     onSubmit: () => {
-      onOpenChange();
+      // onOpenChange();
+      console.log("submitted");
     },
   });
   const { t } = useTranslation();
   const [changing, setChanging] = useState<string>("false");
+  const [taxChanging, setTaxChanging] = useState<string>("false");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setChanging(e.target.value);
+  };
+
+  const handleTaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaxChanging(e.target.value);
   };
   const DUMMY_DATA = [
     {
@@ -492,7 +500,7 @@ export default function ModalIndividualOrder({
       placement="top"
       onOpenChange={onOpenChange}
     >
-      <ModalContent className="bg-white dark:bg-[#01101a4d] shadow-md shadow-[rgba(8,14,28,0.22)] dark:shadow-secondary-600 backdrop-blur-[40px] p-12 aria-[modal]:!rounded-6">
+      <ModalContent className="bg-white dark:bg-info-1000 shadow-md shadow-[rgba(8,14,28,0.22)] dark:shadow-secondary-600 backdrop-blur-[40px] p-12 aria-[modal]:!rounded-6">
         {(onClose) => (
           <div className="flex flex-col gap-8">
             <ModalHeader className="flex flex-col gap-1 !p-0">
@@ -533,8 +541,8 @@ export default function ModalIndividualOrder({
                 className="w-full flex flex-col gap-6"
                 onSubmit={formik.handleSubmit}
               >
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
+                <InputGrid columns={changing === "true" ? 3 : 2}>
+                  <div>
                     <AppInput
                       props={{
                         label: t("title"),
@@ -542,99 +550,136 @@ export default function ModalIndividualOrder({
                         error: formik.errors.title,
                         name: "title",
                         placeholder: t("describeTitle"),
+                        isShowMode,
                         type: "text",
                         value: formik.values.title,
                         formik: formik,
-                        isShowMode,
                       }}
                     />
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2">
+
+                  <div>
                     <AppAutoComplete
                       props={{
                         data: DUMMY_ORGANIZATIONS,
                         label: t("organizations"),
                         placeholder: t("organizations"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
+
+                  <div>
                     <AppAutoComplete
                       props={{
                         data: DUMMY_DEPARTMENTS,
                         label: t("departmentsUnits"),
                         placeholder: t("departmentsUnits"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
                       }}
                     />
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2">
+
+                  <div>
                     <AppAutoComplete
                       props={{
                         data: DUMMY_PERSONS,
                         label: t("person"),
                         placeholder: t("person"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
+
+                  <div>
                     <AppAutoComplete
                       props={{
                         data: DUMMY_NAMES,
                         label: t("name"),
                         placeholder: t("name"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
                       }}
                     />
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    <AppAutoComplete
+
+                  <div>
+                    <AppDatePicker
                       props={{
-                        data: DUMMY_TYPES,
-                        label: t("types"),
-                        placeholder: t("types"),
+                        label: t("effectiveDate"),
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    <AppDatePicker />
-                  </div>
-                  <div className="flex flex-col gap-1 w-1/2">
-                    <AppAutoComplete
-                      props={{
-                        data: DUMMY_INSURANCE,
-                        label: t("insurance"),
-                        placeholder: t("insurance"),
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    <AppAutoComplete
-                      props={{
-                        data: DUMMY_TAX_BRANCH,
-                        label: t("taxBranch"),
-                        placeholder: t("taxBranch"),
-                      }}
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1 w-1/2">
+
+                  <div>
                     <AppAutoComplete
                       props={{
                         data: DUMMY_CATEGORY,
                         label: t("category"),
                         placeholder: t("category"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-full">
+
+                  <div>
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_TAX_BRANCH,
+                        label: t("taxBranch"),
+                        placeholder: t("taxBranch"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_TYPES,
+                        label: t("types"),
+                        placeholder: t("types"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+
+                  <div>
+                    <AppAutoComplete
+                      props={{
+                        data: DUMMY_INSURANCE,
+                        label: t("insurance"),
+                        placeholder: t("insurance"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+
+                  <div className={changing && "col-span-2"}>
                     <AppTextArea
                       props={{
                         label: t("descriptions"),
@@ -644,16 +689,18 @@ export default function ModalIndividualOrder({
                         type: "text",
                         value: formik.values.descriptions,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
+                </InputGrid>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-full">
                     <RadioGroup
                       classNames={{
                         wrapper: "w-full flex flex-nowrap",
                       }}
+                      isDisabled={isShowMode}
                       orientation="horizontal"
                       value={changing}
                       onChange={handleChange}
@@ -662,6 +709,10 @@ export default function ModalIndividualOrder({
                         <Radio
                           checked={changing === "true"}
                           classNames={{
+                            wrapper:
+                              "after:dark:!bg-surface-200 !dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 !dark:!border-surface-200",
                             label: "dark:text-white",
                           }}
                           value="true"
@@ -673,6 +724,10 @@ export default function ModalIndividualOrder({
                         <Radio
                           checked={changing === "false"}
                           classNames={{
+                            wrapper:
+                              "after:dark:!bg-surface-200 !dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 !dark:!border-surface-200",
                             label: "dark:text-white",
                           }}
                           value="false"
@@ -684,49 +739,20 @@ export default function ModalIndividualOrder({
                   </div>
                 </div>
 
-                {changing === "true" && (
-                  <div className="flex flex-col w-full">
-                    <div className="flex flex-col w-full">
-                      <div className="text-secondary-400 dark:text-secondary-0 mb-2">
-                        {t("computationalCoefficients")}
-                      </div>
-                      <div>
-                        <IndividualOrderPopupTable
-                          props={{
-                            data: DUMMY_DATA,
-                          }}
-                        />
-                        <div className="px-5 py-2 mt-1 w-full bg-primary-50 dark:bg-[rgba(4,66,92,0.60)] rounded-4">
-                          <div className="flex justify-between pl-5 py-2">
-                            <div className="text-sm">{t("total")}:</div>
-                            <div className="text-xs">{t("coefficient")}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="felx flex-col mt-3">
-                      <div>
-                        <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">
-                          {t("insurance")}:
-                        </h4>
-                      </div>
-                      <div className="mt-4 px-2 flex flex-col gap-5">
-                        <div className="text-sm text-netural-400 flex justify-between">
-                          <span>{t("workersShareInsurance")}</span>
-                          <span>69%</span>
-                        </div>
-                        <div className="text-sm text-netural-400 flex justify-between">
-                          <span>{t("employersShareInsurance")}</span>
-                          <span>69%</span>
-                        </div>
-                        <div className="text-sm text-netural-400 flex justify-between">
-                          <span>{t("unemploymentInsurance")}</span>
-                          <span>69%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                {changing === "true" &&
+                  (isShowMode ? (
+                    <ComputationalCoefficientsShowMode
+                      props={{
+                        data: DUMMY_DATA,
+                      }}
+                    />
+                  ) : (
+                    <ComputationalCoefficients
+                      props={{
+                        data: DUMMY_DATA,
+                      }}
+                    />
+                  ))}
               </Form>
             </ModalBody>
             <ModalFooter
@@ -742,14 +768,21 @@ export default function ModalIndividualOrder({
                       classNames={{
                         wrapper: "w-full flex flex-nowrap",
                       }}
+                      defaultValue={taxChanging && "false"}
+                      isDisabled={isShowMode}
                       orientation="horizontal"
+                      onChange={handleTaxChange}
                     >
                       <div className="flex gap-1 w-1/2">
                         <Radio
                           classNames={{
                             label: "dark:text-white",
+                            wrapper:
+                              "after:dark:!bg-surface-200 !dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 !dark:!border-surface-200",
                           }}
-                          value="true"
+                          value="false"
                         >
                           {t("noEditTax")}
                         </Radio>
@@ -758,8 +791,12 @@ export default function ModalIndividualOrder({
                         <Radio
                           classNames={{
                             label: "dark:text-white",
+                            wrapper:
+                              "after:dark:!bg-surface-200 !dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 !dark:!border-surface-200",
                           }}
-                          value="false"
+                          value="true"
                         >
                           {t("editTax")}
                         </Radio>
@@ -768,22 +805,24 @@ export default function ModalIndividualOrder({
                   </div>
                 </div>
               )}
-              <div className="flex gap-3">
-                <Button
-                  className="text-xl font-normal rounded-3"
-                  color="default"
-                  variant="light"
-                  onPress={onClose}
-                >
-                  {t("cancel")}
-                </Button>
-                <Button
-                  className="bg-primary dark:bg-surface-200 text-xl font-normal text-white rounded-3"
-                  onPress={onClose}
-                >
-                  {t("submit")}
-                </Button>
-              </div>
+              {!isShowMode && (
+                <div className="flex gap-3">
+                  <Button
+                    className="text-xl font-normal rounded-3"
+                    color="default"
+                    variant="light"
+                    onPress={onClose}
+                  >
+                    {t("cancel")}
+                  </Button>
+                  <Button
+                    className="bg-primary dark:bg-surface-200 text-xl font-normal text-white rounded-3"
+                    onPress={onClose}
+                  >
+                    {isEditMode ? t("saveChanges") : t("submit")}
+                  </Button>
+                </div>
+              )}
             </ModalFooter>
           </div>
         )}
