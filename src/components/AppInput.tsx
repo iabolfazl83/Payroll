@@ -1,6 +1,6 @@
 import { Input } from "@heroui/react";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export const AppInput = ({ props }: { props: any }) => {
   const {
@@ -17,12 +17,27 @@ export const AppInput = ({ props }: { props: any }) => {
     isShowMode,
     disabled,
     classNames,
+    onChange,
   } = props;
 
   const lang = useSelector((state: any) => state.language.lang);
 
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
+  const [isEdited, setIsEdited] = useState<Boolean>(false);
+  const initialValueRef = useRef(value);
+
+  const handleChange = (e: any) => {
+    const newValue = e.target.value;
+
+    if (formik?.handleChange) {
+      formik.handleChange(e);
+    } else if (onChange) {
+      onChange(e);
+    }
+
+    setIsEdited(newValue !== initialValueRef.current);
+  };
   const handleFocus = () => {
     setIsFocused(true);
   };
@@ -35,7 +50,9 @@ export const AppInput = ({ props }: { props: any }) => {
   const inputWrapperClassNames = [
     isShowMode
       ? "!bg-gradient-to-r from-white via-[#EEF9FF] to-white dark:bg-gradient-to-r dark:from-[#01101A] dark:via-[#022C3D] dark:to-[#01101A]"
-      : "!bg-white dark:!bg-info-1000",
+      : isEdited
+        ? "!bg-main-light"
+        : "!bg-white dark:!bg-info-1000",
     "border border-primary-0 rounded-5 !backdrop_blur[35px]",
     "dark:border-primary-0 dark:!shadow-secondary",
     isFocused && "!ring-2 ring-primary-500",
@@ -43,7 +60,7 @@ export const AppInput = ({ props }: { props: any }) => {
   ].join(" ");
 
   const inputClassNames = [
-    "placeholder:text-netural-250 dark:placeholder:text-secondary-0 lg:placeholder:leading-5 placeholder:font-inter placeholder:leading-normal lg:placeholder:text-sm placeholder:text-xs placeholder:font-medium",
+    `placeholder:text-netural-250 ${isShowMode && "dark:text-secondary-0"} lg:placeholder:leading-5 placeholder:font-inter placeholder:leading-normal lg:placeholder:text-sm placeholder:text-xs placeholder:font-medium`,
     isFocused && "focus:outline-none focus:ring-0",
     error && "text-red-500",
   ].join(" ");
@@ -61,8 +78,9 @@ export const AppInput = ({ props }: { props: any }) => {
         classNames={{
           inputWrapper: inputWrapperClassNames + " " + classNames?.inputWrapper,
           input: inputClassNames + " " + classNames?.input,
+          ...classNames,
         }}
-        disabled={disabled}
+        disabled={disabled || isShowMode}
         endContent={endContent}
         errorMessage={error}
         isRequired={required}
@@ -72,7 +90,7 @@ export const AppInput = ({ props }: { props: any }) => {
         type={type}
         value={value}
         onBlur={handleBlur}
-        onChange={formik.handleChange}
+        onChange={handleChange}
         onFocus={handleFocus}
       />
     </>
