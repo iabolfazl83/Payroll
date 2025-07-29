@@ -52,7 +52,7 @@ export default function SelectCalendarWithTime() {
 
   return (
     <I18nProvider locale={locale}>
-      <div className="border-1 border-primary rounded-5 h-full w-full">
+      <div className="dark:bg-[rgba(4,66,92,0.60)] border-1 border-primary dark:border-surface-200 rounded-5 h-full w-full">
         <div className="bg-white dark:bg-info-1000 rounded-t-5 p-2">
           <div className="flex items-center justify-between bg-primary dark:bg-surface-200 pl-7 pr-6 w-full rounded-4 h-[35px]">
             <div className="flex-1 text-white text-xs">
@@ -95,8 +95,8 @@ export default function SelectCalendarWithTime() {
               nextButton: "text-secondary-400 dark:text-secondary-0 w-1/3",
               prevButton: "text-secondary-400 dark:text-secondary-0 w-1/3",
               gridWrapper: "h-full",
-              content: "w-full h-full dark:bg-[rgba(4,66,92,0.60)] rounded-5",
-              gridBodyRow: "w-full justify-between items-stretch px-7 my-5",
+              content: "w-full h-full rounded-5",
+              gridBodyRow: "w-full justify-between items-stretch px-7 my-3",
             }}
             onChange={(value: any) => setCalendarValue(value)}
           />
