@@ -8,15 +8,25 @@ import {
   IndividualOrder,
   GroupOrder,
   SalaryCalculations,
+  GeneralSettingsIndex,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
   home: "/payroll",
-  dashboard: "/dashboard",
+  dashboard: "dashboard",
   judgmentIssued: "judgment-issued",
   individualOrder: "individual-order",
   groupOrder: "group-order",
   salaryCalculations: "salary-calculations",
+  setting: "setting",
+  generalSettings: "general-settings",
+  costCenter: "cost-center",
+  parameters: "parameters",
+  calculation: "calculation",
+  types: "types",
+  category: "category",
+  taxes: "taxes",
+  insurance: "insurance",
 };
 
 export const routes: RouteObject[] = [
@@ -55,6 +65,26 @@ export const routes: RouteObject[] = [
       {
         path: "salary-calculations",
         element: <SalaryCalculations />,
+      },
+      {
+        path: "setting",
+        children: [
+          {
+            index: true,
+            element: <Navigate replace to="general-settings" />,
+          },
+          {
+            path: "general-settings",
+            element: <GeneralSettingsIndex />,
+          },
+          { path: "cost-center" },
+          { path: "parameters" },
+          { path: "calculation" },
+          { path: "types" },
+          { path: "category" },
+          { path: "taxes" },
+          { path: "insurance" },
+        ],
       },
     ],
   },
