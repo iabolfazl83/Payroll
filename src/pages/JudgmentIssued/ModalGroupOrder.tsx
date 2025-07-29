@@ -18,7 +18,9 @@ import { AppInput } from "../../components/AppInput.tsx";
 
 import { AppTextArea } from "@/components/AppTextArea.tsx";
 import { Candle } from "@/icons/Candle.tsx";
-import AddModalInnerTableGroupOrder from "@/pages/JudgmentIssued/AddModalInnerTableGroupOrder.tsx";
+import ComputationalCoefficientsShowMode from "@/pages/JudgmentIssued/ComputationalCoefficientsShowMode.tsx";
+import ComputationalCoefficients from "@/pages/JudgmentIssued/ComputationalCoefficients.tsx";
+import InputGrid from "@/components/InputGrid.tsx";
 
 export default function ModalGroupOrder({
   isOpen,
@@ -42,59 +44,69 @@ export default function ModalGroupOrder({
       notChanging: "",
       insurance: "",
       entireOrganization: "",
+      department: "",
+      position: "",
+      people: "",
     },
     validationSchema: Yup.object({
-      descriptions: Yup.string().required("Descriptions Required"),
       title: Yup.string().required("title Required"),
-      organizations: Yup.string().required("organizations Required"),
-      departmentsUnits: Yup.string().required("departmentsUnits Required"),
-      person: Yup.string().required("person Required"),
-      name: Yup.string().required("name Required"),
       types: Yup.string().required("types Required"),
       effectiveDate: Yup.string().required("effectiveDate Required"),
-      Insurance: Yup.string().required("Insurance Required"),
       taxBranch: Yup.string().required("taxBranch Required"),
-      category: Yup.string().required("category Required"),
+      descriptions: Yup.string().required("descriptions Required"),
+      changing: Yup.string().required("changing Required"),
+      notChanging: Yup.string().required("notChanging Required"),
+      insurance: Yup.string().required("insurance Required"),
+      entireOrganization: Yup.string().required("entireOrganization Required"),
+      department: Yup.string().required("department Required"),
+      position: Yup.string().required("position Required"),
+      people: Yup.string().required("people Required"),
     }),
     onSubmit: () => {
       onOpenChange();
     },
   });
   const { t } = useTranslation();
-  const [selected, setSelected] = useState("2");
+  const [changing, setChanging] = useState<string>("false");
+  const [taxChanging, setTaxChanging] = useState<string>("false");
+  const [checkBoxaValue, setCheckBoxaValue] =
+    useState<string>("entireOrganization");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelected(e.target.value);
+    setChanging(e.target.value);
+  };
+  const handleTaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaxChanging(e.target.value);
   };
 
   const DUMMY_DATA = [
     {
       id: 1,
       no: 1,
-      list: "123456",
+      list: 1,
       primeNumber: 1000000,
-      eleman: ["Hydrogen", "Hydrogen 2", "Hydrogen 3"],
+      eleman: 1,
       coefficient: 1.23,
       fixedNumber: 42,
       calculationInEid: true,
-      years: false,
+      years: true,
     },
     {
       id: 2,
       no: 2,
-      list: "123456",
+      list: 2,
       primeNumber: 1000000,
-      eleman: ["Helium", "Helium 2", "Helium 3"],
+      eleman: 2,
       coefficient: 2.5,
       fixedNumber: 17,
-      calculationInEid: true,
+      calculationInEid: false,
       years: false,
     },
     {
       id: 3,
       no: 3,
-      list: "123456",
+      list: 3,
       primeNumber: 1000000,
-      eleman: ["Lithium", "Lithium 2", "Lithium 3"],
+      eleman: 3,
       coefficient: 3.14,
       fixedNumber: 99,
       calculationInEid: true,
@@ -103,9 +115,9 @@ export default function ModalGroupOrder({
     {
       id: 4,
       no: 4,
-      list: "123456",
+      list: 4,
       primeNumber: 1000000,
-      eleman: ["Beryllium", "Beryllium 2", "Beryllium 3"],
+      eleman: 4,
       coefficient: 4.8,
       fixedNumber: 21,
       calculationInEid: true,
@@ -114,31 +126,50 @@ export default function ModalGroupOrder({
     {
       id: 5,
       no: 5,
-      list: "123456",
+      list: 5,
       primeNumber: 1000000,
-      eleman: ["Boron", "Boron 2", "Boron 3"],
+      eleman: 5,
       coefficient: 5.67,
       fixedNumber: 88,
       calculationInEid: true,
-      years: false,
+      years: true,
     },
   ];
 
-  const DUMMY_COLUMNS = [
-    { key: "no", label: "No." },
-    { key: "list", label: "List" },
-    { key: "primeNumber", label: "Prime Number" },
-    { key: "eleman", label: "Eleman" },
-    { key: "coefficient", label: "Coefficient" },
-    { key: "fixedNumber", label: "Fixed Number" },
-    { key: "calculationInEid", label: "Calculation in Eid" },
-    { key: "years", label: "Years" },
-  ];
+  const inputMap: any = {
+    entireOrganization: {
+      label: t("entireOrganization"),
+      name: "entireOrganization",
+      error: formik.errors.entireOrganization,
+      value: formik.values.entireOrganization,
+    },
+    department: {
+      label: t("department"),
+      name: "departments",
+      error: formik.errors.department,
+      value: formik.values.department,
+    },
+    position: {
+      label: t("position"),
+      name: "position",
+      error: formik.errors.position,
+      value: formik.values.position,
+    },
+    people: {
+      label: t("personPeople"),
+      name: "people",
+      error: formik.errors.people,
+      value: formik.values.people,
+    },
+  };
+
+  const inputProps: any = inputMap[checkBoxaValue];
 
   return (
     <Modal
       hideCloseButton
       backdrop="blur"
+      className={`${changing === "true" ? "w-full max-w-[90%]" : "w-full max-w-[50%]"} `}
       isOpen={isOpen}
       placement="top"
       size="4xl"
@@ -185,8 +216,8 @@ export default function ModalGroupOrder({
                 className="w-full flex flex-col gap-6"
                 onSubmit={formik.handleSubmit}
               >
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
+                <InputGrid columns={changing === "true" ? 3 : 2}>
+                  <div className="col-span-full col-start-1 col-end-2">
                     <AppInput
                       props={{
                         label: t("title"),
@@ -197,41 +228,91 @@ export default function ModalGroupOrder({
                         type: "text",
                         value: formik.values.title,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <RadioGroup
-                    className="w-full"
-                    classNames={{
-                      wrapper: "flex flex-row justify-between",
-                    }}
-                  >
-                    <Radio value="entireOrganization">
-                      {t("entireOrganization")}
-                    </Radio>
-                    <Radio value="department">{t("department")}</Radio>
-                    <Radio value="position">{t("position")}</Radio>
-                    <Radio value="people">{t("people")}</Radio>
-                  </RadioGroup>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
-                    <AppInput
-                      props={{
-                        label: t("entireOrganization"),
-                        required: false,
-                        error: formik.errors.entireOrganization,
-                        name: "entireOrganization",
-                        placeholder: t("describeText"),
-                        type: "text",
-                        value: formik.values.entireOrganization,
-                        formik: formik,
+                  <div className="w-full col-span-full">
+                    <RadioGroup
+                      className="w-full"
+                      classNames={{
+                        wrapper: "flex flex-row justify-between",
                       }}
-                    />
+                      defaultValue="entireOrganization"
+                      isDisabled={isShowMode}
+                    >
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="entireOrganization"
+                        onChange={() => setCheckBoxaValue("entireOrganization")}
+                      >
+                        {t("entireOrganization")}
+                      </Radio>
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="department"
+                        onChange={() => setCheckBoxaValue("department")}
+                      >
+                        {t("department")}
+                      </Radio>
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="position"
+                        onChange={() => setCheckBoxaValue("position")}
+                      >
+                        {t("position")}
+                      </Radio>
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="people"
+                        onChange={() => setCheckBoxaValue("people")}
+                      >
+                        {t("people")}
+                      </Radio>
+                    </RadioGroup>
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2">
+                  <div>
+                    {inputProps && (
+                      <AppInput
+                        props={{
+                          label: inputProps.label,
+                          required: false,
+                          error: inputProps.error,
+                          name: inputProps.name,
+                          placeholder: t("describeText"),
+                          type: "text",
+                          value: inputProps.value,
+                          formik: formik,
+                          isShowMode,
+                        }}
+                      />
+                    )}
+                  </div>
+                  <div>
                     <AppInput
                       props={{
                         label: t("types"),
@@ -242,12 +323,11 @@ export default function ModalGroupOrder({
                         type: "text",
                         value: formik.values.types,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
+                  <div>
                     <AppInput
                       props={{
                         label: t("effectiveDate"),
@@ -258,10 +338,11 @@ export default function ModalGroupOrder({
                         type: "text",
                         value: formik.values.effectiveDate,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2">
+                  <div>
                     <AppInput
                       props={{
                         label: t("insurance"),
@@ -272,12 +353,11 @@ export default function ModalGroupOrder({
                         type: "text",
                         value: formik.values.insurance,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-1/2">
+                  <div>
                     <AppInput
                       props={{
                         label: t("taxBranch"),
@@ -288,13 +368,11 @@ export default function ModalGroupOrder({
                         type: "text",
                         value: formik.values.taxBranch,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                  <div className="flex flex-col gap-1 w-1/2" />
-                </div>
-                <div className="flex gap-14 w-full">
-                  <div className="flex flex-col gap-1 w-full">
+                  <div className={changing && "col-span-2"}>
                     <AppTextArea
                       props={{
                         label: t("descriptions"),
@@ -304,104 +382,116 @@ export default function ModalGroupOrder({
                         type: "text",
                         value: formik.values.descriptions,
                         formik: formik,
+                        isShowMode,
                       }}
                     />
                   </div>
-                </div>
+                </InputGrid>
                 <div className="flex gap-14 w-full">
                   <div className="flex flex-col gap-1 w-full">
                     <RadioGroup
                       classNames={{
                         wrapper: "w-full flex flex-nowrap",
                       }}
+                      isDisabled={isShowMode}
                       orientation="horizontal"
-                      value={selected}
+                      value={changing}
                       onChange={handleChange}
                     >
                       <div className="flex gap-1 w-1/2">
-                        <Radio checked={selected === "1"} value="1">
+                        <Radio
+                          checked={changing === "true"}
+                          classNames={{
+                            label: "dark:text-white",
+                            wrapper:
+                              "after:dark:!bg-surface-200 dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 dark:!border-surface-200",
+                          }}
+                          value="true"
+                        >
                           {t("changing")}
                         </Radio>
                       </div>
                       <div className="flex gap-1 w-1/2">
-                        <Radio checked={selected === "2"} value="2">
+                        <Radio
+                          checked={changing === "false"}
+                          classNames={{
+                            label: "dark:text-white",
+                            wrapper:
+                              "after:dark:!bg-surface-200 dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 dark:!border-surface-200",
+                          }}
+                          value="false"
+                        >
                           {t("notChanging")}
                         </Radio>
                       </div>
                     </RadioGroup>
                   </div>
                 </div>
-
-                {selected === "1" && (
-                  <div className="flex flex-col w-full">
-                    <div className="flex flex-col w-full">
-                      <div className="text-secondary-400 mb-2">
-                        {t("computationalCoefficients")}
-                      </div>
-                      <div>
-                        <AddModalInnerTableGroupOrder
-                          props={{
-                            data: DUMMY_DATA,
-                            columns: DUMMY_COLUMNS,
-                            hasPagination: false,
-                            hasPadding: true,
-                            hasShadow: false,
-                            hasRowBorder: false,
-                            onOpenEditDialog: () =>
-                              console.log("Edit dialog opened"),
-                          }}
-                        />
-                        <div className="px-5 py-2 w-full bg-primary-50 dark:bg-[rgba(4,66,92,0.60)] rounded-4">
-                          <div className="flex justify-between pl-5 py-2">
-                            <div className="text-sm">{t("total")}:</div>
-                            <div className="text-xs">{t("coefficient")}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="felx flex-col mt-3">
-                      <div>
-                        <h4 className="text-secondary-400 font-bold">
-                          {t("insurance")}:
-                        </h4>
-                      </div>
-                      <div className="mt-4 px-2 flex flex-col gap-5">
-                        <div className="text-sm text-netural-400 flex justify-between">
-                          <span>{t("workersShareInsurance")}</span>
-                          <span>69%</span>
-                        </div>
-                        <div className="text-sm text-netural-400 flex justify-between">
-                          <span>{t("employersShareInsurance")}</span>
-                          <span>69%</span>
-                        </div>
-                        <div className="text-sm text-netural-400 flex justify-between">
-                          <span>{t("unemploymentInsurance")}</span>
-                          <span>69%</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                {changing === "true" &&
+                  (isShowMode ? (
+                    <ComputationalCoefficientsShowMode
+                      props={{
+                        data: DUMMY_DATA,
+                        groupOrder: true,
+                      }}
+                    />
+                  ) : (
+                    <ComputationalCoefficients
+                      props={{
+                        data: DUMMY_DATA,
+                      }}
+                    />
+                  ))}{" "}
               </Form>
             </ModalBody>
             <ModalFooter
-              className={`!p-0 flex items-end ${selected === "1" ? "justify-between" : ""}`}
+              className={`!p-0 flex items-end ${changing === "true" ? "justify-between" : ""}`}
             >
-              {selected === "1" && (
+              {changing === "true" && (
                 <div className="flex flex-col gap-3 w-full">
-                  <h4 className="text-secondary-400 font-bold">Tax:</h4>
+                  <h4 className="text-secondary-400 dark:text-secondary-0 font-bold">
+                    {t("tax")}:
+                  </h4>
                   <div>
                     <RadioGroup
                       classNames={{
                         wrapper: "w-full flex flex-nowrap",
                       }}
+                      defaultValue={taxChanging && "false"}
                       orientation="horizontal"
+                      onChange={handleTaxChange}
                     >
                       <div className="flex gap-1 w-1/2">
-                        <Radio value="true">{t("noEditTax")}</Radio>
+                        <Radio
+                          classNames={{
+                            label: "dark:text-white",
+                            wrapper:
+                              "after:dark:!bg-surface-200 dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 dark:!border-surface-200",
+                          }}
+                          value="false"
+                        >
+                          {t("noEditTax")}
+                        </Radio>
                       </div>
                       <div className="flex gap-1 w-1/2">
-                        <Radio value="false">{t("editTax")}</Radio>
+                        <Radio
+                          classNames={{
+                            label: "dark:text-white",
+                            wrapper:
+                              "after:dark:!bg-surface-200 dark:!border-surface-200",
+                            control:
+                              "dark:!bg-surface-200 dark:!border-surface-200",
+                          }}
+                          value="true"
+                        >
+                          {t("editTax")}
+                        </Radio>
                       </div>
                     </RadioGroup>
                   </div>
@@ -420,7 +510,7 @@ export default function ModalGroupOrder({
                   className="bg-primary dark:bg-surface-200 text-xl font-normal text-white rounded-3"
                   onPress={onClose}
                 >
-                  {t("submit")}
+                  {isEditMode ? t("saveChanges") : t("submit")}
                 </Button>
               </div>
             </ModalFooter>
