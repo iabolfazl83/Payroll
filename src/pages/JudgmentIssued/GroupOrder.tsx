@@ -99,6 +99,162 @@ export default function IndividuaOrder() {
     { key: "creationDate", label: "Creation Date" },
   ];
 
+  const DUMMY_EMPLOYEES = [
+    {
+      id: 1,
+      label: "Alice Johnson",
+      email: "alice.johnson@example.com",
+      position: "Project Manager",
+      department: "IT",
+    },
+    {
+      id: 2,
+      label: "Bob Smith",
+      email: "bob.smith@example.com",
+      position: "Software Engineer",
+      department: "R&D",
+    },
+    {
+      id: 3,
+      label: "Carla Gomez",
+      email: "carla.gomez@example.com",
+      position: "HR Specialist",
+      department: "Human Resources",
+    },
+    {
+      id: 4,
+      label: "Daniel Chen",
+      email: "daniel.chen@example.com",
+      position: "Finance Analyst",
+      department: "Finance",
+    },
+    {
+      id: 5,
+      label: "Eva Thompson",
+      email: "eva.thompson@example.com",
+      position: "Marketing Lead",
+      department: "Marketing",
+    },
+    {
+      id: 6,
+      label: "Faisal Ahmed",
+      email: "faisal.ahmed@example.com",
+      position: "Legal Advisor",
+      department: "Legal Affairs",
+    },
+    {
+      id: 7,
+      label: "Grace Lee",
+      email: "grace.lee@example.com",
+      position: "UI/UX Designer",
+      department: "Design",
+    },
+    {
+      id: 8,
+      label: "Hiro Tanaka",
+      email: "hiro.tanaka@example.com",
+      position: "Data Scientist",
+      department: "R&D",
+    },
+    {
+      id: 9,
+      label: "Isabella Russo",
+      email: "isabella.russo@example.com",
+      position: "Operations Manager",
+      department: "Operations",
+    },
+    {
+      id: 10,
+      label: "John Doe",
+      email: "john.doe@example.com",
+      position: "Support Engineer",
+      department: "Customer Support",
+    },
+  ];
+  const DUMMY_NAMELIST = [
+    {
+      id: 1,
+      label: "Alice Johnson",
+      email: "alice.johnson@example.com",
+      position: "Project Manager",
+      department: "IT",
+    },
+    {
+      id: 2,
+      label: "Bob Smith",
+      email: "bob.smith@example.com",
+      position: "Software Engineer",
+      department: "R&D",
+    },
+    {
+      id: 3,
+      label: "Carla Gomez",
+      email: "carla.gomez@example.com",
+      position: "HR Specialist",
+      department: "Human Resources",
+    },
+    {
+      id: 4,
+      label: "Daniel Chen",
+      email: "daniel.chen@example.com",
+      position: "Finance Analyst",
+      department: "Finance",
+    },
+    {
+      id: 5,
+      label: "Eva Thompson",
+      email: "eva.thompson@example.com",
+      position: "Marketing Lead",
+      department: "Marketing",
+    },
+    {
+      id: 6,
+      label: "Faisal Ahmed",
+      email: "faisal.ahmed@example.com",
+      position: "Legal Advisor",
+      department: "Legal Affairs",
+    },
+    {
+      id: 7,
+      label: "Grace Lee",
+      email: "grace.lee@example.com",
+      position: "UI/UX Designer",
+      department: "Design",
+    },
+    {
+      id: 8,
+      label: "Hiro Tanaka",
+      email: "hiro.tanaka@example.com",
+      position: "Data Scientist",
+      department: "R&D",
+    },
+    {
+      id: 9,
+      label: "Isabella Russo",
+      email: "isabella.russo@example.com",
+      position: "Operations Manager",
+      department: "Operations",
+    },
+    {
+      id: 10,
+      label: "John Doe",
+      email: "john.doe@example.com",
+      position: "Support Engineer",
+      department: "Customer Support",
+    },
+  ];
+
+  const DUMMY_SORTS = [
+    { id: 1, label: "Newest First", value: "createdAt_desc" },
+    { id: 2, label: "Oldest First", value: "createdAt_asc" },
+    { id: 3, label: "Alphabetical (A–Z)", value: "label_asc" },
+    { id: 4, label: "Alphabetical (Z–A)", value: "label_desc" },
+    { id: 5, label: "Most Recently Updated", value: "updatedAt_desc" },
+    { id: 6, label: "Least Recently Updated", value: "updatedAt_asc" },
+    { id: 7, label: "Highest Priority", value: "priority_desc" },
+    { id: 8, label: "Lowest Priority", value: "priority_asc" },
+  ];
+
   const tableProps = {
     data: DUMMY_DATA,
     columns: tableColumns,
@@ -123,7 +279,21 @@ export default function IndividuaOrder() {
       props={{
         children: (
           <>
-            <PageHeader props={{ children: <PageTabs /> }} />
+            <PageHeader
+              props={{
+                children: (
+                  <PageTabs
+                    props={{
+                      data: {
+                        nameList: DUMMY_NAMELIST,
+                        sortOptions: DUMMY_SORTS,
+                        EmployeeName: DUMMY_EMPLOYEES,
+                      },
+                    }}
+                  />
+                ),
+              }}
+            />
             <ModalGroupOrder
               isEditMode={isEditMode}
               isOpen={isOpen}
