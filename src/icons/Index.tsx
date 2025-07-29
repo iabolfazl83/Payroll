@@ -12,6 +12,8 @@ import { Plus } from "@/icons/Plus.tsx";
 import { FilterButton } from "@/icons/FilterButton.tsx";
 import { Check } from "@/icons/Check.tsx";
 import { Pending } from "@/icons/Pending.tsx";
+import { StickyNote } from "@/icons/StickyNote.tsx";
+import { CalendarIcon } from "@/icons/CalendarIcon.tsx";
 
 export const Index = {
   Candle,
@@ -28,4 +30,6 @@ export const Index = {
   FilterButton,
   Check,
   Pending,
+  StickyNote,
+  CalendarIcon,
 };
