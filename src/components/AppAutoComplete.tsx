@@ -14,8 +14,9 @@ export const AppAutoComplete = ({ props }: { props: any }) => {
     disabled,
     value,
     name,
-    onChange,
     classNames,
+    isShowMode,
+    radius,
   } = props;
   const lang = useSelector((state: RootState) => state.language.lang);
   const { darkMode } = useDarkMode();
@@ -32,18 +33,28 @@ export const AppAutoComplete = ({ props }: { props: any }) => {
       <Autocomplete
         classNames={{
           base:
-            "border-1 border-[#DCF0F9] rounded-5 shadow-none shadow-sm" +
+            `border-1 border-[#DCF0F9] rounded-5 shadow-sm ${isShowMode ? "!bg-gradient-to-r from-white via-[#EEF9FF] to-white dark:bg-gradient-to-r dark:from-[#01101A] dark:via-[#022C3D] dark:to-[#01101A]" : "!bg-white dark:!bg-info-1000"}` +
             " " +
             classNames?.base,
           listboxWrapper:
-            classNames?.listboxWrapper ?? "!bg-white dark:!bg-info-1000",
+            classNames?.listboxWrapper + " " + "!bg-white dark:!bg-info-1000",
           popoverContent:
-            classNames?.popoverContent ??
-            "data-[open=true]:!shadow-lg data-[open=true]:dark:!shadow-[0px_10px_30px_0px_(#152446)]",
+            classNames?.popoverContent +
+            " " +
+            "data-[open=true]:!shadow-lg data-[open=true]:dark:!shadow-[0px_10px_30px_0px_(#152446)]" +
+            " ",
+          ...classNames,
         }}
-        disabled={disabled}
+        inputProps={{
+          classNames: {
+            input:
+              classNames?.input + " " + isShowMode && "dark:text-secondary-0",
+          },
+        }}
+        isDisabled={disabled || isShowMode}
         name={name}
         placeholder={placeholder}
+        radius={radius}
         scrollShadowProps={{
           isEnabled: false,
         }}
@@ -55,7 +66,8 @@ export const AppAutoComplete = ({ props }: { props: any }) => {
         {data.map((item: any) => (
           <AutocompleteItem
             key={item.id}
-            className="hover:!bg-main-light
+            className="
+          hover:!bg-main-light
           data-[hover=true]:!bg-main-light
           data-[focus=true]:!bg-main-light
           data-[focus=true]:!outline-none
