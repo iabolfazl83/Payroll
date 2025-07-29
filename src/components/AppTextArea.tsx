@@ -12,9 +12,9 @@ export const AppTextArea = ({ props }: { props: any }) => {
     error,
     required,
     isShowMode,
+    classNames,
   } = props;
   const lang = useSelector((state: any) => state.language.lang);
-
   const [isFocused, setIsFocused] = useState<boolean>(false);
 
   const handleFocus = () => {
@@ -27,7 +27,7 @@ export const AppTextArea = ({ props }: { props: any }) => {
   };
   const inputWrapperClassNames = [
     isShowMode
-      ? "!bg-gradient-to-r from-white via-[#EEF9FF] to-white dark:bg-gradient-to-r from-[#01101A] via-[#022C3D] to-[#01101A]"
+      ? "!bg-gradient-to-r from-white via-[#EEF9FF] to-white dark:bg-gradient-to-r dark:from-[#01101A] dark:via-[#022C3D] dark:to-[#01101A]"
       : "!bg-white dark:!bg-info-1000",
     "border border-primary-0 rounded-5 !backdrop_blur[35px]",
     "dark:border-primary-0 dark:!shadow-secondary",
@@ -52,9 +52,11 @@ export const AppTextArea = ({ props }: { props: any }) => {
       </span>
       <Textarea
         classNames={{
-          inputWrapper: inputWrapperClassNames,
-          input: inputClassNames,
+          inputWrapper: inputWrapperClassNames + " " + classNames?.inputWrapper,
+          input: inputClassNames + " " + classNames?.input,
+          ...classNames,
         }}
+        disabled={isShowMode}
         label={label}
         placeholder={placeholder}
         value={value}
