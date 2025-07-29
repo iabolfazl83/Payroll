@@ -48,7 +48,7 @@ export default function SalaryCalculateBox({
           </p>
         </div>
         <Button
-          className="bg-white dark:bg-info-1000 dark:border-surface-200 dark:text-white justify-start text-xs p-1 h-fit border-1 border-primary text-secondary-1000 rounded-2"
+          className="bg-white dark:bg-info-1000 dark:border-surface-200 dark:text-white justify-start text-xs p-1 h-fit border-1 border-primary text-secondary-1000 rounded-[4px] hover:bg-primary-400 hover:text-white"
           startContent={<Calculator size={12} />}
         >
           {showCalculate ? t("calculate") : t("revert")}
