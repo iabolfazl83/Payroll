@@ -1,5 +1,3 @@
-import { useFormik } from "formik";
-import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
 import {
   Button,
@@ -12,32 +10,12 @@ import {
 } from "@heroui/react";
 
 import { AppInput } from "@/components/AppInput.tsx";
-import { Filter } from "@/icons/Filter.tsx";
+import { Index as Icons } from "@/icons/Index.tsx";
+import { SearchIcon } from "@/components/icons.tsx";
+import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 
-export default function FilterModal({
-  isOpen,
-  onOpenChange,
-}: {
-  isOpen: boolean;
-  onOpenChange: () => void;
-}) {
-  const formik = useFormik({
-    initialValues: {
-      employee: "",
-      sort: "",
-      search: "",
-      nameList: "",
-    },
-    validationSchema: Yup.object({
-      employee: Yup.string().required("employee Required"),
-      sort: Yup.string().required("sort Required"),
-      search: Yup.string().required("search Required"),
-      nameList: Yup.string().required("nameList Required"),
-    }),
-    onSubmit: () => {
-      onOpenChange();
-    },
-  });
+export default function FilterModal({ props }: { props: any }) {
+  const { isOpen, onOpenChange, data } = props;
   const { t } = useTranslation();
 
   return (
@@ -55,7 +33,7 @@ export default function FilterModal({
             <ModalHeader className="flex flex-col gap-1 !p-0">
               <div className="flex justify-between items-center">
                 <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
-                  <Filter color="#ffffff" />
+                  <Icons.Filter color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {t("filter")}
                   </span>
@@ -84,31 +62,47 @@ export default function FilterModal({
             <ModalBody className="!p-0">
               <Form
                 className="w-full flex flex-col gap-6"
-                onSubmit={formik.handleSubmit}
+                onSubmit={() => console.log("submitted")}
               >
                 <div className="flex flex-col gap-14 w-full">
                   <div className="flex flex-col gap-1 w-full">
-                    {/*SelectElement*/}
+                    <AppAutoComplete
+                      props={{
+                        label: t("selectAnItem"),
+                        placeholder: t("selectAnItem"),
+                        data: data.EmployeeName,
+                      }}
+                    />
                   </div>
                   <div className="flex flex-col gap-1 w-full">
-                    {/*SelectElement*/}
+                    <AppAutoComplete
+                      props={{
+                        label: t("sortBy"),
+                        placeholder: t("sortBy"),
+                        data: data.sortOptions,
+                      }}
+                    />
                   </div>
                   <div className="flex flex-col gap-1 w-full">
                     <AppInput
                       props={{
                         label: t("search"),
                         required: false,
-                        error: formik.errors.search,
                         name: "Search",
                         placeholder: t("describeText"),
                         type: "text",
-                        value: formik.values.search,
-                        formik: formik,
+                        startContent: <SearchIcon />,
                       }}
                     />
                   </div>
                   <div className="flex flex-col gap-1 w-full">
-                    {/*SelectElement*/}
+                    <AppAutoComplete
+                      props={{
+                        label: t("nameList"),
+                        placeholder: t("nameList"),
+                        data: data.nameList,
+                      }}
+                    />
                   </div>
                 </div>
               </Form>
