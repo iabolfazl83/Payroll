@@ -7,11 +7,12 @@ import { useDarkMode } from "@/context/DarkMode.tsx";
 import Search from "@/components/Search.tsx";
 import ModalIndividualOrder from "@/pages/JudgmentIssued/ModalIndividualOrder.tsx";
 import { Index as Icons } from "@/icons/Index.tsx";
-import FilterModal from "@/pages/JudgmentIssued/FilterModal.tsx";
+import FilterModal from "@/components/FilterModal.tsx";
 import { routeUrls } from "@/routes";
 import ModalGroupOrder from "@/pages/JudgmentIssued/ModalGroupOrder.tsx";
 
-export default function PageTabs() {
+export default function PageTabs({ props }: { props: any }) {
+  const { data } = props;
   const { darkMode } = useDarkMode();
   const { t } = useTranslation();
   const isIndividualOrderPage = location.pathname.endsWith(
@@ -97,13 +98,23 @@ export default function PageTabs() {
           />
         ) : (
           <ModalGroupOrder
+            isEditMode={false}
             isOpen={isOpen}
             isShowMode={false}
             onOpenChange={onOpenChange}
           />
         )}
-        <FilterModal isOpen={isFilterOpen} onOpenChange={onFilterOpenChange} />
-        <FilterModal isOpen={isFilterOpen} onOpenChange={onFilterOpenChange} />
+        <FilterModal
+          props={{
+            data: {
+              nameList: data.nameList,
+              sortOptions: data.sortOptions,
+              EmployeeName: data.EmployeeName,
+            },
+            isOpen: isFilterOpen,
+            onOpenChange: onFilterOpenChange,
+          }}
+        />
       </div>
     </div>
   );
