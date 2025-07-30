@@ -10,6 +10,7 @@ import {
   SalaryCalculations,
   GeneralSettingsIndex,
   CostCenter,
+  LegalParameters,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -28,6 +29,8 @@ export const routeUrls = {
   category: "category",
   taxes: "taxes",
   insurance: "insurance",
+  legalParameters: "legal-parameters",
+  proprietaryParameters: "proprietary-parameters",
 };
 
 export const routes: RouteObject[] = [
@@ -86,7 +89,7 @@ export const routes: RouteObject[] = [
                 index: true,
                 element: <Navigate replace to="legal-parameters" />,
               },
-              { path: "legal-parameters" },
+              { path: "legal-parameters", element: <LegalParameters /> },
               { path: "proprietary-parameters" },
             ],
           },
