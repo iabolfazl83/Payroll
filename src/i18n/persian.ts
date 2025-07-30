@@ -125,6 +125,12 @@ export const PersianLanguage = {
       issuanceOfYearsOfServiceOrder: "صدور حکم سنوات خدمت",
       issuanceOfChildAllowanceOrder: "صدور حکم کمک هزینه فرزند",
       maximumNoChildren: "حداکثر تعداد فرزندان",
+      costCenterCode: "کد مرکز هزینه",
+      costCenterCodeText: "متن کد مرکز هزینه",
+      describeDepartmentsUnits: "توضیح دپارتمان/واحدها",
+      addNewCostCenters: "افزودن مرکز هزینه",
+      editNewCostCenters: "ویرایش مرکز هزینه",
+      showNewCostCenters: "نمایش مرکز هزینه",
     },
   },
 };
