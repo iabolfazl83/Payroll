@@ -22,6 +22,14 @@ export const CostCenter = Loadable(
   lazy(() => import("@/pages/Setting/CostCenter/CostCenter.tsx")),
 );
 
+export const LegalParameters = Loadable(
+  lazy(() => import("@/pages/Setting/Parameters/LegalParameters.tsx")),
+);
+
+export const ProprietaryParameters = Loadable(
+  lazy(() => import("@/pages/Setting/Parameters/ProprietaryParameters.tsx")),
+);
+
 export const SalaryCalculations = Loadable(
   lazy(() => import("@/pages/SalaryCalculations/SalaryCalculations.tsx")),
 );
