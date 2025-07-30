@@ -9,6 +9,7 @@ import {
   GroupOrder,
   SalaryCalculations,
   GeneralSettingsIndex,
+  CostCenter,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -77,8 +78,18 @@ export const routes: RouteObject[] = [
             path: "general-settings",
             element: <GeneralSettingsIndex />,
           },
-          { path: "cost-center" },
-          { path: "parameters" },
+          { path: "cost-center", element: <CostCenter /> },
+          {
+            path: "parameters",
+            children: [
+              {
+                index: true,
+                element: <Navigate replace to="legal-parameters" />,
+              },
+              { path: "legal-parameters" },
+              { path: "proprietary-parameters" },
+            ],
+          },
           { path: "calculation" },
           { path: "types" },
           { path: "category" },
