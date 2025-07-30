@@ -133,6 +133,8 @@ export const EnglishLanguage = {
       addNewCostCenters: "Add New Cost Center",
       editNewCostCenters: "Edit New Cost Center",
       showNewCostCenters: "Show New Cost Center",
+      legalParameters: "Legal Parameters",
+      proprietaryParameters: "Proprietary Parameters",
     },
   },
 };

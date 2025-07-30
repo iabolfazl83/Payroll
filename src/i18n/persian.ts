@@ -131,6 +131,8 @@ export const PersianLanguage = {
       addNewCostCenters: "افزودن مرکز هزینه",
       editNewCostCenters: "ویرایش مرکز هزینه",
       showNewCostCenters: "نمایش مرکز هزینه",
+      legalParameters: "Legal Parameters",
+      proprietaryParameters: "Proprietary Parameters",
     },
   },
 };
