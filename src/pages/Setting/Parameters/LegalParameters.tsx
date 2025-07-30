@@ -3,8 +3,7 @@ import { useState } from "react";
 import { useDisclosure } from "@heroui/react";
 
 import { SettingLayout } from "@/pages/Setting/Layout.tsx";
-import PageTabs from "@/pages/Setting/CostCenter/PageTabs.tsx";
-import PageIndexTabs from "@/pages/Setting/PageIndexTabs.tsx";
+import PageTabs from "@/pages/Setting/Parameters/PageTabs.tsx";
 import AppTable from "@/components/AppTable.tsx";
 import SelectCalendarWithTime from "@/components/Calendar/SelectCalendarWithTime.tsx";
 import GeneralDetails from "@/components/GeneralDetails";
@@ -177,84 +176,111 @@ export default function LegalParameters() {
     {
       id: 1,
       no: 1,
-      title: "Management",
-      organizationName: "Nahira",
-      departmentUnit: "Informatics",
-      costCenterCode: "mg-5468",
-      creationDate: "2022/10/05",
+      title: "1403 parameters",
+      baseSalary: "14,000,000",
+      childAllowance: "14,000,000",
+      goodsVoucher: "14,000,000",
+      housingAllowance: "14,000,000",
+      foodAllowance: "14,000,000",
+      severancePay: "14,000,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 2,
       no: 2,
-      title: "Administration",
-      organizationName: "Nahira",
-      departmentUnit: "HR",
-      costCenterCode: "mg-5482",
-      creationDate: "2022/11/15",
+      title: "1403 parameters",
+      baseSalary: "14,500,000",
+      childAllowance: "14,500,000",
+      goodsVoucher: "14,500,000",
+      housingAllowance: "14,500,000",
+      foodAllowance: "14,500,000",
+      severancePay: "14,500,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 3,
       no: 3,
-      title: "Finance",
-      organizationName: "Nahira",
-      departmentUnit: "Accounting",
-      costCenterCode: "mg-5521",
-      creationDate: "2023/01/20",
+      title: "1403 parameters",
+      baseSalary: "15,000,000",
+      childAllowance: "15,000,000",
+      goodsVoucher: "15,000,000",
+      housingAllowance: "15,000,000",
+      foodAllowance: "15,000,000",
+      severancePay: "15,000,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 4,
       no: 4,
-      title: "Operations",
-      organizationName: "Nahira",
-      departmentUnit: "Logistics",
-      costCenterCode: "mg-5580",
-      creationDate: "2023/03/02",
+      title: "1403 parameters",
+      baseSalary: "15,500,000",
+      childAllowance: "15,500,000",
+      goodsVoucher: "15,500,000",
+      housingAllowance: "15,500,000",
+      foodAllowance: "15,500,000",
+      severancePay: "15,500,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 5,
       no: 5,
-      title: "Development",
-      organizationName: "Nahira",
-      departmentUnit: "Engineering",
-      costCenterCode: "mg-5625",
-      creationDate: "2023/06/10",
+      title: "1403 parameters",
+      baseSalary: "16,000,000",
+      childAllowance: "16,000,000",
+      goodsVoucher: "16,000,000",
+      housingAllowance: "16,000,000",
+      foodAllowance: "16,000,000",
+      severancePay: "16,000,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 6,
       no: 6,
-      title: "Research",
-      organizationName: "Nahira",
-      departmentUnit: "R&D",
-      costCenterCode: "mg-5660",
-      creationDate: "2023/07/21",
+      title: "1403 parameters",
+      baseSalary: "16,500,000",
+      childAllowance: "16,500,000",
+      goodsVoucher: "16,500,000",
+      housingAllowance: "16,500,000",
+      foodAllowance: "16,500,000",
+      severancePay: "16,500,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 7,
       no: 7,
-      title: "Marketing",
-      organizationName: "Nahira",
-      departmentUnit: "Digital Marketing",
-      costCenterCode: "mg-5701",
-      creationDate: "2023/08/30",
+      title: "1403 parameters",
+      baseSalary: "17,000,000",
+      childAllowance: "17,000,000",
+      goodsVoucher: "17,000,000",
+      housingAllowance: "17,000,000",
+      foodAllowance: "17,000,000",
+      severancePay: "17,000,000",
+      effectiveDate: "2024/05/05",
     },
     {
       id: 8,
       no: 8,
-      title: "Support",
-      organizationName: "Nahira",
-      departmentUnit: "Customer Service",
-      costCenterCode: "mg-5735",
-      creationDate: "2023/09/12",
+      title: "1403 parameters",
+      baseSalary: "17,500,000",
+      childAllowance: "17,500,000",
+      goodsVoucher: "17,500,000",
+      housingAllowance: "17,500,000",
+      foodAllowance: "17,500,000",
+      severancePay: "17,500,000",
+      effectiveDate: "2024/05/05",
     },
   ];
 
   const tableColumns = [
     { key: "no", label: "No." },
     { key: "title", label: "Title" },
-    { key: "organizationName", label: "Organization Name" },
-    { key: "departmentUnit", label: "Department/Unit" },
-    { key: "costCenterCode", label: "Cost Center Code" },
-    { key: "creationDate", label: "Creation Date" },
+    { key: "baseSalary", label: "Base Salary" },
+    { key: "childAllowance", label: "Child Allowance" },
+    { key: "goodsVoucher", label: "Goods Voucher" },
+    { key: "housingAllowance", label: "Housing Allowance" },
+    { key: "foodAllowance", label: "Food Allowance" },
+    { key: "severancePay", label: "Severance Pay" },
+    { key: "effectiveDate", label: "Effective Date" },
   ];
 
   const tableProps = {
@@ -284,19 +310,13 @@ export default function LegalParameters() {
             <PageHeader
               props={{
                 children: (
-                  <PageIndexTabs
+                  <PageTabs
                     props={{
-                      dynamicElements: (
-                        <PageTabs
-                          props={{
-                            data: {
-                              nameList: DUMMY_NAMELIST,
-                              sortOptions: DUMMY_SORTS,
-                              EmployeeName: DUMMY_EMPLOYEES,
-                            },
-                          }}
-                        />
-                      ),
+                      data: {
+                        nameList: DUMMY_NAMELIST,
+                        sortOptions: DUMMY_SORTS,
+                        EmployeeName: DUMMY_EMPLOYEES,
+                      },
                     }}
                   />
                 ),
