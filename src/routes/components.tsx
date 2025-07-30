@@ -14,12 +14,12 @@ export const GroupOrder = Loadable(
   lazy(() => import("@/pages/JudgmentIssued/GroupOrder.tsx")),
 );
 
-export const InitialSettings = Loadable(
-  lazy(() => import("@/pages/Setting/GeneralSettings/InitialSettings.tsx")),
-);
-
 export const GeneralSettingsIndex = Loadable(
   lazy(() => import("@/pages/Setting/GeneralSettings/Index.tsx")),
+);
+
+export const CostCenter = Loadable(
+  lazy(() => import("@/pages/Setting/CostCenter/CostCenter.tsx")),
 );
 
 export const SalaryCalculations = Loadable(
