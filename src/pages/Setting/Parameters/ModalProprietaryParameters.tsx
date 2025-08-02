@@ -31,16 +31,30 @@ export default function ModalProprietaryParameters({
   const formik = useFormik({
     initialValues: {
       title: "",
-      organizationName: "",
+      organizations: "",
       departmentUnit: "",
-      costCenterCode: "",
+      person: "",
+      effectiveDate: "",
+      baseSalary: "",
+      maritalRights: "",
+      childAllowance: "",
+      housingAllowance: "",
+      foodAllowance: "",
+      severancePay: "",
       descriptions: "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("title Required"),
-      organizationName: Yup.string().required("organizationName Required"),
+      organizations: Yup.string().required("organizations Required"),
       departmentUnit: Yup.string().required("departmentUnit Required"),
-      costCenterCode: Yup.string().required("costCenterCode Required"),
+      person: Yup.string().required("person Required"),
+      effectiveDate: Yup.string().required("effectiveDate Required"),
+      baseSalary: Yup.string().required("baseSalary Required"),
+      maritalRights: Yup.string().required("maritalRights Required"),
+      childAllowance: Yup.string().required("childAllowance Required"),
+      housingAllowance: Yup.string().required("housingAllowance Required"),
+      foodAllowance: Yup.string().required("foodAllowance Required"),
+      severancePay: Yup.string().required("severancePay Required"),
       descriptions: Yup.string().required("descriptions Required"),
     }),
     onSubmit: () => {
@@ -161,17 +175,77 @@ export default function ModalProprietaryParameters({
     },
   ];
 
-  const DUMMY_COST_CENTER_CODE = [
-    { id: 1, label: "1001 - Human Resources" },
-    { id: 2, label: "1002 - Finance Department" },
-    { id: 3, label: "1003 - IT Services" },
-    { id: 4, label: "1004 - Marketing & Communications" },
-    { id: 5, label: "1005 - Research & Development" },
-    { id: 6, label: "1006 - Procurement & Logistics" },
-    { id: 7, label: "1007 - Legal Affairs" },
-    { id: 8, label: "1008 - Facilities Management" },
-    { id: 9, label: "1009 - Customer Support" },
-    { id: 10, label: "1010 - Executive Management" },
+  const DUMMY_PERSONS = [
+    {
+      id: 1,
+      label: "Alice Johnson",
+      email: "alice.johnson@example.com",
+      position: "Project Manager",
+      department: "IT",
+    },
+    {
+      id: 2,
+      label: "Bob Smith",
+      email: "bob.smith@example.com",
+      position: "Software Engineer",
+      department: "R&D",
+    },
+    {
+      id: 3,
+      label: "Carla Gomez",
+      email: "carla.gomez@example.com",
+      position: "HR Specialist",
+      department: "Human Resources",
+    },
+    {
+      id: 4,
+      label: "Daniel Chen",
+      email: "daniel.chen@example.com",
+      position: "Finance Analyst",
+      department: "Finance",
+    },
+    {
+      id: 5,
+      label: "Eva Thompson",
+      email: "eva.thompson@example.com",
+      position: "Marketing Lead",
+      department: "Marketing",
+    },
+    {
+      id: 6,
+      label: "Faisal Ahmed",
+      email: "faisal.ahmed@example.com",
+      position: "Legal Advisor",
+      department: "Legal Affairs",
+    },
+    {
+      id: 7,
+      label: "Grace Lee",
+      email: "grace.lee@example.com",
+      position: "UI/UX Designer",
+      department: "Design",
+    },
+    {
+      id: 8,
+      label: "Hiro Tanaka",
+      email: "hiro.tanaka@example.com",
+      position: "Data Scientist",
+      department: "R&D",
+    },
+    {
+      id: 9,
+      label: "Isabella Russo",
+      email: "isabella.russo@example.com",
+      position: "Operations Manager",
+      department: "Operations",
+    },
+    {
+      id: 10,
+      label: "John Doe",
+      email: "john.doe@example.com",
+      position: "Support Engineer",
+      department: "Customer Support",
+    },
   ];
 
   return (
@@ -192,10 +266,10 @@ export default function ModalProprietaryParameters({
                   <Candle color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {isEditMode
-                      ? t("editNewCostCenters")
+                      ? t("editProprietaryParameters")
                       : isShowMode
-                        ? t("showNewCostCenters")
-                        : t("addNewCostCenters")}
+                        ? t("showProprietaryParameters")
+                        : t("addNewDynamicParameters")}
                   </span>
                 </div>
                 <Button
@@ -272,9 +346,21 @@ export default function ModalProprietaryParameters({
                   <div>
                     <AppAutoComplete
                       props={{
-                        data: DUMMY_COST_CENTER_CODE,
-                        label: t("costCenterCode"),
-                        placeholder: t("costCenterCodeText"),
+                        data: DUMMY_PERSONS,
+                        label: t("person"),
+                        placeholder: t("personPeople"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("code"),
+                        placeholder: t("describeText"),
                         classNames: {
                           selectorButton: `${isShowMode && "!hidden"}`,
                         },
