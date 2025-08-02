@@ -11,6 +11,7 @@ import {
   GeneralSettingsIndex,
   CostCenter,
   LegalParameters,
+  ProprietaryParameters,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -90,7 +91,10 @@ export const routes: RouteObject[] = [
                 element: <Navigate replace to="legal-parameters" />,
               },
               { path: "legal-parameters", element: <LegalParameters /> },
-              { path: "proprietary-parameters" },
+              {
+                path: "proprietary-parameters",
+                element: <ProprietaryParameters />,
+              },
             ],
           },
           { path: "calculation" },
