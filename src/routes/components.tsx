@@ -29,6 +29,10 @@ export const LegalParameters = Loadable(
 export const ProprietaryParameters = Loadable(
   lazy(() => import("@/pages/Setting/Parameters/ProprietaryParameters.tsx")),
 );
+export const Calculation = Loadable(
+  lazy(() => import("@/pages/Setting/Calculation/Calculation.tsx")),
+);
+
 
 export const SalaryCalculations = Loadable(
   lazy(() => import("@/pages/SalaryCalculations/SalaryCalculations.tsx")),
