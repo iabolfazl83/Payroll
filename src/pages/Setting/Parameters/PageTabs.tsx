@@ -43,6 +43,8 @@ export default function PageTabs({ props }: { props: any }) {
             path:
               routeUrls.home +
               "/" +
+              routeUrls.setting +
+              "/" +
               routeUrls.parameters +
               "/" +
               routeUrls.legalParameters,
@@ -55,6 +57,8 @@ export default function PageTabs({ props }: { props: any }) {
             isActive: isProprietaryParameters,
             path:
               routeUrls.home +
+              "/" +
+              routeUrls.setting +
               "/" +
               routeUrls.parameters +
               "/" +
