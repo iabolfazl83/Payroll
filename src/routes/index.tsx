@@ -12,6 +12,7 @@ import {
   CostCenter,
   LegalParameters,
   ProprietaryParameters,
+  Calculation,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -97,7 +98,7 @@ export const routes: RouteObject[] = [
               },
             ],
           },
-          { path: "calculation" },
+          { path: "calculation", element: <Calculation /> },
           { path: "types" },
           { path: "category" },
           { path: "taxes" },
