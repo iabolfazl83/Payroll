@@ -16,6 +16,7 @@ import { Candle } from "@/icons/Candle.tsx";
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import InputGrid from "@/components/InputGrid.tsx";
 import { AppTextArea } from "@/components/AppTextArea.tsx";
+import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
 
 export default function ModalLegalParameters({
   isOpen,
@@ -31,16 +32,30 @@ export default function ModalLegalParameters({
   const formik = useFormik({
     initialValues: {
       title: "",
-      organizationName: "",
+      organizations: "",
       departmentUnit: "",
-      costCenterCode: "",
+      person: "",
+      effectiveDate: "",
+      baseSalary: "",
+      maritalRights: "",
+      childAllowance: "",
+      housingAllowance: "",
+      foodAllowance: "",
+      severancePay: "",
       descriptions: "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("title Required"),
-      organizationName: Yup.string().required("organizationName Required"),
+      organizations: Yup.string().required("organizations Required"),
       departmentUnit: Yup.string().required("departmentUnit Required"),
-      costCenterCode: Yup.string().required("costCenterCode Required"),
+      person: Yup.string().required("person Required"),
+      effectiveDate: Yup.string().required("effectiveDate Required"),
+      baseSalary: Yup.string().required("baseSalary Required"),
+      maritalRights: Yup.string().required("maritalRights Required"),
+      childAllowance: Yup.string().required("childAllowance Required"),
+      housingAllowance: Yup.string().required("housingAllowance Required"),
+      foodAllowance: Yup.string().required("foodAllowance Required"),
+      severancePay: Yup.string().required("severancePay Required"),
       descriptions: Yup.string().required("descriptions Required"),
     }),
     onSubmit: () => {
@@ -161,19 +176,78 @@ export default function ModalLegalParameters({
     },
   ];
 
-  const DUMMY_COST_CENTER_CODE = [
-    { id: 1, label: "1001 - Human Resources" },
-    { id: 2, label: "1002 - Finance Department" },
-    { id: 3, label: "1003 - IT Services" },
-    { id: 4, label: "1004 - Marketing & Communications" },
-    { id: 5, label: "1005 - Research & Development" },
-    { id: 6, label: "1006 - Procurement & Logistics" },
-    { id: 7, label: "1007 - Legal Affairs" },
-    { id: 8, label: "1008 - Facilities Management" },
-    { id: 9, label: "1009 - Customer Support" },
-    { id: 10, label: "1010 - Executive Management" },
+  const DUMMY_PERSONS = [
+    {
+      id: 1,
+      label: "Alice Johnson",
+      email: "alice.johnson@example.com",
+      position: "Project Manager",
+      department: "IT",
+    },
+    {
+      id: 2,
+      label: "Bob Smith",
+      email: "bob.smith@example.com",
+      position: "Software Engineer",
+      department: "R&D",
+    },
+    {
+      id: 3,
+      label: "Carla Gomez",
+      email: "carla.gomez@example.com",
+      position: "HR Specialist",
+      department: "Human Resources",
+    },
+    {
+      id: 4,
+      label: "Daniel Chen",
+      email: "daniel.chen@example.com",
+      position: "Finance Analyst",
+      department: "Finance",
+    },
+    {
+      id: 5,
+      label: "Eva Thompson",
+      email: "eva.thompson@example.com",
+      position: "Marketing Lead",
+      department: "Marketing",
+    },
+    {
+      id: 6,
+      label: "Faisal Ahmed",
+      email: "faisal.ahmed@example.com",
+      position: "Legal Advisor",
+      department: "Legal Affairs",
+    },
+    {
+      id: 7,
+      label: "Grace Lee",
+      email: "grace.lee@example.com",
+      position: "UI/UX Designer",
+      department: "Design",
+    },
+    {
+      id: 8,
+      label: "Hiro Tanaka",
+      email: "hiro.tanaka@example.com",
+      position: "Data Scientist",
+      department: "R&D",
+    },
+    {
+      id: 9,
+      label: "Isabella Russo",
+      email: "isabella.russo@example.com",
+      position: "Operations Manager",
+      department: "Operations",
+    },
+    {
+      id: 10,
+      label: "John Doe",
+      email: "john.doe@example.com",
+      position: "Support Engineer",
+      department: "Customer Support",
+    },
   ];
-
   return (
     <Modal
       hideCloseButton
@@ -192,10 +266,10 @@ export default function ModalLegalParameters({
                   <Candle color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {isEditMode
-                      ? t("editNewCostCenters")
+                      ? t("editLegalParameters")
                       : isShowMode
-                        ? t("showNewCostCenters")
-                        : t("addNewCostCenters")}
+                        ? t("showLegalParameters")
+                        : t("addNewLegalParameters")}
                   </span>
                 </div>
                 <Button
@@ -272,9 +346,93 @@ export default function ModalLegalParameters({
                   <div>
                     <AppAutoComplete
                       props={{
-                        data: DUMMY_COST_CENTER_CODE,
-                        label: t("costCenterCode"),
-                        placeholder: t("costCenterCodeText"),
+                        data: DUMMY_PERSONS,
+                        label: t("person"),
+                        placeholder: t("personPeople"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppDatePicker
+                      props={{
+                        label: t("effectiveDate"),
+                        placeholder: t("pickADate"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("baseSalary"),
+                        placeholder: t("describeUpToDateBasicSalary"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("maritalRights"),
+                        placeholder: t("describeMaritalRights"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("childAllowance"),
+                        placeholder: t("describeChildrenRights"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("housingAllowance"),
+                        placeholder: t("describeHousingRights"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("foodAllowance"),
+                        placeholder: t("describeFoodAllowance"),
+                        classNames: {
+                          selectorButton: `${isShowMode && "!hidden"}`,
+                        },
+                        isShowMode,
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <AppInput
+                      props={{
+                        label: t("severancePay"),
+                        placeholder: t("describeSeniorityAllowance"),
                         classNames: {
                           selectorButton: `${isShowMode && "!hidden"}`,
                         },
