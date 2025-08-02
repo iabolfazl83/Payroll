@@ -156,6 +156,7 @@ export const PersianLanguage = {
       describeHousingRights: "توضیح حق مسکن",
       describeFoodAllowance: "توضیح کمک هزینه غذا",
       describeSeniorityAllowance: "توضیح حق سنوات",
+      attendanceOrganizationalCalculations: "محاسبات سازمانی حضور و غیاب",
     },
   },
 };

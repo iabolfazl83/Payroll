@@ -155,6 +155,8 @@ export const EnglishLanguage = {
       describeSeniorityAllowance: "Describe Seniority Allowance",
       code: "Code",
       companyName: "Company Name",
+      attendanceOrganizationalCalculations:
+        "Attendance Organizational Calculations",
     },
   },
 };
