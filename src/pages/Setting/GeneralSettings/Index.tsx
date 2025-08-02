@@ -229,7 +229,7 @@ export default function Index() {
                           />
                         </div>
                         <div className="bg-surface dark:bg-surface-150 p-3 rounded-4">
-                          <Accordion>
+                          <Accordion className="p-0">
                             <AccordionItem
                               aria-label={t("issuanceOfChildAllowanceOrder")}
                               classNames={{
@@ -246,7 +246,7 @@ export default function Index() {
                                 <AppInput
                                   props={{
                                     classNames: {
-                                      inputWrapper: "shadow-lg",
+                                      inputWrapper: "shadow-lg !bg-info-1000",
                                       base: "w-1/3",
                                       input: "text-center",
                                     },
