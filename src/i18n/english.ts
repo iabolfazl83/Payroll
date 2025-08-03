@@ -171,5 +171,13 @@ export const EnglishLanguage = {
     mission: "Mission",
     fridayWork: "Friday Work",
     hourlyMission: "Hourly Mission",
+    addNewType: "Add New Type",
+    editType: "Edit Type",
+    ShowType: "Show Type",
+    codeNumber: "Code Number",
+    describeCodeNumber: "Describe Code Number",
+    addNewCategory: "Add New Category",
+    editCategory: "Edit Category",
+    showCategory: "Show Category",
   },
 };
