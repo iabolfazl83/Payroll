@@ -99,7 +99,6 @@ const ComputationalCoefficients = ({ props }: { props: any }) => {
           className={`bg-white dark:bg-info-1000 pb-4 h-full !rounded-[14px]`}
         >
           <Table
-            aria-label="Customizable Table"
             className="!h-[95%]"
             classNames={{
               th: `first:pl-9 last:pr-9 px-7`,
