@@ -157,6 +157,19 @@ export const PersianLanguage = {
       describeFoodAllowance: "توضیح کمک هزینه غذا",
       describeSeniorityAllowance: "توضیح حق سنوات",
       attendanceOrganizationalCalculations: "محاسبات سازمانی حضور و غیاب",
+      addNewAttendanceOrganizationalCalculations:
+        "افزودن محاسبات سازمانی حضور و غیاب جدید",
+      editAttendanceOrganizationalCalculations:
+        "ویرایش محاسبات سازمانی حضور و غیاب",
+      showAttendanceOrganizationalCalculations:
+        "نمایش محاسبات سازمانی حضور و غیاب",
+      jobTitle: "عنوان شغلی",
+      overtime: "اضافه کار",
+      nightShift: "شیفت شب",
+      holidayWork: "کار تعطیل",
+      mission: "ماموریت",
+      fridayWork: "کار جمعه",
+      hourlyMission: "ماموریت ساعتی",
     },
   },
 };

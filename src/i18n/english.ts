@@ -158,5 +158,18 @@ export const EnglishLanguage = {
       attendanceOrganizationalCalculations:
         "Attendance Organizational Calculations",
     },
+    addNewAttendanceOrganizationalCalculations:
+      "Add New Attendance Organizational Calculations",
+    editAttendanceOrganizationalCalculations:
+      "Edit Attendance Organizational Calculations",
+    showAttendanceOrganizationalCalculations:
+      "Show Attendance Organizational Calculations",
+    jobTitle: "Job Title",
+    overtime: "Overtime",
+    nightShift: "Night Shift",
+    holidayWork: "Holiday Work",
+    mission: "Mission",
+    fridayWork: "Friday Work",
+    hourlyMission: "Hourly Mission",
   },
 };
