@@ -10,9 +10,9 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
+import { Candle2 } from "iconsax-react";
 
 import { AppInput } from "@/components/AppInput.tsx";
-import { Candle } from "@/icons/Candle.tsx";
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import InputGrid from "@/components/InputGrid.tsx";
 import { AppTextArea } from "@/components/AppTextArea.tsx";
@@ -251,7 +251,7 @@ export default function ModalTypes({
             <ModalHeader className="flex flex-col gap-1 !p-0">
               <div className="flex justify-between items-center">
                 <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
-                  <Candle color="#ffffff" />
+                  <Candle2 color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {isEditMode
                       ? t("editType")
