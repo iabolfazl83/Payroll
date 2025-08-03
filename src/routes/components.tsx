@@ -33,6 +33,13 @@ export const Calculation = Loadable(
   lazy(() => import("@/pages/Setting/Calculation/Calculation.tsx")),
 );
 
+export const Types = Loadable(
+  lazy(() => import("@/pages/Setting/Types/Types.tsx")),
+);
+
+export const Category = Loadable(
+  lazy(() => import("@/pages/Setting/Category/Category.tsx")),
+);
 
 export const SalaryCalculations = Loadable(
   lazy(() => import("@/pages/SalaryCalculations/SalaryCalculations.tsx")),
