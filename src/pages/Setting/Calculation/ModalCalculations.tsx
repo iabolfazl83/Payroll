@@ -6,19 +6,24 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
+  Radio,
+  RadioGroup,
 } from "@heroui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
+import { Calculator } from "iconsax-react";
 
 import { AppInput } from "@/components/AppInput.tsx";
-import { Candle } from "@/icons/Candle.tsx";
-import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
-import InputGrid from "@/components/InputGrid.tsx";
 import { AppTextArea } from "@/components/AppTextArea.tsx";
+import ComputationalCoefficientsShowMode from "@/pages/Setting/Calculation/ComputationalCoefficientsShowMode.tsx";
+import InputGrid from "@/components/InputGrid.tsx";
+import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
 import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
+import CalculationComputationalCoefficients from "@/pages/Setting/Calculation/CalculationComputationalCoefficients.tsx";
 
-export default function ModalCalculations({
+export default function ModalGroupOrder({
   isOpen,
   onOpenChange,
   isShowMode,
@@ -32,244 +37,167 @@ export default function ModalCalculations({
   const formik = useFormik({
     initialValues: {
       title: "",
+      entireOrganization: "",
+      department: "",
+      jobTitle: "",
+      people: "",
       organizations: "",
-      departmentUnit: "",
-      person: "",
       effectiveDate: "",
-      baseSalary: "",
-      maritalRights: "",
-      childAllowance: "",
-      housingAllowance: "",
-      foodAllowance: "",
-      severancePay: "",
       descriptions: "",
     },
     validationSchema: Yup.object({
       title: Yup.string().required("title Required"),
+      entireOrganization: Yup.string().required("entireOrganization Required"),
+      department: Yup.string().required("department Required"),
+      jobTitle: Yup.string().required("jobTitle Required"),
+      people: Yup.string().required("people Required"),
       organizations: Yup.string().required("organizations Required"),
-      departmentUnit: Yup.string().required("departmentUnit Required"),
-      person: Yup.string().required("person Required"),
       effectiveDate: Yup.string().required("effectiveDate Required"),
-      baseSalary: Yup.string().required("baseSalary Required"),
-      maritalRights: Yup.string().required("maritalRights Required"),
-      childAllowance: Yup.string().required("childAllowance Required"),
-      housingAllowance: Yup.string().required("housingAllowance Required"),
-      foodAllowance: Yup.string().required("foodAllowance Required"),
-      severancePay: Yup.string().required("severancePay Required"),
       descriptions: Yup.string().required("descriptions Required"),
     }),
     onSubmit: () => {
-      // onOpenChange();
-      console.log("submitted");
+      onOpenChange();
     },
   });
   const { t } = useTranslation();
+  const [checkBoxaValue, setCheckBoxaValue] =
+    useState<string>("entireOrganization");
 
-  const DUMMY_ORGANIZATIONS = [
+  type CoefficientItem = {
+    title: string;
+    tax: "Has" | "Has Not";
+    insurance: "Has" | "Has Not";
+    eleman: string;
+    coefficient: number;
+    fixedNumber: string;
+    years: "Has" | "Has Not";
+    calculationInEid: "Has" | "Has Not";
+  };
+
+  const DUMMY_DATA: CoefficientItem[] = [
     {
-      id: 1,
-      label: "Global Health Organization",
-      abbreviation: "GHO",
-      type: "Non-Profit",
+      title: "Overtime",
+      tax: "Has",
+      insurance: "Has",
+      eleman: "None",
+      coefficient: 2,
+      fixedNumber: "14,000,000 Rial",
+      years: "Has",
+      calculationInEid: "Has",
     },
     {
-      id: 2,
-      label: "International Tech Alliance",
-      abbreviation: "ITA",
-      type: "Corporate",
+      title: "Night Shift",
+      tax: "Has Not",
+      insurance: "Has",
+      eleman: "Plus",
+      coefficient: 1.5,
+      fixedNumber: "12,500,000 Rial",
+      years: "Has Not",
+      calculationInEid: "Has",
     },
     {
-      id: 3,
-      label: "Green Future Initiative",
-      abbreviation: "GFI",
-      type: "NGO",
+      title: "Holiday Bonus",
+      tax: "Has",
+      insurance: "Has Not",
+      eleman: "Minus",
+      coefficient: 3,
+      fixedNumber: "20,000,000 Rial",
+      years: "Has",
+      calculationInEid: "Has Not",
     },
     {
-      id: 4,
-      label: "Urban Planning Council",
-      abbreviation: "UPC",
-      type: "Government",
-    },
-    {
-      id: 5,
-      label: "Education for All Foundation",
-      abbreviation: "EFAF",
-      type: "Non-Profit",
-    },
-    {
-      id: 6,
-      label: "Cybersecurity Standards Board",
-      abbreviation: "CSB",
-      type: "Consortium",
-    },
-    {
-      id: 7,
-      label: "Open Research Network",
-      abbreviation: "ORN",
-      type: "Academic",
-    },
-    {
-      id: 8,
-      label: "Sustainable Agriculture Union",
-      abbreviation: "SAU",
-      type: "NGO",
-    },
-    {
-      id: 9,
-      label: "Clean Energy Co.",
-      abbreviation: "CEC",
-      type: "Corporate",
-    },
-    {
-      id: 10,
-      label: "World Infrastructure Bank",
-      abbreviation: "WIB",
-      type: "Government",
+      title: "Attendance Award",
+      tax: "Has",
+      insurance: "Has",
+      eleman: "Plus",
+      coefficient: 2.2,
+      fixedNumber: "18,000,000 Rial",
+      years: "Has",
+      calculationInEid: "Has",
     },
   ];
 
-  const DUMMY_DEPARTMENTS = [
-    {
-      id: 101,
-      label: "Human Resources",
-      code: "HR",
-      category: "Administrative",
-    },
-    {
-      id: 102,
-      label: "Finance & Accounting",
-      code: "FIN",
-      category: "Administrative",
-    },
-    {
-      id: 103,
-      label: "Research & Development",
-      code: "R&D",
-      category: "Technical",
-    },
-    {
-      id: 104,
-      label: "Information Technology",
-      code: "IT",
-      category: "Technical",
-    },
-    {
-      id: 105,
-      label: "Marketing & Communications",
-      code: "MKT",
-      category: "Operational",
-    },
-    { id: 106, label: "Legal Affairs", code: "LEGAL", category: "Support" },
-    { id: 107, label: "Customer Support", code: "CS", category: "Operational" },
-    { id: 108, label: "Procurement", code: "PRC", category: "Administrative" },
-    {
-      id: 109,
-      label: "Facilities Management",
-      code: "FM",
-      category: "Support",
-    },
-    {
-      id: 110,
-      label: "Training & Development",
-      code: "TD",
-      category: "HR-Related",
-    },
+  const peopleOptions = [
+    { value: "1", label: "Alice Johnson" },
+    { value: "2", label: "Bob Smith" },
+    { value: "3", label: "Carol Davis" },
+    { value: "4", label: "David Lee" },
+    { value: "5", label: "Eva Green" },
+  ];
+  const jobTitleOptions = [
+    { value: "1", label: "Software Engineer" },
+    { value: "2", label: "Project Manager" },
+    { value: "3", label: "Data Analyst" },
+    { value: "4", label: "HR Specialist" },
+    { value: "5", label: "Finance Officer" },
+  ];
+  const departmentOptions = [
+    { value: "1", label: "Engineering" },
+    { value: "2", label: "Human Resources" },
+    { value: "3", label: "Finance" },
+    { value: "4", label: "Marketing" },
+    { value: "5", label: "Sales" },
+  ];
+  const organizationOptions = [
+    { value: "1", label: "Entire Organization" },
+    { value: "2", label: "Headquarters" },
+    { value: "3", label: "Regional Office" },
+    { value: "4", label: "Branch A" },
+    { value: "5", label: "Branch B" },
   ];
 
-  const DUMMY_PERSONS = [
-    {
-      id: 1,
-      label: "Alice Johnson",
-      email: "alice.johnson@example.com",
-      position: "Project Manager",
-      department: "IT",
+  const selectMap: any = {
+    entireOrganization: {
+      label: t("entireOrganization"),
+      name: "entireOrganization",
+      error: formik.errors.entireOrganization,
+      data: organizationOptions,
     },
-    {
-      id: 2,
-      label: "Bob Smith",
-      email: "bob.smith@example.com",
-      position: "Software Engineer",
-      department: "R&D",
+    department: {
+      label: t("department"),
+      name: "departments",
+      error: formik.errors.department,
+      data: departmentOptions,
     },
-    {
-      id: 3,
-      label: "Carla Gomez",
-      email: "carla.gomez@example.com",
-      position: "HR Specialist",
-      department: "Human Resources",
+    position: {
+      label: t("jobTitle"),
+      name: "jobTitle",
+      error: formik.errors.jobTitle,
+      data: jobTitleOptions,
     },
-    {
-      id: 4,
-      label: "Daniel Chen",
-      email: "daniel.chen@example.com",
-      position: "Finance Analyst",
-      department: "Finance",
+    people: {
+      label: t("personPeople"),
+      name: "people",
+      error: formik.errors.people,
+      data: peopleOptions,
     },
-    {
-      id: 5,
-      label: "Eva Thompson",
-      email: "eva.thompson@example.com",
-      position: "Marketing Lead",
-      department: "Marketing",
-    },
-    {
-      id: 6,
-      label: "Faisal Ahmed",
-      email: "faisal.ahmed@example.com",
-      position: "Legal Advisor",
-      department: "Legal Affairs",
-    },
-    {
-      id: 7,
-      label: "Grace Lee",
-      email: "grace.lee@example.com",
-      position: "UI/UX Designer",
-      department: "Design",
-    },
-    {
-      id: 8,
-      label: "Hiro Tanaka",
-      email: "hiro.tanaka@example.com",
-      position: "Data Scientist",
-      department: "R&D",
-    },
-    {
-      id: 9,
-      label: "Isabella Russo",
-      email: "isabella.russo@example.com",
-      position: "Operations Manager",
-      department: "Operations",
-    },
-    {
-      id: 10,
-      label: "John Doe",
-      email: "john.doe@example.com",
-      position: "Support Engineer",
-      department: "Customer Support",
-    },
-  ];
+  };
+
+  const selectProps: any = selectMap[checkBoxaValue];
+
   return (
     <Modal
       hideCloseButton
       backdrop="blur"
+      className="w-full max-w-[90%]"
       isOpen={isOpen}
       placement="top"
       size="4xl"
       onOpenChange={onOpenChange}
     >
-      <ModalContent className="bg-white dark:bg-info-1000 shadow-md shadow-[rgba(8,14,28,0.22)] dark:shadow-secondary-600 backdrop-blur-[40px] p-12 aria-[modal]:!rounded-6">
+      <ModalContent className="bg-white dark:bg-[#01101a4d] shadow-md shadow-[rgba(8,14,28,0.22)] dark:shadow-secondary-600 backdrop-blur-[40px] p-12 aria-[modal]:!rounded-6">
         {(onClose) => (
           <div className="flex flex-col gap-8">
             <ModalHeader className="flex flex-col gap-1 !p-0">
               <div className="flex justify-between items-center">
                 <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
-                  <Candle color="#ffffff" />
+                  <Calculator color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {isEditMode
-                      ? t("editLegalParameters")
+                      ? t("editAttendanceOrganizationalCalculations")
                       : isShowMode
-                        ? t("showLegalParameters")
-                        : t("addNewLegalParameters")}
+                        ? t("showAttendanceOrganizationalCalculations")
+                        : t("addNewAttendanceOrganizationalCalculations")}
                   </span>
                 </div>
                 <Button
@@ -298,8 +226,8 @@ export default function ModalCalculations({
                 className="w-full flex flex-col gap-6"
                 onSubmit={formik.handleSubmit}
               >
-                <InputGrid columns={2}>
-                  <div>
+                <InputGrid columns={3}>
+                  <div className="col-span-full col-start-1 col-end-2">
                     <AppInput
                       props={{
                         label: t("title"),
@@ -307,141 +235,105 @@ export default function ModalCalculations({
                         error: formik.errors.title,
                         name: "title",
                         placeholder: t("describeTitle"),
-                        isShowMode,
                         type: "text",
                         value: formik.values.title,
                         formik: formik,
-                      }}
-                    />
-                  </div>
-
-                  <div>
-                    <AppAutoComplete
-                      props={{
-                        data: DUMMY_ORGANIZATIONS,
-                        label: t("organizations"),
-                        placeholder: t("organizations"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
                         isShowMode,
                       }}
                     />
                   </div>
-
-                  <div>
-                    <AppAutoComplete
-                      props={{
-                        data: DUMMY_DEPARTMENTS,
-                        label: t("departmentsUnits"),
-                        placeholder: t("departmentsUnits"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
+                  <div className="w-full col-span-full">
+                    <RadioGroup
+                      className="w-full"
+                      classNames={{
+                        wrapper: "flex flex-row justify-between",
                       }}
-                    />
+                      defaultValue="entireOrganization"
+                      isDisabled={isShowMode}
+                    >
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="entireOrganization"
+                        onChange={() => setCheckBoxaValue("entireOrganization")}
+                      >
+                        {t("entireOrganization")}
+                      </Radio>
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="department"
+                        onChange={() => setCheckBoxaValue("department")}
+                      >
+                        {t("department")}
+                      </Radio>
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="jobTitle"
+                        onChange={() => setCheckBoxaValue("jobTitle")}
+                      >
+                        {t("jobTitle")}
+                      </Radio>
+                      <Radio
+                        classNames={{
+                          label: "dark:text-white",
+                          wrapper:
+                            "after:dark:!bg-surface-200 dark:!border-surface-200",
+                          control:
+                            "dark:!bg-surface-200 dark:!border-surface-200",
+                        }}
+                        value="people"
+                        onChange={() => setCheckBoxaValue("people")}
+                      >
+                        {t("people")}
+                      </Radio>
+                    </RadioGroup>
+                  </div>
+                  <div>
+                    {selectProps && (
+                      <AppAutoComplete
+                        props={{
+                          label: selectProps.label,
+                          required: false,
+                          error: selectProps.error,
+                          name: selectProps.name,
+                          placeholder: t("describeText"),
+                          type: "text",
+                          formik: formik,
+                          data: selectProps.data,
+                          isShowMode,
+                        }}
+                      />
+                    )}
                   </div>
 
-                  <div>
-                    <AppAutoComplete
-                      props={{
-                        data: DUMMY_PERSONS,
-                        label: t("person"),
-                        placeholder: t("personPeople"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
                   <div>
                     <AppDatePicker
                       props={{
                         label: t("effectiveDate"),
-                        placeholder: t("pickADate"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <AppInput
-                      props={{
-                        label: t("baseSalary"),
-                        placeholder: t("describeUpToDateBasicSalary"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <AppInput
-                      props={{
-                        label: t("maritalRights"),
-                        placeholder: t("describeMaritalRights"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <AppInput
-                      props={{
-                        label: t("childAllowance"),
-                        placeholder: t("describeChildrenRights"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <AppInput
-                      props={{
-                        label: t("housingAllowance"),
-                        placeholder: t("describeHousingRights"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <AppInput
-                      props={{
-                        label: t("foodAllowance"),
-                        placeholder: t("describeFoodAllowance"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
-                        isShowMode,
-                      }}
-                    />
-                  </div>
-                  <div>
-                    <AppInput
-                      props={{
-                        label: t("severancePay"),
-                        placeholder: t("describeSeniorityAllowance"),
-                        classNames: {
-                          selectorButton: `${isShowMode && "!hidden"}`,
-                        },
+                        name: "effectiveDate",
                         isShowMode,
                       }}
                     />
                   </div>
 
-                  <div className={"col-span-2"}>
+                  <div className="col-span-2">
                     <AppTextArea
                       props={{
                         label: t("descriptions"),
@@ -456,10 +348,20 @@ export default function ModalCalculations({
                     />
                   </div>
                 </InputGrid>
+                {isShowMode ? (
+                  <ComputationalCoefficientsShowMode
+                    props={{
+                      data: DUMMY_DATA,
+                    }}
+                  />
+                ) : (
+                  <CalculationComputationalCoefficients />
+                )}{" "}
               </Form>
             </ModalBody>
-            <ModalFooter className={`!p-0 flex items-end`}>
-              {!isShowMode && (
+            {
+              !isShowMode && (
+              <ModalFooter className={`!p-0 flex items-end`}>
                 <div className="flex gap-3">
                   <Button
                     className="text-xl font-normal rounded-3"
@@ -476,8 +378,7 @@ export default function ModalCalculations({
                     {isEditMode ? t("saveChanges") : t("submit")}
                   </Button>
                 </div>
-              )}
-            </ModalFooter>
+              </ModalFooter>)}
           </div>
         )}
       </ModalContent>
