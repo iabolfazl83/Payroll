@@ -3,13 +3,13 @@ import { useState } from "react";
 import { useDisclosure } from "@heroui/react";
 
 import { SettingLayout } from "@/pages/Setting/Layout.tsx";
-import PageTabs from "@/pages/Setting/Types/PageTabs.tsx";
+import PageTabs from "@/pages/Setting/Category/PageTabs.tsx";
 import AppTable from "@/components/AppTable.tsx";
 import SelectCalendarWithTime from "@/components/Calendar/SelectCalendarWithTime.tsx";
 import GeneralDetails from "@/components/GeneralDetails";
 import PageHeader from "@/components/PageHeader.tsx";
 import PageIndexTabs from "@/pages/Setting/PageIndexTabs.tsx";
-import ModalTypes from "@/pages/Setting/Types/ModalTypes.tsx";
+import ModalCategory from "@/pages/Setting/Category/ModalCategory.tsx";
 
 export default function Category() {
   const DUMMY_EMPLOYEES = [
@@ -284,7 +284,7 @@ export default function Category() {
                 ),
               }}
             />
-            <ModalTypes
+            <ModalCategory
               isEditMode={isEditMode}
               isOpen={isOpen}
               isShowMode={isShowMode}
