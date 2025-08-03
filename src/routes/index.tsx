@@ -13,7 +13,9 @@ import {
   LegalParameters,
   ProprietaryParameters,
   Calculation,
+  Types,
 } from "@/routes/components.tsx";
+import Category from "@/pages/Setting/Category/Category.tsx";
 
 export const routeUrls = {
   home: "/payroll",
@@ -99,8 +101,8 @@ export const routes: RouteObject[] = [
             ],
           },
           { path: "calculation", element: <Calculation /> },
-          { path: "types" },
-          { path: "category" },
+          { path: "types", element: <Types /> },
+          { path: "category", element: <Category /> },
           { path: "taxes" },
           { path: "insurance" },
         ],
