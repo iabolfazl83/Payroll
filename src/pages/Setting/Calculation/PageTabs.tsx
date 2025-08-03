@@ -1,6 +1,6 @@
 import { Button, useDisclosure } from "@heroui/react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft2, Calculator, Setting5 } from "iconsax-react";
+import { ArrowLeft2, Calculator } from "iconsax-react";
 
 import Search from "@/components/Search.tsx";
 import FilterModal from "@/components/FilterModal.tsx";
