@@ -21,6 +21,7 @@ import { Candle } from "@/icons/Candle.tsx";
 import ComputationalCoefficientsShowMode from "@/pages/JudgmentIssued/ComputationalCoefficientsShowMode.tsx";
 import ComputationalCoefficients from "@/pages/JudgmentIssued/ComputationalCoefficients.tsx";
 import InputGrid from "@/components/InputGrid.tsx";
+import AppDatePicker from "@/components/DatePicker/DatePicker.tsx";
 
 export default function ModalGroupOrder({
   isOpen,
@@ -328,16 +329,10 @@ export default function ModalGroupOrder({
                     />
                   </div>
                   <div>
-                    <AppInput
+                    <AppDatePicker
                       props={{
                         label: t("effectiveDate"),
-                        required: false,
-                        error: formik.errors.effectiveDate,
                         name: "effectiveDate",
-                        placeholder: t("describeText"),
-                        type: "text",
-                        value: formik.values.effectiveDate,
-                        formik: formik,
                         isShowMode,
                       }}
                     />
