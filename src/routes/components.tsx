@@ -37,6 +37,14 @@ export const Types = Loadable(
   lazy(() => import("@/pages/Setting/Types/Types.tsx")),
 );
 
+export const TaxTable = Loadable(
+  lazy(() => import("@/pages/Setting/Tax/TaxTable.tsx")),
+);
+
+export const TaxOffice = Loadable(
+  lazy(() => import("@/pages/Setting/Tax/TaxOffice.tsx")),
+);
+
 export const Category = Loadable(
   lazy(() => import("@/pages/Setting/Category/Category.tsx")),
 );
