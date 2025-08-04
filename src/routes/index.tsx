@@ -14,6 +14,8 @@ import {
   ProprietaryParameters,
   Calculation,
   Types,
+  TaxTable,
+  TaxOffice,
 } from "@/routes/components.tsx";
 import Category from "@/pages/Setting/Category/Category.tsx";
 
@@ -35,6 +37,8 @@ export const routeUrls = {
   insurance: "insurance",
   legalParameters: "legal-parameters",
   proprietaryParameters: "proprietary-parameters",
+  taxOffice: "tax-office",
+  taxTable: "tax-table",
 };
 
 export const routes: RouteObject[] = [
@@ -103,7 +107,20 @@ export const routes: RouteObject[] = [
           { path: "calculation", element: <Calculation /> },
           { path: "types", element: <Types /> },
           { path: "category", element: <Category /> },
-          { path: "taxes" },
+          {
+            path: "taxes",
+            children: [
+              {
+                index: true,
+                element: <Navigate replace to="tax-table" />,
+              },
+              { path: "tax-table", element: <TaxTable /> },
+              {
+                path: "tax-office",
+                element: <TaxOffice />,
+              },
+            ],
+          },
           { path: "insurance" },
         ],
       },
