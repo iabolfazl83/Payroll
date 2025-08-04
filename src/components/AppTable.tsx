@@ -31,6 +31,7 @@ const AppTable = ({ props }: { props: any }) => {
     hasPadding = true,
     hasShadow = true,
     hasRowBorder = true,
+    extraMessage,
   } = props;
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -130,7 +131,7 @@ const AppTable = ({ props }: { props: any }) => {
         <ModalContent className="rounded-[12px] bg-white dark:info-1000 border-1 border-danger p-12">
           {(onClose) => (
             <>
-              <ModalHeader>
+              <ModalHeader className="flex flex-col">
                 <div className="flex justify-between items-center w-full">
                   <div className="bg-danger flex gap-2 !rounded-4 !px-3 !py-1.5 items-center">
                     <Trash className="text-white" size="18" />
@@ -146,6 +147,7 @@ const AppTable = ({ props }: { props: any }) => {
                     <CloseIcon />
                   </Button>
                 </div>
+                {extraMessage && extraMessage}
               </ModalHeader>
               <ModalFooter>
                 <Button
