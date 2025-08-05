@@ -194,5 +194,15 @@ export const EnglishLanguage = {
     describePhoneNumber: "Describe Phone Number",
     thisBranchOfYourTaxHasBeenAssignedTo15PeopleForExampleWithTheDeletionOfThisBranchWhereShouldIOrderForTheseFewPeople:
       "This branch of your tax has been assigned to 15 people, for example, with the deletion of this branch, where should I order for these few people?",
+    workshopName: "Workshop Name",
+    legalRepresentative: "Legal Representative",
+    workshopLoc: "Workshop Loc.",
+    workshopCode: "Workshop Code",
+    representativeNationalCode: "Representative National Code",
+    nationalID: "National ID",
+    tehran: "Tehran",
+    addNewInsuranceBranch: "Add New Insurance Branch",
+    editInsuranceBranch: "Edit Insurance Branch",
+    showInsuranceBranch: "Show Insurance Branch",
   },
 };
