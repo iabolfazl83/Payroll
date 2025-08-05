@@ -49,6 +49,10 @@ export const Category = Loadable(
   lazy(() => import("@/pages/Setting/Category/Category.tsx")),
 );
 
+export const Insurance = Loadable(
+  lazy(() => import("@/pages/Setting/Insurance/Insurance.tsx")),
+);
+
 export const SalaryCalculations = Loadable(
   lazy(() => import("@/pages/SalaryCalculations/SalaryCalculations.tsx")),
 );
