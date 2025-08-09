@@ -38,7 +38,7 @@ export default function SalaryCalculateBox({
 
   return (
     <Card
-      className={`max-w-[400px] ${showCalculate ? "bg-[#FFF7ED] dark:bg-[#482800]" : "bg-[#F1FFF7] dark:bg-[#09311A]"} shadow-[0px_1px_3px_0px_rgba(8,14,28,0.30)]`}
+      className={`hover:border-primary dark:hover:border-surface-200 cursor-pointer border-1 border-transparent max-w-[400px] ${showCalculate ? "bg-[#FFF7ED] dark:bg-[#482800]" : "bg-[#F1FFF7] dark:bg-[#09311A]"} shadow-[0px_1px_3px_0px_rgba(8,14,28,0.30)]`}
     >
       <CardHeader className="flex flex-wrap justify-between gap-3 items-center">
         <div className="flex gap-2 items-center">
