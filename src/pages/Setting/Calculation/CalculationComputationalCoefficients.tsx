@@ -28,7 +28,6 @@ const CalculationComputationalCoefficients = () => {
     { id: 10, label: "Maryam Ahmadi" },
   ];
 
-
   return (
     <div className="flex flex-col w-full">
       <div className="flex flex-col w-full">

@@ -18,6 +18,7 @@ import {
   TaxTable,
   TaxOffice,
   Insurance,
+  SalaryCalculationsDetails,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -78,6 +79,12 @@ export const routes: RouteObject[] = [
       {
         path: "salary-calculations",
         element: <SalaryCalculations />,
+        children: [
+          {
+            path: ":id",
+            element: <SalaryCalculationsDetails />,
+          },
+        ],
       },
       {
         path: "setting",

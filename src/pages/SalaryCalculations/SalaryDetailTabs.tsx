@@ -1,18 +1,27 @@
 import { useTranslation } from "react-i18next";
-import { ArrowLeft2, ArrowRight2, ArrowUp2, Building } from "iconsax-react";
-import { Button, Select, SelectItem } from "@heroui/react";
+import { ArrowLeft2, ArrowUp2, Building } from "iconsax-react";
+import { Button, Select, SelectItem, useDisclosure } from "@heroui/react";
 
 import { useDarkMode } from "@/context/DarkMode.tsx";
-import Search from "@/components/Search.tsx";
 import { Index as Icons } from "@/icons/Index.tsx";
 import PageHeaderTab from "@/components/PageHeaderTab.tsx";
 import { routeUrls } from "@/routes";
+import Search from "@/components/Search.tsx";
+import FilterModal from "@/components/FilterModal.tsx";
 
-export default function PageTabs() {
+export default function SalaryDetailTabs({ props }: { props: any }) {
   const { darkMode } = useDarkMode();
   const { t } = useTranslation();
   const isSalaryCalculations = routeUrls.home + routeUrls.salaryCalculations;
-
+  const goBack = () => {
+    history.back();
+  };
+  const {
+    isOpen: isFilterOpen,
+    onOpen: onFilterOpen,
+    onOpenChange: onFilterOpenChange,
+  } = useDisclosure();
+  const { data } = props;
   const animals = [
     { key: "cat", label: "Cat" },
     { key: "dog", label: "Dog" },
@@ -28,9 +37,6 @@ export default function PageTabs() {
     { key: "otter", label: "Otter" },
     { key: "crocodile", label: "Crocodile" },
   ];
-  const goBack = () => {
-    history.back();
-  };
 
   return (
     <div className="flex justify-between w-full mb-2">
@@ -53,18 +59,8 @@ export default function PageTabs() {
           }}
         />
       </div>
-      <div className="flex gap-2 items-center flex-1 justify-end">
-        <Button
-          className="dark:bg-info-1000 border border-primary dark:border-surface-200 px-2 py-5 !rounded-4 bg-unset min-w-[42px]"
-          startContent={<ArrowLeft2 />}
-        />
-        <div className="dark:bg-info-1000 border border-primary dark:border-surface-200 px-2 py-2 !rounded-4 text-secondary-1000 dark:text-white">
-          <span>This Year (2025)</span>
-        </div>
-        <Button
-          className="dark:bg-info-1000 border border-primary dark:border-surface-200 px-2 py-5 !rounded-4 bg-unset min-w-[42px]"
-          startContent={<ArrowRight2 />}
-        />
+      <div className="flex gap-3">
+        <Button>{t("salaryProcessing")}</Button>
         <Select
           className="max-w-xs"
           classNames={{
@@ -93,16 +89,14 @@ export default function PageTabs() {
               data-[hover=true]:!bg-main-light
                data-[focus=true]:!bg-main-light
                 data-[focus=true]:!outline-none
-                 hover:!bg-main-light
                   focus:!bg-main-light
-                  
-                  dark:hover:!bg-[rgba(4,66,92,0.60)]
+
               dark:data-[hover=true]:!bg-[rgba(4,66,92,0.60)]
                dark:data-[focus=true]:!bg-[rgba(4,66,92,0.60)]
                 dark:data-[focus=true]:![rgba(4,66,92,0.60)]
                  dark:hover:!bg-[rgba(4,66,92,0.60)]
                   dark:focus:!bg-[rgba(4,66,92,0.60)]
-                  
+
                    cursor-pointer
                     p-2 rounded-4
                     !outline-none
@@ -114,6 +108,19 @@ export default function PageTabs() {
           ))}
         </Select>
         <Search placeholder="Search Sth" />
+        <FilterModal
+          props={{
+            data: {
+              nameList: data.nameList,
+              sortOptions: data.sortOptions,
+              EmployeeName: data.EmployeeName,
+            },
+            isOpen: isFilterOpen,
+            onOpenChange: onFilterOpenChange,
+          }}
+        />
+        <Button>{t("revert")}</Button>
+        <Button>{t("editHistory")}</Button>
       </div>
     </div>
   );

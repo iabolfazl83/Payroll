@@ -32,6 +32,7 @@ const AppTable = ({ props }: { props: any }) => {
     hasShadow = true,
     hasRowBorder = true,
     extraMessage,
+    selectionMode,
   } = props;
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -74,7 +75,7 @@ const AppTable = ({ props }: { props: any }) => {
     <div
       className={`bg-primary-50 w-full border border-primary dark:border-surface-200 dark:bg-[rgba(4,66,92,0.60)] ${hasPadding && "pt-5 pl-5 pr-6"} pb-4 h-full !rounded-[14px] ${hasShadow && "shadow-shadow-light-tight/1"}`}
     >
-      <Table className="!h-[95%]">
+      <Table className="!h-[95%]" selectionMode={selectionMode}>
         <TableHeader className="!rounded-0">
           {autoColumns.map((col: any) => (
             <TableColumn

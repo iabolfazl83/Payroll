@@ -204,5 +204,7 @@ export const EnglishLanguage = {
     addNewInsuranceBranch: "Add New Insurance Branch",
     editInsuranceBranch: "Edit Insurance Branch",
     showInsuranceBranch: "Show Insurance Branch",
+    salaryProcessing: "Salary Processing",
+    editHistory: "Edit History",
   },
 };

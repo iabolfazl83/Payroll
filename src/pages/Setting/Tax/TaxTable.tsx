@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useDisclosure } from "@heroui/react";
+import { ArrowLeft2, ArrowRight2 } from "iconsax-react";
 
 import { SettingLayout } from "@/pages/Setting/Layout.tsx";
 import PageTabs from "@/pages/Setting/Tax/PageTabs.tsx";
 import AppTable from "@/components/AppTable.tsx";
 import PageHeader from "@/components/PageHeader.tsx";
 import ModalTaxTable from "@/pages/Setting/Tax/ModalTaxTable.tsx";
-import { ArrowLeft2, ArrowRight2 } from "iconsax-react";
 import SelectCalendarWithTime from "@/components/Calendar/SelectCalendarWithTime.tsx";
 import GeneralDetails from "@/components/GeneralDetails";
 
@@ -231,7 +231,6 @@ export default function TaxTable() {
     },
   ];
 
-
   const tableColumns = [
     { key: "no", label: "No." },
     { key: "title", label: "Title" },
@@ -328,7 +327,6 @@ export default function TaxTable() {
                 </div>
               </div>
             </div>
-
           </>
         ),
       }}

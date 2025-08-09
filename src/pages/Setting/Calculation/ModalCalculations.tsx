@@ -359,8 +359,7 @@ export default function ModalGroupOrder({
                 )}{" "}
               </Form>
             </ModalBody>
-            {
-              !isShowMode && (
+            {!isShowMode && (
               <ModalFooter className={`!p-0 flex items-end`}>
                 <div className="flex gap-3">
                   <Button
@@ -378,7 +377,8 @@ export default function ModalGroupOrder({
                     {isEditMode ? t("saveChanges") : t("submit")}
                   </Button>
                 </div>
-              </ModalFooter>)}
+              </ModalFooter>
+            )}
           </div>
         )}
       </ModalContent>

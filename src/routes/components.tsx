@@ -56,3 +56,9 @@ export const Insurance = Loadable(
 export const SalaryCalculations = Loadable(
   lazy(() => import("@/pages/SalaryCalculations/SalaryCalculations.tsx")),
 );
+
+export const SalaryCalculationsDetails = Loadable(
+  lazy(
+    () => import("@/pages/SalaryCalculations/SalaryCalculationsDetails.tsx"),
+  ),
+);

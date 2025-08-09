@@ -248,6 +248,7 @@ export default function ModalLegalParameters({
       department: "Customer Support",
     },
   ];
+
   return (
     <Modal
       hideCloseButton

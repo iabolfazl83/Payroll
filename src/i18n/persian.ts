@@ -191,7 +191,8 @@ export const PersianLanguage = {
       to: "تا",
       phoneNumber: "شماره موبایل",
       describePhoneNumber: "توضیح شماره موبایل",
-      thisBranchOfYourTaxHasBeenAssignedTo15PeopleForExampleWithTheDeletionOfThisBranchWhereShouldIOrderForTheseFewPeople: "این شعبه مالیاتی شما به 15 نفر اختصاص داده شده است، به عنوان مثال، با حذف این شعبه، برای این چند نفر کجا باید حکم صادر کنم؟",
+      thisBranchOfYourTaxHasBeenAssignedTo15PeopleForExampleWithTheDeletionOfThisBranchWhereShouldIOrderForTheseFewPeople:
+        "این شعبه مالیاتی شما به 15 نفر اختصاص داده شده است، به عنوان مثال، با حذف این شعبه، برای این چند نفر کجا باید حکم صادر کنم؟",
       workshopName: "نام کارگاه",
       legalRepresentative: "نماینده قانونی",
       workshopLoc: "محل کارگاه",
@@ -202,6 +203,8 @@ export const PersianLanguage = {
       addNewInsuranceBranch: "افزودن شعبه بیمه جدید",
       editInsuranceBranch: "ویرایش شعبه بیمه",
       showInsuranceBranch: "نمایش شعبه بیمه",
+      salaryProcessing: "پردازش حقوق",
+      editHistory: "تاریخچه ویرایش",
     },
   },
 };

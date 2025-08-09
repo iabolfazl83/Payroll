@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 import { SalaryCalculationsLayout } from "@/pages/SalaryCalculations/Layout.tsx";
 import PageHeader from "@/components/PageHeader.tsx";
-import PageTabs from "@/pages/SalaryCalculations/PageTabs.tsx";
+import PageIndexTabs from "@/pages/SalaryCalculations/PageIndexTabs.tsx";
 import SalaryCalculateBox from "@/pages/SalaryCalculations/SalaryCalculateBox.tsx";
 
 export default function SalaryCalculations({ props }: { props: any }) {
@@ -126,13 +128,14 @@ export default function SalaryCalculations({ props }: { props: any }) {
       showCalculate: true,
     },
   ];
+  const navigate = useNavigate();
 
   return (
     <SalaryCalculationsLayout
       props={{
         children: (
           <>
-            <PageHeader props={{ children: <PageTabs /> }} />
+            <PageHeader props={{ children: <PageIndexTabs /> }} />
             <div className="w-full h-full rounded-4">
               <div className="h-full min-h-fit w-full">
                 <div className="flex gap-4 h-full min-h-fit">
@@ -150,6 +153,10 @@ export default function SalaryCalculations({ props }: { props: any }) {
                               month: entry.month,
                               showCalculate: entry.showCalculate,
                               persianMonth: entry.persianMonth,
+                              onClick: () => {
+                                console.log("fk");
+                                navigate(`salary-calculations/${entry.id}`);
+                              },
                             }}
                           />
                         ))}
