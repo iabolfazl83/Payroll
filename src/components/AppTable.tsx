@@ -15,9 +15,11 @@ import {
   TableCell,
 } from "@heroui/react";
 import { useTranslation } from "react-i18next";
+import { useState } from "react";
 
 import { AppPagination } from "@/components/AppPagination.tsx";
 import { CloseIcon } from "@/icons/CloseIcon.tsx";
+import { AppInput } from "@/components/AppInput.tsx";
 
 const AppTable = ({ props }: { props: any }) => {
   const {
@@ -31,41 +33,116 @@ const AppTable = ({ props }: { props: any }) => {
     hasRowBorder = true,
     extraMessage,
     selectionMode,
+    hasRowEdit,
+    customActions,
   } = props;
-
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { t } = useTranslation();
+  const [editRowId, setEditRowId] = useState<number | null>(null);
+  const [editedData, setEditedData] = useState<any>();
+  const [isEditing, setIsEditing] = useState<Boolean>(false);
+
+  const startEditing = (row: any) => {
+    if (row.editable) {
+      setEditRowId(row.Id);
+      setEditedData({ ...row });
+      setIsEditing(true);
+    }
+  };
+
+  const cancelEditing = () => {
+    setEditRowId(null);
+    setEditedData({});
+    setIsEditing(false);
+  };
+
+  const saveEditing = () => {
+    console.log("Updated Row:", editedData);
+    setEditRowId(null);
+    setIsEditing(false);
+  };
+
+  const handleChange = (key: string, value: string) => {
+    setEditedData((prev: any) => ({ ...prev, [key]: value }));
+  };
 
   if (!data.length) return <div className="p-4">No data available</div>;
 
   const autoColumns =
     columns ||
     Object.keys(data[0])
-      .filter((key) => key !== "id")
+      .filter((key) => key !== "id" && key !== "editable")
       .map((key) => ({ key, label: key }));
 
-  const renderActions = () => (
+  const renderActions = (row: any) => (
     <div className="relative flex items-center justify-center gap-2">
-      <Tooltip content="Edit">
-        <Button
-          className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent"
-          onPress={onOpenEditDialog}
-        >
-          <span className="text-lg cursor-pointer">
-            <Edit size="16" />
-          </span>
-        </Button>
-      </Tooltip>
-      <Tooltip content="Delete">
-        <Button
-          className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent"
-          onPress={onOpen}
-        >
-          <span className="text-lg cursor-pointer">
-            <Trash size="16" />
-          </span>
-        </Button>
-      </Tooltip>
+      {hasRowEdit ? (
+        <>
+          {!isEditing && (
+            <Tooltip content={t("edit")}>
+              <Button
+                className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent"
+                onPress={() => startEditing(row)}
+              >
+                <span className="text-lg cursor-pointer">
+                  <Edit size="16" />
+                </span>
+              </Button>
+            </Tooltip>
+          )}
+          {isEditing && (
+            <>
+              <Button
+                className="bg-transparent text-secondary-1000 dark:text-white"
+                size="sm"
+                onPress={cancelEditing}
+              >
+                Cancel
+              </Button>
+              <Button
+                className="bg-white border-1 border-primary dark:border-surface-200 dark:bg-info-1000"
+                size="sm"
+                onPress={saveEditing}
+              >
+                Save
+              </Button>
+            </>
+          )}
+          <Tooltip content={t("delete")}>
+            <Button
+              className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent"
+              onPress={onOpen}
+            >
+              <span className="text-lg cursor-pointer">
+                <Trash size="16" />
+              </span>
+            </Button>
+          </Tooltip>
+        </>
+      ) : (
+        <>
+          <Tooltip content={t("edit")}>
+            <Button
+              className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent"
+              onPress={onOpenEditDialog}
+            >
+              <span className="text-lg cursor-pointer">
+                <Edit size="16" />
+              </span>
+            </Button>
+          </Tooltip>
+          <Tooltip content={t("delete")}>
+            <Button
+              className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent"
+              onPress={onOpen}
+            >
+              <span className="text-lg cursor-pointer">
+                <Trash size="16" />
+              </span>
+            </Button>
+          </Tooltip>
+        </>
+      )}
     </div>
   );
 
@@ -96,7 +173,7 @@ const AppTable = ({ props }: { props: any }) => {
         <TableBody>
           {data.map((row: any, index: number) => (
             <TableRow
-              key={row.id ?? index}
+              key={row.Id ?? index}
               className={`${hasRowBorder && "border-b border-[#dcf0f966] dark:border-[#04425c66]"} hover:bg-surface dark:hover:bg-[#04425c66] !rounded-4 transition-colors !h-12`}
               onClick={onOpenShowDialog}
             >
@@ -105,12 +182,33 @@ const AppTable = ({ props }: { props: any }) => {
                   key={col.key}
                   className="text-xs font-normal text-black dark:text-white text-center"
                 >
-                  {row[col.key] ??
-                    (col.key.toLowerCase().includes("date") ? "Present" : "")}
+                  {hasRowEdit ? (
+                    editRowId === row.Id && row.editable ? (
+                      <AppInput
+                        props={{
+                          inputWrapper: `border-1 rounded-2 border-transparent ${
+                            isEditing ? "border-primary" : ""
+                          } px-2 py-1 w-full`,
+                          type: "text",
+                          name: col.key,
+                          value: editedData[col.key],
+                          onChange: (e: any) =>
+                            handleChange(col.key, e.target.value),
+                          placeholder: col.label,
+                        }}
+                      />
+                    ) : (
+                      (row[col.key] ??
+                      (col.key.toLowerCase().includes("date") ? "Present" : ""))
+                    )
+                  ) : (
+                    (row[col.key] ??
+                    (col.key.toLowerCase().includes("date") ? "Present" : ""))
+                  )}
                 </TableCell>
               ))}
-              <TableCell className="text-xs font-normal text-secondary-400 dark:text-secondary-0">
-                {renderActions()}
+              <TableCell className="text-xs font-normal text-center text-secondary-400 dark:text-secondary-0">
+                {!customActions ? renderActions(row) : customActions()}
               </TableCell>
             </TableRow>
           ))}
