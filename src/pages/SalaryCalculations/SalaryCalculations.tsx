@@ -4,7 +4,6 @@ import { SalaryCalculationsLayout } from "@/pages/SalaryCalculations/Layout.tsx"
 import PageHeader from "@/components/PageHeader.tsx";
 import PageIndexTabs from "@/pages/SalaryCalculations/PageIndexTabs.tsx";
 import SalaryCalculateBox from "@/pages/SalaryCalculations/SalaryCalculateBox.tsx";
-import {TableDocument} from "iconsax-react";
 
 export default function SalaryCalculations({ props }: { props: any }) {
   const dummySalaryData = [
