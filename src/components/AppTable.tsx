@@ -1,11 +1,3 @@
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableColumn,
-  TableRow,
-  TableCell,
-} from "@heroui/table";
 import { Tooltip } from "@heroui/tooltip";
 import { Edit, Trash } from "iconsax-react";
 import {
@@ -15,6 +7,12 @@ import {
   ModalFooter,
   ModalHeader,
   useDisclosure,
+  Table,
+  TableHeader,
+  TableBody,
+  TableColumn,
+  TableRow,
+  TableCell,
 } from "@heroui/react";
 import { useTranslation } from "react-i18next";
 
@@ -75,7 +73,13 @@ const AppTable = ({ props }: { props: any }) => {
     <div
       className={`bg-primary-50 w-full border border-primary dark:border-surface-200 dark:bg-[rgba(4,66,92,0.60)] ${hasPadding && "pt-5 pl-5 pr-6"} pb-4 h-full !rounded-[14px] ${hasShadow && "shadow-shadow-light-tight/1"}`}
     >
-      <Table className="!h-[95%]" selectionMode={selectionMode}>
+      <Table
+        className="!h-[95%]"
+        classNames={{
+          th: "bg-primary",
+        }}
+        selectionMode={selectionMode}
+      >
         <TableHeader className="!rounded-0">
           {autoColumns.map((col: any) => (
             <TableColumn
