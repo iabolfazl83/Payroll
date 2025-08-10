@@ -205,6 +205,13 @@ export const EnglishLanguage = {
       showInsuranceBranch: "Show Insurance Branch",
       salaryProcessing: "Salary Processing",
       editHistory: "Edit History",
+      wouldYouAgreeWithThis: "Would You agree with this?",
+      totalNoPersonnel: "Total No. Personnel",
+      wouldYouAgreeToMeMakingTheReturnCalculation:
+        "Would You agree to me making the return calculation?",
+      rial: "Rial",
+      employeeIROrganization: "Employee -IR- Organization",
+      exportToExcel: "Export to Excel",
     },
   },
 };

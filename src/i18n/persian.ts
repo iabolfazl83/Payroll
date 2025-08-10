@@ -205,6 +205,13 @@ export const PersianLanguage = {
       showInsuranceBranch: "نمایش شعبه بیمه",
       salaryProcessing: "پردازش حقوق",
       editHistory: "تاریخچه ویرایش",
+      wouldYouAgreeWithThis: "آیا موافق هستید؟",
+      totalNoPersonnel: "تعداد پرسنل",
+      wouldYouAgreeToMeMakingTheReturnCalculation:
+        "آیا با این ‌که محاسبه بازگشت انجام شود، موافق هستید؟",
+      rial: "ریال",
+      employeeIROrganization: "کارمند - IR - سازمان",
+      exportToExcel: "خروجی اکسل",
     },
   },
 };
