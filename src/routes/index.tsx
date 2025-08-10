@@ -79,12 +79,10 @@ export const routes: RouteObject[] = [
       {
         path: "salary-calculations",
         element: <SalaryCalculations />,
-        children: [
-          {
-            path: ":id",
-            element: <SalaryCalculationsDetails />,
-          },
-        ],
+      },
+      {
+        path: "salary-calculations/salary-detail/:id",
+        element: <SalaryCalculationsDetails />,
       },
       {
         path: "setting",
