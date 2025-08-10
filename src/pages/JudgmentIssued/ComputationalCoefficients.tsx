@@ -5,7 +5,7 @@ import {
   TableColumn,
   TableRow,
   TableCell,
-} from "@heroui/table";
+} from "@heroui/react";
 import { Tooltip } from "@heroui/tooltip";
 import { Edit, Trash } from "iconsax-react";
 import {

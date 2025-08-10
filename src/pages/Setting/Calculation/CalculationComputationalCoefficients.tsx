@@ -5,7 +5,7 @@ import {
   TableColumn,
   TableRow,
   TableCell,
-} from "@heroui/table";
+} from "@heroui/react";
 import { useTranslation } from "react-i18next";
 
 import { AppAutoComplete } from "@/components/AppAutoComplete.tsx";
