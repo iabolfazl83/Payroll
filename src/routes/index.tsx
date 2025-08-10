@@ -19,6 +19,7 @@ import {
   TaxOffice,
   Insurance,
   SalaryCalculationsDetails,
+  EditHistory,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -41,6 +42,7 @@ export const routeUrls = {
   proprietaryParameters: "proprietary-parameters",
   taxOffice: "tax-office",
   taxTable: "tax-table",
+  editHistory: "edit-history",
 };
 
 export const routes: RouteObject[] = [
@@ -83,6 +85,10 @@ export const routes: RouteObject[] = [
       {
         path: "salary-calculations/salary-detail/:id",
         element: <SalaryCalculationsDetails />,
+      },
+      {
+        path: "edit-history",
+        element: <EditHistory />,
       },
       {
         path: "setting",
