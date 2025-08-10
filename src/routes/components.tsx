@@ -62,3 +62,7 @@ export const SalaryCalculationsDetails = Loadable(
     () => import("@/pages/SalaryCalculations/SalaryCalculationsDetails.tsx"),
   ),
 );
+
+export const EditHistory = Loadable(
+  lazy(() => import("@/pages/SalaryCalculations/EditHistory/EditHistory.tsx")),
+);
