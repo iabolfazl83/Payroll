@@ -1,5 +1,4 @@
 import { Button, useDisclosure } from "@heroui/react";
-import { useState } from "react";
 import { Refresh2 } from "iconsax-react";
 import { Tooltip } from "@heroui/tooltip";
 import { useTranslation } from "react-i18next";
@@ -8,12 +7,11 @@ import { SalaryCalculationsLayout } from "@/pages/SalaryCalculations/Layout.tsx"
 import PageHeader from "@/components/PageHeader.tsx";
 import AppTable from "@/components/AppTable.tsx";
 import PageTabs from "@/pages/SalaryCalculations/EditHistory/PageTabs.tsx";
+import EditDetailModal from "@/pages/SalaryCalculations/EditHistory/EditDetail.tsx";
 
 export default function EditHistory() {
   const { t } = useTranslation();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [isShowMode, setIsShowMode] = useState<boolean>(false);
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const DUMMY_EMPLOYEES = [
     {
       id: 1,
@@ -254,6 +252,33 @@ export default function EditHistory() {
     },
   ];
 
+  const detailsOfChanges = {
+    userName: "Dr.R.E",
+    personnelCode: "1234567",
+    modifierUser: {
+      name: "Zahra Pakniyat",
+      role: "UI/UX Designer",
+      avatar: "@src/assets/img/user-picture.jpg", // replace with actual image path
+      ipAddress: "192.168.1.1",
+      date: "2023/11/10",
+      time: "17:00",
+    },
+    changes: [
+      {
+        no: 1,
+        title: "Parameter",
+        before: "112",
+        after: "12",
+      },
+      {
+        no: 2,
+        title: "Parameter",
+        before: "112",
+        after: "12",
+      },
+    ],
+  };
+
   const revertActions = () => (
     <Tooltip className="flex justify-center" content={t("revert")}>
       <Button className="!min-w-fit !p-0 !w-4 !h-4 !rounded-0 !bg-transparent">
@@ -269,6 +294,9 @@ export default function EditHistory() {
     columns: tableColumns,
     hasPagination: true,
     customActions: revertActions,
+    onOpenShowDialog: () => {
+      onOpen();
+    },
   };
 
   return (
@@ -289,6 +317,13 @@ export default function EditHistory() {
                     }}
                   />
                 ),
+              }}
+            />
+            <EditDetailModal
+              props={{
+                isOpen: isOpen,
+                onOpenChange: onOpenChange,
+                data: detailsOfChanges,
               }}
             />
             <div className="w-full h-full rounded-4">
