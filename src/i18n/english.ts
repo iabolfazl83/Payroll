@@ -212,6 +212,11 @@ export const EnglishLanguage = {
       rial: "Rial",
       employeeIROrganization: "Employee -IR- Organization",
       exportToExcel: "Export to Excel",
+      detailsOfChanges: "Details of Changes",
+      userName: "User Name",
+      personnelCode: "Personnel Code",
+      modifierUser: "Modifier User",
+      changes: "Changes",
     },
   },
 };

@@ -212,6 +212,11 @@ export const PersianLanguage = {
       rial: "ریال",
       employeeIROrganization: "کارمند - IR - سازمان",
       exportToExcel: "خروجی اکسل",
+      detailsOfChanges: "جزئیات تغییرات",
+      userName: "نام کاربر",
+      personnelCode: "کد پرسنلی",
+      modifierUser: "کاربر تغییر دهنده",
+      changes: "تغییرات",
     },
   },
 };
