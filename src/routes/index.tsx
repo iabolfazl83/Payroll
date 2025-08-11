@@ -87,7 +87,7 @@ export const routes: RouteObject[] = [
         element: <SalaryCalculationsDetails />,
       },
       {
-        path: "edit-history",
+        path: "salary-calculations/edit-history",
         element: <EditHistory />,
       },
       {

@@ -63,7 +63,13 @@ export default function SalaryDetailTabs({ props }: { props: any }) {
   };
 
   function navigateToEditHistory() {
-    navigate(routeUrls.home + "/" + routeUrls.editHistory);
+    navigate(
+      routeUrls.home +
+        "/" +
+        routeUrls.salaryCalculations +
+        "/" +
+        routeUrls.editHistory,
+    );
   }
 
   return (
