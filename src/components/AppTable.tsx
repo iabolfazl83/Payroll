@@ -15,7 +15,7 @@ import {
   TableCell,
 } from "@heroui/react";
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { AppPagination } from "@/components/AppPagination.tsx";
 import { CloseIcon } from "@/icons/CloseIcon.tsx";
@@ -33,8 +33,10 @@ const AppTable = ({ props }: { props: any }) => {
     hasRowBorder = true,
     extraMessage,
     selectionMode,
-    hasRowEdit,
-    customActions,
+    hasRowEdit = false,
+    customActions = false,
+    noActions = false,
+    customCell,
   } = props;
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const { t } = useTranslation();
@@ -68,11 +70,21 @@ const AppTable = ({ props }: { props: any }) => {
 
   if (!data.length) return <div className="p-4">No data available</div>;
 
-  const autoColumns =
-    columns ||
-    Object.keys(data[0])
-      .filter((key) => key !== "id" && key !== "editable")
-      .map((key) => ({ key, label: key }));
+  const autoColumns = useMemo(() => {
+    const baseCols =
+      columns ||
+      (data.length
+        ? Object.keys(data[0])
+            .filter((key) => key !== "id" && key !== "editable")
+            .map((key) => ({ key, label: key }))
+        : []);
+
+    if (!noActions) {
+      return [...baseCols, { key: "__actions__", label: "Actions" }];
+    }
+
+    return baseCols;
+  }, [columns, data, noActions]);
 
   const renderActions = (row: any) => (
     <div className="relative flex items-center justify-center gap-2">
@@ -166,50 +178,63 @@ const AppTable = ({ props }: { props: any }) => {
               {col.label}
             </TableColumn>
           ))}
-          <TableColumn className="text-white dark:text-white text-sm font-semibold bg-primary dark:bg-[rgba(4,66,92,0.60)] text-center">
-            Actions
-          </TableColumn>
         </TableHeader>
         <TableBody>
           {data.map((row: any, index: number) => (
             <TableRow
               key={row.Id ?? index}
               className={`${hasRowBorder && "border-b border-[#dcf0f966] dark:border-[#04425c66]"} hover:bg-surface dark:hover:bg-[#04425c66] !rounded-4 transition-colors !h-12`}
-              onClick={onOpenShowDialog}
+              onClick={() => onOpenShowDialog(row.Id ?? index)}
             >
-              {autoColumns.map((col: any) => (
-                <TableCell
-                  key={col.key}
-                  className="text-xs font-normal text-black dark:text-white text-center"
-                >
-                  {hasRowEdit ? (
-                    editRowId === row.Id && row.editable ? (
-                      <AppInput
-                        props={{
-                          inputWrapper: `border-1 rounded-2 border-transparent ${
-                            isEditing ? "border-primary" : ""
-                          } px-2 py-1 w-full`,
-                          type: "text",
-                          name: col.key,
-                          value: editedData[col.key],
-                          onChange: (e: any) =>
-                            handleChange(col.key, e.target.value),
-                          placeholder: col.label,
-                        }}
-                      />
+              {autoColumns.map((col: any) => {
+                if (col.key === "__actions__") {
+                  return (
+                    <TableCell
+                      key="__actions__"
+                      className="text-xs font-normal text-center text-secondary-400 dark:text-secondary-0"
+                    >
+                      {!customActions ? renderActions(row) : customActions()}
+                    </TableCell>
+                  );
+                }
+
+                return (
+                  <TableCell
+                    key={col.key}
+                    className="text-xs font-normal text-black dark:text-white text-center"
+                  >
+                    {customCell && typeof customCell === "function" ? (
+                      customCell(col, row) // Function mode
+                    ) : customCell && customCell[col.key] ? (
+                      customCell[col.key](row) // Map mode
+                    ) : hasRowEdit ? (
+                      editRowId === row.Id && row.editable ? (
+                        <AppInput
+                          props={{
+                            inputWrapper: `border-1 rounded-2 border-transparent ${
+                              isEditing ? "border-primary" : ""
+                            } px-2 py-1 w-full`,
+                            type: "text",
+                            name: col.key,
+                            value: editedData[col.key],
+                            onChange: (e: any) =>
+                              handleChange(col.key, e.target.value),
+                            placeholder: col.label,
+                          }}
+                        />
+                      ) : (
+                        (row[col.key] ??
+                        (col.key.toLowerCase().includes("date")
+                          ? "Present"
+                          : ""))
+                      )
                     ) : (
                       (row[col.key] ??
                       (col.key.toLowerCase().includes("date") ? "Present" : ""))
-                    )
-                  ) : (
-                    (row[col.key] ??
-                    (col.key.toLowerCase().includes("date") ? "Present" : ""))
-                  )}
-                </TableCell>
-              ))}
-              <TableCell className="text-xs font-normal text-center text-secondary-400 dark:text-secondary-0">
-                {!customActions ? renderActions(row) : customActions()}
-              </TableCell>
+                    )}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           ))}
         </TableBody>
