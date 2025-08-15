@@ -1,6 +1,7 @@
 import { useTranslation } from "react-i18next";
 
 import { Index } from "@/icons/Index.tsx";
+import { routeUrls } from "@/routes";
 
 export const GetMenuConfig = (pathname: string, darkMode: boolean) => {
   const { t } = useTranslation();
@@ -16,32 +17,32 @@ export const GetMenuConfig = (pathname: string, darkMode: boolean) => {
     {
       icon: <Index.LinearChart color={getColor("/payroll/dashboard")} />,
       name: t("dashboard"),
-      route: "/payroll/dashboard",
+      route: routeUrls.home + "/" + routeUrls.dashboard,
     },
     {
       icon: <Index.Code color={getColor("/payroll/judgment-issued")} />,
       name: t("judgmentIssued"),
-      route: "/payroll/judgment-issued",
+      route: routeUrls.home + "/" + routeUrls.judgmentIssued,
     },
     {
       icon: <Index.Card color={getColor("/payroll/salary-calculation")} />,
       name: t("salaryCalculations"),
-      route: "/payroll/salary-calculations",
+      route: routeUrls.home + "/" + routeUrls.salaryCalculations,
     },
     {
       icon: <Index.LinearGuard color={getColor("/payroll/payroll-slip")} />,
       name: t("payrollSlip"),
-      route: "/payroll/payroll-slip",
+      route: routeUrls.home + "/" + routeUrls.payrollSlip,
     },
     {
-      icon: <Index.Receive color={getColor("/payroll/reporting")} />,
+      icon: <Index.Receive color={getColor("/payroll/reports")} />,
       name: t("reporting"),
-      route: "/payroll/reporting",
+      route: routeUrls.home + "/" + routeUrls.reports,
     },
     {
       icon: <Index.Setting color={getColor("/payroll/setting")} />,
       name: t("setting"),
-      route: "/payroll/setting",
+      route: routeUrls.home + "/" + routeUrls.setting,
     },
   ];
 };
