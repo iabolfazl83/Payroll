@@ -263,7 +263,7 @@ export default function ModalLegalParameters({
           <div className="flex flex-col gap-8">
             <ModalHeader className="flex flex-col gap-1 !p-0">
               <div className="flex justify-between items-center">
-                <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
+                <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex items-center gap-2 px-3 py-1.5 w-fit">
                   <Candle color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {isEditMode
