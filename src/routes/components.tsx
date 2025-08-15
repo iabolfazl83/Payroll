@@ -66,3 +66,85 @@ export const SalaryCalculationsDetails = Loadable(
 export const EditHistory = Loadable(
   lazy(() => import("@/pages/SalaryCalculations/EditHistory/EditHistory.tsx")),
 );
+
+export const SalaryList = Loadable(
+  lazy(() => import("@/pages/PayrollSlip/SalaryList/SalaryList.tsx")),
+);
+
+export const PaySlipList = Loadable(
+  lazy(() => import("@/pages/PayrollSlip/PaySlip/PaySlipList.tsx")),
+);
+
+export const Reports = Loadable(
+  lazy(() => import("@/pages/Reporting/Index.tsx")),
+);
+
+export const Comprehensive = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Comprehensive/Index.tsx")),
+);
+
+export const Deductions = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Deductions/Index.tsx")),
+);
+
+export const Additions = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Additions/Index.tsx")),
+);
+
+export const LeaveCalculation = Loadable(
+  lazy(
+    () => import("@/pages/Reporting/LegalReports/LeaveCalculation/Index.tsx"),
+  ),
+);
+
+export const CalculateTheMission = Loadable(
+  lazy(
+    () =>
+      import("@/pages/Reporting/LegalReports/CalculateTheMission/Index.tsx"),
+  ),
+);
+
+export const ReportInsurance = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Insurance/Index.tsx")),
+);
+
+export const Tax = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Tax/Index.tsx")),
+);
+
+export const Eid = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Eid/Index.tsx")),
+);
+
+export const Years = Loadable(
+  lazy(() => import("@/pages/Reporting/LegalReports/Years/Index.tsx")),
+);
+
+export const InsuranceReport = Loadable(
+  lazy(
+    () =>
+      import("@/pages/Reporting/Excel-TextReports/InsuranceReport/Index.tsx"),
+  ),
+);
+
+export const InsuranceList = Loadable(
+  lazy(
+    () =>
+      import(
+        "@/pages/Reporting/Excel-TextReports/InsuranceReport/InsuranceList/InsuranceList.tsx"
+      ),
+  ),
+);
+
+export const TaxReport = Loadable(
+  lazy(() => import("@/pages/Reporting/Excel-TextReports/TaxReport/Index.tsx")),
+);
+
+export const TaxList = Loadable(
+  lazy(
+    () =>
+      import(
+        "@/pages/Reporting/Excel-TextReports/TaxReport/TaxList/TaxList.tsx"
+      ),
+  ),
+);
