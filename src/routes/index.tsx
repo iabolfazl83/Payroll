@@ -20,6 +20,22 @@ import {
   Insurance,
   SalaryCalculationsDetails,
   EditHistory,
+  SalaryList,
+  PaySlipList,
+  Reports,
+  Comprehensive,
+  Deductions,
+  Additions,
+  LeaveCalculation,
+  ReportInsurance,
+  CalculateTheMission,
+  Tax,
+  Eid,
+  Years,
+  InsuranceReport,
+  TaxReport,
+  InsuranceList,
+  TaxList,
 } from "@/routes/components.tsx";
 
 export const routeUrls = {
@@ -29,6 +45,7 @@ export const routeUrls = {
   individualOrder: "individual-order",
   groupOrder: "group-order",
   salaryCalculations: "salary-calculations",
+  salaryDetail: "salary-detail",
   setting: "setting",
   generalSettings: "general-settings",
   costCenter: "cost-center",
@@ -43,6 +60,24 @@ export const routeUrls = {
   taxOffice: "tax-office",
   taxTable: "tax-table",
   editHistory: "edit-history",
+  payrollSlip: "payroll-slip",
+  salaryList: "salary-list",
+  paySlipList: "payslip-list",
+  reports: "reports",
+  legalReports: "legal-reports",
+  comprehensive: "comprehensive",
+  deductions: "deductions",
+  additions: "additions",
+  leaveCalculation: "leave-calculation",
+  calculateTheMission: "calculate-the-mission",
+  tax: "tax",
+  eid: "eid",
+  years: "years",
+  excelTextReports: "excel-text-reports",
+  insuranceReports: "insurance-reports",
+  taxReports: "tax-reports",
+  taxList: "tax-list",
+  insuranceList: "insurance-list",
 };
 
 export const routes: RouteObject[] = [
@@ -80,15 +115,96 @@ export const routes: RouteObject[] = [
       },
       {
         path: "salary-calculations",
-        element: <SalaryCalculations />,
+        children: [
+          { index: true, element: <SalaryCalculations /> },
+          {
+            path: "edit-history",
+            element: <EditHistory />,
+          },
+          { path: "salary-detail/:id", element: <SalaryCalculationsDetails /> },
+        ],
+      },
+
+      {
+        path: "payroll-slip",
+        children: [
+          {
+            index: true,
+            element: <Navigate replace to="salary-list" />,
+          },
+          {
+            path: "salary-list",
+            children: [
+              {
+                index: true,
+                element: <SalaryList />,
+              },
+              {
+                path: "payslip-list/:id",
+                element: <PaySlipList />,
+              },
+            ],
+          },
+        ],
       },
       {
-        path: "salary-calculations/salary-detail/:id",
-        element: <SalaryCalculationsDetails />,
-      },
-      {
-        path: "salary-calculations/edit-history",
-        element: <EditHistory />,
+        path: "reports",
+        children: [
+          {
+            index: true,
+            element: <Reports />,
+          },
+          {
+            path: "legal-reports",
+            children: [
+              { index: true, element: <Navigate replace to="comprehensive" /> },
+              { path: "comprehensive", element: <Comprehensive /> },
+              { path: "deductions", element: <Deductions /> },
+              { path: "additions", element: <Additions /> },
+              { path: "leave-calculation", element: <LeaveCalculation /> },
+              {
+                path: "calculate-the-mission",
+                element: <CalculateTheMission />,
+              },
+              { path: "insurance", element: <ReportInsurance /> },
+              { path: "tax", element: <Tax /> },
+              { path: "eid", element: <Eid /> },
+              { path: "years", element: <Years /> },
+            ],
+          },
+          {
+            path: "excel-text-reports",
+            children: [
+              {
+                index: true,
+                element: <Navigate replace to="insurance-reports" />,
+              },
+              {
+                path: "insurance-reports",
+                children: [
+                  {
+                    index: true,
+                    element: <InsuranceReport />,
+                  },
+                  {
+                    path: "insurance-list",
+                    element: <InsuranceList />,
+                  },
+                ],
+              },
+              {
+                path: "tax-reports",
+                children: [
+                  { index: true, element: <TaxReport /> },
+                  {
+                    path: "tax-list",
+                    element: <TaxList />,
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
       {
         path: "setting",
