@@ -1,11 +1,5 @@
 import { useTranslation } from "react-i18next";
-import {
-    ArrowLeft2,
-    Export, ExportCircle, ExportCurve, ExportSquare,
-    FilterEdit,
-    Setting4,
-    UserOctagon,
-} from "iconsax-react";
+import { ArrowLeft2, ExportSquare, Setting4, UserOctagon } from "iconsax-react";
 import { Button, useDisclosure } from "@heroui/react";
 
 import { useDarkMode } from "@/context/DarkMode.tsx";
@@ -25,16 +19,6 @@ export default function PageTabs({ props }: { props: any }) {
     isOpen: isFilterOpen,
     onOpen: onFilterOpen,
     onOpenChange: onFilterOpenChange,
-  } = useDisclosure();
-  const {
-    isOpen: isSalaryProcessingOpen,
-    onOpen: onSalaryProcessingOpen,
-    onOpenChange: onSalaryProcessingOpenChange,
-  } = useDisclosure();
-  const {
-    isOpen: isRevertOpen,
-    onOpen: onRevertOpen,
-    onOpenChange: onRevertOpenChange,
   } = useDisclosure();
   const { data } = props;
 

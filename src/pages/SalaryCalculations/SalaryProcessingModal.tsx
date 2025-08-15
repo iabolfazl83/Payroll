@@ -10,7 +10,7 @@ import {
 } from "@heroui/react";
 
 export default function SalaryProcessingModal({ props }: { props: any }) {
-  const { isOpen, onOpen, onOpenChange, totalAmount, totalPersonel } = props;
+  const { isOpen, onOpenChange, totalAmount, totalPersonel } = props;
   const { t } = useTranslation();
 
   return (
@@ -27,7 +27,7 @@ export default function SalaryProcessingModal({ props }: { props: any }) {
           <div className="flex flex-col gap-8">
             <ModalHeader className="flex flex-col gap-1 !p-0">
               <div className="flex justify-between items-center">
-                <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex gap-2 px-3 py-1.5 w-fit">
+                <div className="bg-primary dark:bg-surface-primary shadow-shadow-light-tight/1 rounded-4 flex items-center gap-2 px-3 py-1.5 w-fit">
                   <Calculator color="#ffffff" />
                   <span className="text-white font-normal text-xl">
                     {t("wouldYouAgreeWithThis")}
