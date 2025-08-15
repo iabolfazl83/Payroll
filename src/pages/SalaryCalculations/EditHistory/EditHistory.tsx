@@ -258,7 +258,7 @@ export default function EditHistory() {
     modifierUser: {
       name: "Zahra Pakniyat",
       role: "UI/UX Designer",
-      avatar: "@src/assets/img/user-picture.jpg", // replace with actual image path
+      avatar: "https://picsum.photo/200",
       ipAddress: "192.168.1.1",
       date: "2023/11/10",
       time: "17:00",
