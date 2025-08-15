@@ -4,8 +4,9 @@ import { SalaryCalculationsLayout } from "@/pages/SalaryCalculations/Layout.tsx"
 import PageHeader from "@/components/PageHeader.tsx";
 import PageIndexTabs from "@/pages/SalaryCalculations/PageIndexTabs.tsx";
 import SalaryCalculateBox from "@/pages/SalaryCalculations/SalaryCalculateBox.tsx";
+import { routeUrls } from "@/routes";
 
-export default function SalaryCalculations({ props }: { props: any }) {
+export default function SalaryCalculations() {
   const dummySalaryData = [
     {
       id: 1,
@@ -131,7 +132,7 @@ export default function SalaryCalculations({ props }: { props: any }) {
   const navigate = useNavigate();
 
   function navigateToBoxDetail(id: number) {
-    navigate(`salary-detail/${id}`);
+    navigate(routeUrls.salaryDetail + "/" + id);
   }
 
   return (

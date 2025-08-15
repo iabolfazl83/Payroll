@@ -1,6 +1,4 @@
 import { useDisclosure } from "@heroui/react";
-import { useState } from "react";
-import { useParams } from "react-router-dom";
 
 import { SalaryCalculationsLayout } from "@/pages/SalaryCalculations/Layout.tsx";
 import PageHeader from "@/components/PageHeader.tsx";
@@ -8,9 +6,7 @@ import SalaryDetailTabs from "@/pages/SalaryCalculations/SalaryDetailTabs.tsx";
 import AppTable from "@/components/AppTable.tsx";
 
 export default function SalaryCalculationsDetails() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [isShowMode, setIsShowMode] = useState<boolean>(false);
-  const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const { onOpen } = useDisclosure();
   const DUMMY_EMPLOYEES = [
     {
       id: 1,
@@ -288,13 +284,9 @@ export default function SalaryCalculationsDetails() {
     data: DUMMY_DATA,
     columns: tableColumns,
     onOpenEditDialog: () => {
-      setIsEditMode(true);
-      setIsShowMode(false);
       onOpen();
     },
     onOpenShowDialog: () => {
-      setIsEditMode(false);
-      setIsShowMode(true);
       onOpen();
     },
     hasPagination: true,
@@ -304,10 +296,6 @@ export default function SalaryCalculationsDetails() {
     selectionMode: "multiple",
     hasRowEdit: true,
   };
-  const { id } = useParams();
-  const boxData = DUMMY_DATA.find((b) => b.Id === Number(id));
-
-  if (!boxData) return <div>Box not found</div>;
 
   return (
     <SalaryCalculationsLayout
