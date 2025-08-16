@@ -1,5 +1,6 @@
 {
   "name": "vite-template",
+  "homepage": "https://iabolfazl83.github.io/Payroll/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +8,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint -c .eslintrc.json ./src/**/**/*.{ts,tsx} --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@heroui/button": "2.2.13",
@@ -36,6 +38,7 @@
     "embla-carousel-react": "^8.5.2",
     "formik": "^2.4.6",
     "framer-motion": "11.15.0",
+    "gh-pages": "^6.3.0",
     "i18n": "^0.15.1",
     "iconsax-react": "^0.0.8",
     "leaflet": "^1.9.4",
