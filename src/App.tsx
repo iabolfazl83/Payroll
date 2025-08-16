@@ -43,6 +43,7 @@ function App({ props }: { props: any }) {
   useEffect(() => {
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1440);
+      console.log(isLargeScreen);
     };
 
     handleResize();
